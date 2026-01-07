@@ -5,10 +5,15 @@ import {
   HeroSection,
   ButtonsSection,
   InputSection,
+  FormControlsSection,
   DialogSection,
   TabsSection,
   BadgesSection,
   CardsSection,
+  DataDisplaySection,
+  NavigationSection,
+  OverlaysSection,
+  FeedbackSection,
   ColorPaletteSection,
 } from './components';
 
@@ -20,10 +25,15 @@ export default function DesignSystemPage(): ReactNode {
       <div className="mx-auto max-w-6xl space-y-24 px-6 py-16">
         <ButtonsSection />
         <InputSection />
-        <DialogSection />
-        <TabsSection />
+        <FormControlsSection />
         <BadgesSection />
         <CardsSection />
+        <DataDisplaySection />
+        <TabsSection />
+        <NavigationSection />
+        <DialogSection />
+        <OverlaysSection />
+        <FeedbackSection />
         <ColorPaletteSection />
       </div>
 

@@ -5,6 +5,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { cn } from '@repo/ui';
 import { locales, isValidLocale } from '@repo/i18n';
 import { notFound } from 'next/navigation';
+import { ToastProvider } from '@/components/toast-provider';
 import '../globals.css';
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps): P
     <html lang={locale} suppressHydrationWarning>
       <body className={cn('min-h-screen bg-background antialiased')}>
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <ToastProvider />
       </body>
     </html>
   );

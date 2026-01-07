@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background & Foreground */
+    --background: 210 40% 99%; /* #f8fafc - boardgame-bg-contents */
+    --foreground: 0 0% 7%; /* #111111 - text-deepblack */
+
+    /* Card */
+    --card: 0 0% 100%; /* #ffffff */
+    --card-foreground: 0 0% 7%; /* #111111 */
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+
+    /* Primary - boardgame-primary #7c27f2 */
+    --primary: 266 87% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - btn-gray #f6f6f6 */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 7%;
+
+    /* Muted */
+    --muted: 210 40% 96%;
+    --muted-foreground: 0 0% 47%; /* #777777 - text-lightblack */
+
+    /* Accent */
+    --accent: 210 40% 96%;
+    --accent-foreground: 0 0% 7%;
+
+    /* Destructive - status-error #e22a00 */
+    --destructive: 10 100% 44%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Border & Input - boardgame-border #e5e5e5 */
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 266 87% 55%; /* primary */
+
+    /* Radius */
+    --radius: 0.5rem;
+
+    /* ===== Custom Status Colors ===== */
+    --status-progress: 216 100% 50%; /* #0065ff - 이용 중 */
+    --status-complete: 153 52% 47%; /* #36b37e - 완료 */
+    --status-warning: 40 100% 50%; /* #ffab00 - 경고 */
+    --status-error: 10 100% 44%; /* #e22a00 - 에러 */
+    --status-default: 225 14% 93%; /* #ebecf0 - 기본 */
+    --status-new: 252 43% 54%; /* #6554c0 - 신규 */
+
+    /* ===== Custom Text Colors ===== */
+    --text-deepblack: 0 0% 7%; /* #111111 */
+    --text-black: 0 0% 20%; /* #333333 */
+    --text-lightblack: 0 0% 47%; /* #777777 */
+    --text-gray: 0 0% 60%; /* #999999 */
+    --text-lightgray: 0 0% 87%; /* #dddddd */
+
+    /* ===== Custom Button Colors ===== */
+    --btn-default: 0 0% 7%; /* #111111 */
+    --btn-hover: 266 87% 55%; /* #7c27f2 */
+    --btn-focused: 333 87% 55%; /* #f2277f */
+    --btn-click: 266 67% 43%; /* #6123b7 */
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 266 87% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 10 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 266 87% 60%;
+
+    /* Status colors remain similar in dark mode */
+    --status-progress: 216 100% 55%;
+    --status-complete: 153 52% 52%;
+    --status-warning: 40 100% 55%;
+    --status-error: 10 100% 50%;
+    --status-default: 0 0% 25%;
+    --status-new: 252 43% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

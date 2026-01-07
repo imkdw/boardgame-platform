@@ -3,11 +3,8 @@
 import type { ReactNode } from 'react';
 import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft } from 'lucide-react';
-import { Button } from '@repo/ui';
 
 import { GameSearchBar, GameList, mockGames, type GameSortBy, type Game } from '@/features/games';
-import { Link } from '@/i18n/navigation';
 
 const DIFFICULTY_ORDER: Record<Game['difficulty'], number> = {
   easy: 1,
@@ -22,9 +19,7 @@ export default function GamesPage(): ReactNode {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<GameSortBy>('recommended');
 
-  const handleSearch = () => {
-    setSearchQuery(inputValue);
-  };
+  const handleSearch = () => setSearchQuery(inputValue);
 
   const filteredGames = useMemo(() => {
     const filtered = mockGames.filter(game => {
@@ -66,14 +61,8 @@ export default function GamesPage(): ReactNode {
   return (
     <div className="flex flex-1 flex-col gap-6 overflow-auto p-6">
       <div className="flex items-center gap-4">
-        <Link href="/">
-          <Button variant="ghost" size="icon">
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
-        </Link>
         <h1 className="text-2xl font-bold text-foreground">{tGame('pageTitle')}</h1>
       </div>
-
       <GameSearchBar
         inputValue={inputValue}
         onInputChange={setInputValue}
@@ -82,7 +71,6 @@ export default function GamesPage(): ReactNode {
         onSortChange={setSortBy}
         resultCount={filteredGames.length}
       />
-
       <GameList games={filteredGames} />
     </div>
   );

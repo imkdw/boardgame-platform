@@ -3,6 +3,11 @@
     "title": "홀리쉣보드게임 - 태블릿",
     "description": "보드게임 카페 태블릿 애플리케이션"
   },
+  "InfoVideo": {
+    "title": "매장 소개",
+    "back": "돌아가기",
+    "autoReturnMessage": "영상이 끝나면 자동으로 홈 화면으로 돌아갑니다"
+  },
   "TabletHome": {
     "header": {
       "storeName": "홀리쉣보드게임(성수점)",
@@ -33,9 +38,9 @@
       "wifi": {
         "title": "WI-FI 정보",
         "ssidLabel": "네트워크 이름",
-        "ssid": "WeAZ_WIFI",
+        "ssid": "HOLY_SHIT_WIFI",
         "passwordLabel": "비밀번호",
-        "password": "weaz1234",
+        "password": "wtf1234",
         "close": "닫기"
       }
     }

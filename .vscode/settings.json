@@ -24,5 +24,15 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prisma.pinToPrisma6": true,
-  "cSpell.words": ["healthcheck", "INITDB", "isready", "Lngs", "Logform", "turbopack", "Turborepo", "worklets"]
+  "cSpell.words": [
+    "healthcheck",
+    "INITDB",
+    "isready",
+    "Lngs",
+    "Logform",
+    "turbopack",
+    "Turborepo",
+    "videojs",
+    "worklets"
+  ]
 }

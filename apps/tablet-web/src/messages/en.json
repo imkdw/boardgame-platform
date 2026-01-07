@@ -3,6 +3,11 @@
     "title": "Holyshit Boardgame - Tablet",
     "description": "Boardgame cafe tablet application"
   },
+  "InfoVideo": {
+    "title": "Store Introduction",
+    "back": "Back",
+    "autoReturnMessage": "You will be automatically returned to the home screen when the video ends"
+  },
   "TabletHome": {
     "header": {
       "storeName": "WeAZ Boardgame (Gunpo)",
@@ -33,9 +38,9 @@
       "wifi": {
         "title": "WI-FI Info",
         "ssidLabel": "Network Name",
-        "ssid": "WeAZ_WIFI",
+        "ssid": "HOLY_SHIT_WIFI",
         "passwordLabel": "Password",
-        "password": "weaz1234",
+        "password": "wtf1234",
         "close": "Close"
       }
     }

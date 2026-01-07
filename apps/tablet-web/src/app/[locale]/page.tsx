@@ -33,7 +33,7 @@ export default function TabletHomePage(): ReactNode {
               title={t('menu.storeIntro.title')}
               subtitle={t('menu.storeIntro.subtitle')}
               icon={<Play className="h-12 w-12" />}
-              href="/store-intro"
+              href="/branch/1/info-video"
               variant="primary"
             />
             <MenuCard

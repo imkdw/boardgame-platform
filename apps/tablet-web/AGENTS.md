@@ -32,11 +32,29 @@ pnpm check-types            # TypeScript type check
 src/
   app/
     [locale]/               # i18n dynamic segment
-      layout.tsx            # Locale layout (NextIntlClientProvider)
-      page.tsx              # Home page
-      [...other pages]
+      layout.tsx            # Locale layout (세션 상태별 레이아웃 분기)
+      page.tsx              # Home page (메뉴 허브)
+      games/page.tsx        # 게임 검색
+      guide/page.tsx        # 이용 안내 (placeholder)
+      my-info/page.tsx      # 내 이용정보 (placeholder)
     globals.css             # Global styles
-  components/               # React components
+  components/
+    layout/                 # 레이아웃 컴포넌트
+      tablet-header.tsx     # 미사용 상태 헤더
+      session-header.tsx    # 사용 중 헤더 (시간, 직원호출)
+      bottom-navigation.tsx # 하단 네비게이션 탭
+      session-layout.tsx    # 세션 레이아웃 래퍼
+    shared/                 # 공유 컴포넌트
+      LocaleSwitcher.tsx    # 언어 변경
+      toast-provider.tsx    # 토스트 알림
+      time-display.tsx      # 시간 표시 (상태별 색상)
+    dialogs/                # 다이얼로그
+      staff-call-dialog.tsx # 직원 호출
+      wifi-info-dialog.tsx  # WiFi 정보
+  hooks/
+    use-time-status.ts      # 시간 상태 계산 (normal/warning/danger)
+  lib/
+    mock-session.ts         # Mock 세션 데이터 (zustand 교체 예정)
   i18n/
     navigation.ts           # Localized navigation helpers
     request.ts              # Server-side locale request
@@ -44,8 +62,7 @@ src/
   messages/                 # Translation files
     en.json
     ko.json
-    ja.json (if added)
-  middleware.ts             # i18n middleware
+    ja.json
 
 next.config.ts              # Next.js + next-intl config
 tailwind.config.ts          # Tailwind configuration
@@ -213,6 +230,41 @@ import { APP_ENV } from '@repo/consts'; // Constants
 - `--hostname 0.0.0.0`: 모바일 디바이스에서 접근 가능
 - Android 에뮬레이터: `10.0.2.2:3000`
 - iOS 시뮬레이터: `localhost:3000`
+
+## Session Layout Architecture
+
+### 레이아웃 분기
+
+`layout.tsx`에서 `MOCK_SESSION.isActive`에 따라 레이아웃이 분기됩니다:
+
+```typescript
+// lib/mock-session.ts
+export const MOCK_SESSION = {
+  isActive: true, // false = 환영 페이지, true = 세션 레이아웃
+  tableNumber: '1',
+  remainingSeconds: 5400,
+  endTime: new Date('2026-01-07T15:30:00'),
+};
+```
+
+- `isActive: false` → 기존 환영 페이지 (TabletHeader만 표시)
+- `isActive: true` → SessionLayout (SessionHeader + BottomNavigation)
+
+### 시간 상태
+
+`useTimeStatus` 훅으로 남은 시간에 따른 상태를 계산합니다:
+
+| 상태    | 조건      | 스타일                            |
+| ------- | --------- | --------------------------------- |
+| normal  | 30분 이상 | `text-foreground`                 |
+| warning | 10~30분   | `text-status-warning`             |
+| danger  | 10분 이하 | `text-status-error animate-pulse` |
+
+### 향후 작업
+
+- `lib/mock-session.ts` → zustand store로 교체
+- 실시간 타이머 (useEffect + setInterval)
+- API 연동
 
 ## Common Issues
 

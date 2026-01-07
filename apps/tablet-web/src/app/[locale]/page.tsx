@@ -9,22 +9,16 @@ import { TabletHeader } from '@/components/layout';
 import { WifiInfoDialog, StaffCallDialog } from '@/components/dialogs';
 import { LocaleSwitcher } from '@/components/shared';
 import { MenuCard, QuickActionCard } from '@/features/home';
+import { MOCK_SESSION } from '@/lib/mock-session';
 
 export default function TabletHomePage(): ReactNode {
   const t = useTranslations('TabletHome');
   const [wifiDialogOpen, setWifiDialogOpen] = useState(false);
   const [staffCallDialogOpen, setStaffCallDialogOpen] = useState(false);
 
-  return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <TabletHeader
-        storeName={t('header.storeName')}
-        tableLabel={t('header.tableLabel')}
-        tableNumber={t('tableInfo.tableNumber')}
-        languageSwitcher={<LocaleSwitcher />}
-      />
-
-      <main className="flex flex-1 gap-6 p-6">
+  const content = (
+    <>
+      <div className="flex h-full flex-1 gap-6 p-6">
         <section className="flex-1">
           <div className="grid h-full grid-cols-2 gap-4">
             <MenuCard
@@ -84,7 +78,7 @@ export default function TabletHomePage(): ReactNode {
             onClick={() => setStaffCallDialogOpen(true)}
           />
         </aside>
-      </main>
+      </div>
 
       <WifiInfoDialog
         open={wifiDialogOpen}
@@ -105,6 +99,22 @@ export default function TabletHomePage(): ReactNode {
         cancelText={t('dialogs.staffCall.cancel')}
         successMessage={t('dialogs.staffCall.success')}
       />
+    </>
+  );
+
+  if (MOCK_SESSION.isActive) {
+    return content;
+  }
+
+  return (
+    <div className="flex min-h-screen flex-col bg-background">
+      <TabletHeader
+        storeName={t('header.storeName')}
+        tableLabel={t('header.tableLabel')}
+        tableNumber={t('tableInfo.tableNumber')}
+        languageSwitcher={<LocaleSwitcher />}
+      />
+      {content}
     </div>
   );
 }

@@ -3,6 +3,25 @@
     "title": "Holyshit Boardgame - Tablet",
     "description": "Boardgame cafe tablet application"
   },
+  "SessionHeader": {
+    "remainingTime": "Remaining Time",
+    "endTime": "End",
+    "staffCall": "Staff Call"
+  },
+  "BottomNav": {
+    "storeIntro": "Store Intro",
+    "guide": "Guide",
+    "gameSearch": "Game Search",
+    "myInfo": "My Info"
+  },
+  "Guide": {
+    "title": "Guide",
+    "comingSoon": "Coming Soon"
+  },
+  "MyInfo": {
+    "title": "My Info",
+    "comingSoon": "Coming Soon"
+  },
   "InfoVideo": {
     "title": "Store Introduction",
     "back": "Back",

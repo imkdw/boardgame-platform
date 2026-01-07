@@ -6,6 +6,8 @@ import { cn } from '@repo/ui';
 import { locales, isValidLocale } from '@repo/i18n';
 import { notFound } from 'next/navigation';
 import { ToastProvider } from '@/components/shared';
+import { SessionLayout } from '@/components/layout';
+import { MOCK_SESSION } from '@/lib/mock-session';
 import '../globals.css';
 
 interface Props {
@@ -40,7 +42,9 @@ export default async function LocaleLayout({ children, params }: Props): Promise
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={cn('min-h-screen bg-background antialiased')}>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
+          {MOCK_SESSION.isActive ? <SessionLayout>{children}</SessionLayout> : children}
+        </NextIntlClientProvider>
         <ToastProvider />
       </body>
     </html>

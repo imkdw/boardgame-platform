@@ -3,6 +3,25 @@
     "title": "홀리쉣보드게임 - 태블릿",
     "description": "보드게임 카페 태블릿 애플리케이션"
   },
+  "SessionHeader": {
+    "remainingTime": "남은 시간",
+    "endTime": "종료",
+    "staffCall": "직원 호출"
+  },
+  "BottomNav": {
+    "storeIntro": "매장 소개",
+    "guide": "이용 안내",
+    "gameSearch": "게임 검색",
+    "myInfo": "내 이용정보"
+  },
+  "Guide": {
+    "title": "이용 안내",
+    "comingSoon": "준비 중입니다"
+  },
+  "MyInfo": {
+    "title": "내 이용정보",
+    "comingSoon": "준비 중입니다"
+  },
   "InfoVideo": {
     "title": "매장 소개",
     "back": "돌아가기",

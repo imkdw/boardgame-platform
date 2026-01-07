@@ -3,6 +3,25 @@
     "title": "ホーリーシットボードゲーム - タブレット",
     "description": "ボードゲームカフェ タブレットアプリケーション"
   },
+  "SessionHeader": {
+    "remainingTime": "残り時間",
+    "endTime": "終了",
+    "staffCall": "スタッフ呼出"
+  },
+  "BottomNav": {
+    "storeIntro": "店舗紹介",
+    "guide": "ご利用案内",
+    "gameSearch": "ゲーム検索",
+    "myInfo": "マイ情報"
+  },
+  "Guide": {
+    "title": "ご利用案内",
+    "comingSoon": "準備中です"
+  },
+  "MyInfo": {
+    "title": "マイ情報",
+    "comingSoon": "準備中です"
+  },
   "InfoVideo": {
     "title": "店舗紹介",
     "back": "戻る",

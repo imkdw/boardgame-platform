@@ -123,6 +123,23 @@ design-requirements.md 기반으로 Shadcn/ui 컴포넌트 라이브러리 구�
 - @hookform/resolvers
 - zod
 
+## Tablet-Web 구현 현황
+
+### T-0: 공통 레이아웃 ✅ (2026-01-07)
+
+| 항목                | 상태 | 파일                                          |
+| ------------------- | ---- | --------------------------------------------- |
+| Mock Session 데이터 | ✅   | `lib/mock-session.ts`                         |
+| 시간 상태 훅        | ✅   | `hooks/use-time-status.ts`                    |
+| 시간 표시 컴포넌트  | ✅   | `components/shared/time-display.tsx`          |
+| 세션 헤더           | ✅   | `components/layout/session-header.tsx`        |
+| 하단 네비게이션     | ✅   | `components/layout/bottom-navigation.tsx`     |
+| 세션 레이아웃 래퍼  | ✅   | `components/layout/session-layout.tsx`        |
+| 레이아웃 분기       | ✅   | `app/[locale]/layout.tsx`                     |
+| 이용 안내 페이지    | ✅   | `app/[locale]/guide/page.tsx` (placeholder)   |
+| 내 이용정보 페이지  | ✅   | `app/[locale]/my-info/page.tsx` (placeholder) |
+| i18n 메시지         | ✅   | `messages/*.json`                             |
+
 ## 참고 문서
 
 - `/docs/design-requirements.md` - 화면 설계서

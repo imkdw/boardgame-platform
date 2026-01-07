@@ -1,27 +1,44 @@
 {
-  "HomePage": {
-    "title": "모노레포 앱",
-    "subtitle": "웹과 모바일을 하나로 연결하는 통합 개발 플랫폼",
-    "features": {
-      "speed": {
-        "title": "빠른 개발 속도",
-        "description": "Turborepo와 함께 모든 앱을 동시에 개발하고 배포하세요"
+  "Metadata": {
+    "title": "홀리쉣보드게임 - 태블릿",
+    "description": "보드게임 카페 태블릿 애플리케이션"
+  },
+  "TabletHome": {
+    "header": {
+      "storeName": "홀리쉣보드게임(성수점)",
+      "tableLabel": "GATE"
+    },
+    "menu": {
+      "storeIntro": { "subtitle": "동영상으로 보는", "title": "매장소개" },
+      "gameSearch": { "subtitle": "다양한 게임 이용", "title": "게임검색" },
+      "foodMenu": { "subtitle": "맛과 가성비 좋은", "title": "메뉴" },
+      "penaltyGame": { "subtitle": "재미있는", "title": "벌칙게임" }
+    },
+    "quickActions": {
+      "storeGuide": { "title": "이용안내", "subtitle": "STORE GUIDE" },
+      "wifi": { "title": "WI-FI", "subtitle": "WI-FI" },
+      "staffCall": { "title": "직원호출", "subtitle": "STAFF CALL" }
+    },
+    "tableInfo": {
+      "tableNumber": "1"
+    },
+    "dialogs": {
+      "staffCall": {
+        "title": "직원 호출",
+        "message": "직원을 호출하시겠습니까?",
+        "confirm": "호출하기",
+        "cancel": "취소",
+        "success": "직원을 호출했습니다. 잠시만 기다려주세요."
       },
-      "sharing": {
-        "title": "코드 공유",
-        "description": "타입, 유틸리티, UI 컴포넌트를 모든 플랫폼에서 재사용"
-      },
-      "crossPlatform": {
-        "title": "크로스 플랫폼",
-        "description": "Next.js 웹과 React Native 앱을 하나의 저장소에서 관리"
+      "wifi": {
+        "title": "WI-FI 정보",
+        "ssidLabel": "네트워크 이름",
+        "ssid": "WeAZ_WIFI",
+        "passwordLabel": "비밀번호",
+        "password": "weaz1234",
+        "close": "닫기"
       }
-    },
-    "webviewTest": {
-      "badge": "WebView 테스트",
-      "title": "정상적으로 렌더링되었습니다",
-      "description": "이 페이지가 보인다면 WebView 연동이 성공한 것입니다"
-    },
-    "footer": "© 2026 모노레포 템플릿"
+    }
   },
   "LocaleSwitcher": {
     "label": "언어 변경",

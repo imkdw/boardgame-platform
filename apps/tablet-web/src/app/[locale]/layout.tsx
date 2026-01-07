@@ -1,28 +1,33 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { cn } from '@repo/ui';
 import { locales, isValidLocale } from '@repo/i18n';
 import { notFound } from 'next/navigation';
 import { ToastProvider } from '@/components/toast-provider';
 import '../globals.css';
 
-export const metadata: Metadata = {
-  title: 'My App',
-  description: 'My App description',
-};
+interface Props {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Metadata' });
+
+  return {
+    title: t('title'),
+    description: t('description'),
+  };
+}
 
 export function generateStaticParams() {
   return locales.map(locale => ({ locale }));
 }
 
-interface LayoutProps {
-  children: ReactNode;
-  params: Promise<{ locale: string }>;
-}
-
-export default async function LocaleLayout({ children, params }: LayoutProps): Promise<ReactNode> {
+export default async function LocaleLayout({ children, params }: Props): Promise<ReactNode> {
   const { locale } = await params;
 
   if (!isValidLocale(locale)) {

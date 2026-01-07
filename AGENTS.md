@@ -93,6 +93,29 @@ packages/
 - `@typescript-eslint/no-unused-vars: error`
 - `@typescript-eslint/no-unnecessary-condition: error`
 
+### Component Props Convention (UI & Frontend)
+
+When defining Props types in single components, always use `interface Props {}`:
+
+```typescript
+// Good - simple and consistent
+interface Props {
+  title: string;
+  onClick: () => void;
+}
+
+function MyComponent({ title, onClick }: Props) {
+  // ...
+}
+
+// Bad - unnecessary prefix
+interface MyComponentProps {
+  title: string;
+}
+```
+
+This convention applies to all UI components and frontend apps (`packages/ui`, `apps/web`, `apps/tablet-web`, `apps/desktop`).
+
 ### Imports
 
 - Use path aliases: `@/` for src root in each app

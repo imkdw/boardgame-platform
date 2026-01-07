@@ -266,6 +266,7 @@ Config in `components.json`:
 - **Always use `cn()`** for className (never raw string concatenation)
 - **Export variants** alongside components for external composition
 - **HSL color format** in CSS variables (e.g., `266 87% 55%`)
+- **Props interface naming**: Always use `interface Props {}` for component props (not `interface ComponentNameProps {}`)
 
 ## Design Philosophy
 

@@ -1,30 +1,47 @@
 {
-  "HomePage": {
-    "title": "モノレポアプリ",
-    "subtitle": "ウェブとモバイルをつなぐ統合開発プラットフォーム",
-    "features": {
-      "speed": {
-        "title": "高速開発",
-        "description": "Turborepoですべてのアプリを同時に開発・デプロイ"
+  "Metadata": {
+    "title": "ホーリーシットボードゲーム - タブレット",
+    "description": "ボードゲームカフェ タブレットアプリケーション"
+  },
+  "TabletHome": {
+    "header": {
+      "storeName": "ウィアズボードゲーム(軍浦店)",
+      "tableLabel": "GATE"
+    },
+    "menu": {
+      "storeIntro": { "subtitle": "動画で見る", "title": "店舗紹介" },
+      "gameSearch": { "subtitle": "様々なゲーム", "title": "ゲーム検索" },
+      "foodMenu": { "subtitle": "美味しくてお得", "title": "メニュー" },
+      "penaltyGame": { "subtitle": "楽しい", "title": "罰ゲーム" }
+    },
+    "quickActions": {
+      "storeGuide": { "title": "ご利用案内", "subtitle": "STORE GUIDE" },
+      "wifi": { "title": "WI-FI", "subtitle": "WI-FI" },
+      "staffCall": { "title": "スタッフ呼出", "subtitle": "STAFF CALL" }
+    },
+    "tableInfo": {
+      "tableNumber": "1"
+    },
+    "dialogs": {
+      "staffCall": {
+        "title": "スタッフ呼出",
+        "message": "スタッフを呼びますか？",
+        "confirm": "呼ぶ",
+        "cancel": "キャンセル",
+        "success": "スタッフを呼びました。少々お待ちください。"
       },
-      "sharing": {
-        "title": "コード共有",
-        "description": "型、ユーティリティ、UIコンポーネントをすべてのプラットフォームで再利用"
-      },
-      "crossPlatform": {
-        "title": "クロスプラットフォーム",
-        "description": "Next.jsウェブとReact Nativeアプリを単一リポジトリで管理"
+      "wifi": {
+        "title": "WI-FI情報",
+        "ssidLabel": "ネットワーク名",
+        "ssid": "WeAZ_WIFI",
+        "passwordLabel": "パスワード",
+        "password": "weaz1234",
+        "close": "閉じる"
       }
-    },
-    "webviewTest": {
-      "badge": "WebViewテスト",
-      "title": "正常にレンダリングされました",
-      "description": "このページが表示されていれば、WebView連携は成功です"
-    },
-    "footer": "© 2026 モノレポテンプレート"
+    }
   },
   "LocaleSwitcher": {
-    "label": "言語を変更",
+    "label": "言語変更",
     "ko": "한국어",
     "en": "English",
     "ja": "日本語"

@@ -1,114 +1,112 @@
+'use client';
+
 import type { ReactNode } from 'react';
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
-import { Zap, Blocks, Smartphone, Palette } from 'lucide-react';
-import { isValidLocale } from '@repo/i18n';
-import { notFound } from 'next/navigation';
+import { Play, Search, UtensilsCrossed, Dices, Home, Wifi, Bell } from 'lucide-react';
+
+import { TabletHeader } from '@/components/tablet/tablet-header';
+import { MenuCard } from '@/components/tablet/menu-card';
+import { QuickActionCard } from '@/components/tablet/quick-action-card';
+import { WifiInfoDialog } from '@/components/tablet/wifi-info-dialog';
+import { StaffCallDialog } from '@/components/tablet/staff-call-dialog';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
-import { Link } from '@/i18n/navigation';
 
-interface PageProps {
-  params: Promise<{ locale: string }>;
-}
-
-export default async function Home({ params }: PageProps): Promise<ReactNode> {
-  const { locale } = await params;
-
-  if (!isValidLocale(locale)) {
-    notFound();
-  }
-
-  setRequestLocale(locale);
-
-  return <HomeContent />;
-}
-
-function HomeContent(): ReactNode {
-  const t = useTranslations('HomePage');
+export default function TabletHomePage(): ReactNode {
+  const t = useTranslations('TabletHome');
+  const [wifiDialogOpen, setWifiDialogOpen] = useState(false);
+  const [staffCallDialogOpen, setStaffCallDialogOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <div className="px-5 pb-8 pt-12 md:px-8 md:pb-16 md:pt-20">
-        <section className="mx-auto max-w-md md:max-w-2xl">
-          <div className="mb-4 flex justify-end">
-            <LocaleSwitcher />
+    <div className="flex min-h-screen flex-col bg-background">
+      <TabletHeader
+        storeName={t('header.storeName')}
+        tableLabel={t('header.tableLabel')}
+        tableNumber={t('tableInfo.tableNumber')}
+        languageSwitcher={<LocaleSwitcher />}
+      />
+
+      <main className="flex flex-1 gap-6 p-6">
+        <section className="flex-1">
+          <div className="grid h-full grid-cols-2 gap-4">
+            <MenuCard
+              title={t('menu.storeIntro.title')}
+              subtitle={t('menu.storeIntro.subtitle')}
+              icon={<Play className="h-12 w-12" />}
+              href="/store-intro"
+              variant="primary"
+            />
+            <MenuCard
+              title={t('menu.gameSearch.title')}
+              subtitle={t('menu.gameSearch.subtitle')}
+              icon={<Search className="h-12 w-12" />}
+              href="/game-search"
+              variant="progress"
+            />
+            <MenuCard
+              title={t('menu.foodMenu.title')}
+              subtitle={t('menu.foodMenu.subtitle')}
+              icon={<UtensilsCrossed className="h-12 w-12" />}
+              href="/menu"
+              variant="complete"
+            />
+            <MenuCard
+              title={t('menu.penaltyGame.title')}
+              subtitle={t('menu.penaltyGame.subtitle')}
+              icon={<Dices className="h-12 w-12" />}
+              href="/penalty-game"
+              variant="warning"
+            />
           </div>
-
-          <div className="mb-6 flex justify-center md:mb-8">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary shadow-lg md:h-20 md:w-20">
-              <span className="text-2xl font-bold text-primary-foreground md:text-3xl">M</span>
-            </div>
-          </div>
-
-          <div className="mb-10 text-center md:mb-14">
-            <h1 className="mb-3 text-3xl font-bold tracking-tight text-foreground md:mb-4 md:text-5xl">{t('title')}</h1>
-            <p className="text-base leading-relaxed text-muted-foreground md:text-lg">{t('subtitle')}</p>
-          </div>
-
-          <div className="mb-10 space-y-3 md:mb-14 md:space-y-4">
-            <div className="rounded-xl border border-border bg-card p-4 shadow-sm md:p-5">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary md:h-12 md:w-12">
-                  <Zap className="h-5 w-5 text-secondary-foreground md:h-6 md:w-6" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="mb-1 font-semibold text-card-foreground">{t('features.speed.title')}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{t('features.speed.description')}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-4 shadow-sm md:p-5">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary md:h-12 md:w-12">
-                  <Blocks className="h-5 w-5 text-secondary-foreground md:h-6 md:w-6" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="mb-1 font-semibold text-card-foreground">{t('features.sharing.title')}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{t('features.sharing.description')}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-4 shadow-sm md:p-5">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary md:h-12 md:w-12">
-                  <Smartphone className="h-5 w-5 text-secondary-foreground md:h-6 md:w-6" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="mb-1 font-semibold text-card-foreground">{t('features.crossPlatform.title')}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {t('features.crossPlatform.description')}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-border bg-muted/50 p-5 text-center md:p-8">
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary md:text-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              {t('webviewTest.badge')}
-            </div>
-            <h2 className="mb-2 text-lg font-semibold text-foreground md:text-xl">{t('webviewTest.title')}</h2>
-            <p className="text-sm text-muted-foreground md:text-base">{t('webviewTest.description')}</p>
-          </div>
-
-          <div className="mt-10 flex justify-center md:mt-14">
-            <Link
-              href="/design-system"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
-            >
-              <Palette className="h-4 w-4" />
-              Design System
-            </Link>
-          </div>
-
-          <footer className="mt-10 text-center md:mt-14">
-            <p className="text-xs text-muted-foreground md:text-sm">{t('footer')}</p>
-          </footer>
         </section>
-      </div>
-    </main>
+
+        <aside className="w-80 shrink-0 space-y-4">
+          <div className="rounded-xl border border-border bg-primary p-6 text-center text-white">
+            <p className="text-sm font-medium opacity-90">{t('header.storeName')}</p>
+            <p className="mt-2 text-3xl font-bold">
+              {t('header.tableLabel')}: {t('tableInfo.tableNumber')}
+            </p>
+          </div>
+
+          <QuickActionCard
+            title={t('quickActions.storeGuide.title')}
+            subtitle={t('quickActions.storeGuide.subtitle')}
+            icon={<Home className="h-6 w-6" />}
+          />
+          <QuickActionCard
+            title={t('quickActions.wifi.title')}
+            subtitle={t('quickActions.wifi.subtitle')}
+            icon={<Wifi className="h-6 w-6" />}
+            onClick={() => setWifiDialogOpen(true)}
+          />
+          <QuickActionCard
+            title={t('quickActions.staffCall.title')}
+            subtitle={t('quickActions.staffCall.subtitle')}
+            icon={<Bell className="h-6 w-6" />}
+            onClick={() => setStaffCallDialogOpen(true)}
+          />
+        </aside>
+      </main>
+
+      <WifiInfoDialog
+        open={wifiDialogOpen}
+        onOpenChange={setWifiDialogOpen}
+        title={t('dialogs.wifi.title')}
+        ssidLabel={t('dialogs.wifi.ssidLabel')}
+        ssid={t('dialogs.wifi.ssid')}
+        passwordLabel={t('dialogs.wifi.passwordLabel')}
+        password={t('dialogs.wifi.password')}
+        closeText={t('dialogs.wifi.close')}
+      />
+      <StaffCallDialog
+        open={staffCallDialogOpen}
+        onOpenChange={setStaffCallDialogOpen}
+        title={t('dialogs.staffCall.title')}
+        message={t('dialogs.staffCall.message')}
+        confirmText={t('dialogs.staffCall.confirm')}
+        cancelText={t('dialogs.staffCall.cancel')}
+        successMessage={t('dialogs.staffCall.success')}
+      />
+    </div>
   );
 }

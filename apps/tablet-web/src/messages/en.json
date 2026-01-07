@@ -1,30 +1,47 @@
 {
-  "HomePage": {
-    "title": "Monorepo App",
-    "subtitle": "Unified development platform connecting web and mobile",
-    "features": {
-      "speed": {
-        "title": "Fast Development",
-        "description": "Develop and deploy all apps simultaneously with Turborepo"
+  "Metadata": {
+    "title": "Holyshit Boardgame - Tablet",
+    "description": "Boardgame cafe tablet application"
+  },
+  "TabletHome": {
+    "header": {
+      "storeName": "WeAZ Boardgame (Gunpo)",
+      "tableLabel": "GATE"
+    },
+    "menu": {
+      "storeIntro": { "subtitle": "Watch video", "title": "Store Intro" },
+      "gameSearch": { "subtitle": "Various games", "title": "Game Search" },
+      "foodMenu": { "subtitle": "Great taste & value", "title": "Menu" },
+      "penaltyGame": { "subtitle": "Fun games", "title": "Penalty Game" }
+    },
+    "quickActions": {
+      "storeGuide": { "title": "Store Guide", "subtitle": "STORE GUIDE" },
+      "wifi": { "title": "WI-FI", "subtitle": "WI-FI" },
+      "staffCall": { "title": "Staff Call", "subtitle": "STAFF CALL" }
+    },
+    "tableInfo": {
+      "tableNumber": "1"
+    },
+    "dialogs": {
+      "staffCall": {
+        "title": "Staff Call",
+        "message": "Would you like to call a staff member?",
+        "confirm": "Call",
+        "cancel": "Cancel",
+        "success": "Staff has been called. Please wait a moment."
       },
-      "sharing": {
-        "title": "Code Sharing",
-        "description": "Reuse types, utilities, and UI components across all platforms"
-      },
-      "crossPlatform": {
-        "title": "Cross Platform",
-        "description": "Manage Next.js web and React Native apps in a single repository"
+      "wifi": {
+        "title": "WI-FI Info",
+        "ssidLabel": "Network Name",
+        "ssid": "WeAZ_WIFI",
+        "passwordLabel": "Password",
+        "password": "weaz1234",
+        "close": "Close"
       }
-    },
-    "webviewTest": {
-      "badge": "WebView Test",
-      "title": "Rendered Successfully",
-      "description": "If you can see this page, WebView integration is working"
-    },
-    "footer": "© 2026 Monorepo Template"
+    }
   },
   "LocaleSwitcher": {
-    "label": "Change language",
+    "label": "Change Language",
     "ko": "한국어",
     "en": "English",
     "ja": "日本語"

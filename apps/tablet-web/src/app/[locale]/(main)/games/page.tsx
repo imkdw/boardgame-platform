@@ -6,8 +6,6 @@ import { useTranslations } from 'next-intl';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@repo/ui';
 
-import { TabletHeader } from '@/components/layout';
-import { LocaleSwitcher } from '@/components/shared';
 import { GameSearchBar, GameList, mockGames, type GameSortBy, type Game } from '@/features/games';
 import { Link } from '@/i18n/navigation';
 
@@ -18,7 +16,6 @@ const DIFFICULTY_ORDER: Record<Game['difficulty'], number> = {
 };
 
 export default function GamesPage(): ReactNode {
-  const t = useTranslations('TabletHome');
   const tGame = useTranslations('GameSearch');
 
   const [inputValue, setInputValue] = useState('');
@@ -67,35 +64,26 @@ export default function GamesPage(): ReactNode {
   }, [searchQuery, sortBy]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <TabletHeader
-        storeName={t('header.storeName')}
-        tableLabel={t('header.tableLabel')}
-        tableNumber={t('tableInfo.tableNumber')}
-        languageSwitcher={<LocaleSwitcher />}
+    <div className="flex flex-1 flex-col gap-6 overflow-auto p-6">
+      <div className="flex items-center gap-4">
+        <Link href="/">
+          <Button variant="ghost" size="icon">
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+        </Link>
+        <h1 className="text-2xl font-bold text-foreground">{tGame('pageTitle')}</h1>
+      </div>
+
+      <GameSearchBar
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        onSearch={handleSearch}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+        resultCount={filteredGames.length}
       />
 
-      <main className="flex flex-1 flex-col gap-6 p-6">
-        <div className="flex items-center gap-4">
-          <Link href="/">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <h1 className="text-2xl font-bold text-foreground">{tGame('pageTitle')}</h1>
-        </div>
-
-        <GameSearchBar
-          inputValue={inputValue}
-          onInputChange={setInputValue}
-          onSearch={handleSearch}
-          sortBy={sortBy}
-          onSortChange={setSortBy}
-          resultCount={filteredGames.length}
-        />
-
-        <GameList games={filteredGames} />
-      </main>
+      <GameList games={filteredGames} />
     </div>
   );
 }

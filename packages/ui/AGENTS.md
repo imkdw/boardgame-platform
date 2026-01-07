@@ -221,6 +221,23 @@ Config in `components.json`:
 - **Export variants** alongside components for external composition
 - **HSL color format** in CSS variables (e.g., `266 87% 55%`)
 
+## Design Philosophy
+
+**Use shadcn/ui defaults. Only customize colors.**
+
+Components follow shadcn/ui (new-york style) exactly. Customization is limited to:
+
+1. **Brand colors** - `--primary` set to #7c27f2 (purple)
+2. **Status colors** - Custom `status-*` variants for domain use
+3. **Text hierarchy** - Custom `text-*` colors for consistent typography
+
+Do NOT modify:
+
+- Border radius (keep shadcn defaults)
+- Shadows (keep shadcn defaults)
+- Animations (keep shadcn defaults)
+- Spacing (keep shadcn defaults)
+
 ## Dependencies
 
 | Package                    | Purpose                      |

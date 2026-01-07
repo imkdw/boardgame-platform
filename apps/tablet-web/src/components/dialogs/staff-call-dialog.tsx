@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, Button } from '@repo/ui';
 import { CheckCircle } from 'lucide-react';
 
-interface StaffCallDialogProps {
+interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   title: string;
@@ -22,7 +22,7 @@ export function StaffCallDialog({
   confirmText,
   cancelText,
   successMessage,
-}: StaffCallDialogProps) {
+}: Props) {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleConfirm = () => {

@@ -8,6 +8,35 @@
     "back": "Back",
     "autoReturnMessage": "You will be automatically returned to the home screen when the video ends"
   },
+  "GameSearch": {
+    "pageTitle": "Game Search",
+    "searchPlaceholder": "Search by game name...",
+    "searchButton": "Search",
+    "sort": {
+      "label": "Sort",
+      "recommended": "Recommended",
+      "popular": "Popular",
+      "name": "Name",
+      "difficulty": "Difficulty"
+    },
+    "resultCount": "{count} results",
+    "empty": {
+      "title": "No results found",
+      "description": "Try a different search term"
+    },
+    "card": {
+      "players": "{min}~{max} players",
+      "playTime": "{time} min",
+      "difficulty": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "available": "Available",
+      "unavailable": "In Use",
+      "recommended": "Recommended"
+    }
+  },
   "TabletHome": {
     "header": {
       "storeName": "WeAZ Boardgame (Gunpo)",

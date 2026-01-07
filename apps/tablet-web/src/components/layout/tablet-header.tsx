@@ -1,14 +1,14 @@
 import type { ReactNode } from 'react';
 import { cn } from '@repo/ui';
 
-interface TabletHeaderProps {
+interface Props {
   storeName: string;
   tableLabel: string;
   tableNumber: string;
   languageSwitcher: ReactNode;
 }
 
-export function TabletHeader({ storeName, tableLabel, tableNumber, languageSwitcher }: TabletHeaderProps) {
+export function TabletHeader({ storeName, tableLabel, tableNumber, languageSwitcher }: Props) {
   return (
     <header className={cn('flex items-center justify-between border-b border-border bg-card px-6 py-4')}>
       <div className="flex items-center gap-3">

@@ -8,6 +8,35 @@
     "back": "戻る",
     "autoReturnMessage": "動画が終わると自動的にホーム画面に戻ります"
   },
+  "GameSearch": {
+    "pageTitle": "ゲーム検索",
+    "searchPlaceholder": "ゲーム名で検索...",
+    "searchButton": "検索",
+    "sort": {
+      "label": "並び替え",
+      "recommended": "おすすめ順",
+      "popular": "人気順",
+      "name": "名前順",
+      "difficulty": "難易度順"
+    },
+    "resultCount": "検索結果 {count}件",
+    "empty": {
+      "title": "検索結果がありません",
+      "description": "別の検索ワードをお試しください"
+    },
+    "card": {
+      "players": "{min}~{max}人",
+      "playTime": "{time}分",
+      "difficulty": {
+        "easy": "簡単",
+        "medium": "普通",
+        "hard": "難しい"
+      },
+      "available": "貸出可",
+      "unavailable": "貸出中",
+      "recommended": "おすすめ"
+    }
+  },
   "TabletHome": {
     "header": {
       "storeName": "ウィアズボードゲーム(軍浦店)",

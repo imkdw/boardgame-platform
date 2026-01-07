@@ -5,12 +5,10 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Play, Search, UtensilsCrossed, Dices, Home, Wifi, Bell } from 'lucide-react';
 
-import { TabletHeader } from '@/components/tablet/tablet-header';
-import { MenuCard } from '@/components/tablet/menu-card';
-import { QuickActionCard } from '@/components/tablet/quick-action-card';
-import { WifiInfoDialog } from '@/components/tablet/wifi-info-dialog';
-import { StaffCallDialog } from '@/components/tablet/staff-call-dialog';
-import LocaleSwitcher from '@/components/LocaleSwitcher';
+import { TabletHeader } from '@/components/layout';
+import { WifiInfoDialog, StaffCallDialog } from '@/components/dialogs';
+import { LocaleSwitcher } from '@/components/shared';
+import { MenuCard, QuickActionCard } from '@/features/home';
 
 export default function TabletHomePage(): ReactNode {
   const t = useTranslations('TabletHome');
@@ -40,7 +38,7 @@ export default function TabletHomePage(): ReactNode {
               title={t('menu.gameSearch.title')}
               subtitle={t('menu.gameSearch.subtitle')}
               icon={<Search className="h-12 w-12" />}
-              href="/game-search"
+              href="/games"
               variant="progress"
             />
             <MenuCard

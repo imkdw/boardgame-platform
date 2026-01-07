@@ -2,7 +2,7 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, Button } from '@repo/ui';
 
-interface WifiInfoDialogProps {
+interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   title: string;
@@ -22,7 +22,7 @@ export function WifiInfoDialog({
   passwordLabel,
   password,
   closeText,
-}: WifiInfoDialogProps) {
+}: Props) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent showCloseButton={false}>

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { cn } from '@repo/ui';
 
-interface QuickActionCardProps {
+interface Props {
   title: string;
   subtitle: string;
   icon: ReactNode;
@@ -9,7 +9,7 @@ interface QuickActionCardProps {
   className?: string;
 }
 
-export function QuickActionCard({ title, subtitle, icon, onClick, className }: QuickActionCardProps) {
+export function QuickActionCard({ title, subtitle, icon, onClick, className }: Props) {
   return (
     <button
       type="button"

@@ -8,6 +8,35 @@
     "back": "돌아가기",
     "autoReturnMessage": "영상이 끝나면 자동으로 홈 화면으로 돌아갑니다"
   },
+  "GameSearch": {
+    "pageTitle": "게임 검색",
+    "searchPlaceholder": "게임 이름으로 검색...",
+    "searchButton": "검색",
+    "sort": {
+      "label": "정렬",
+      "recommended": "추천순",
+      "popular": "인기순",
+      "name": "이름순",
+      "difficulty": "난이도순"
+    },
+    "resultCount": "검색결과 {count}개",
+    "empty": {
+      "title": "검색 결과가 없습니다",
+      "description": "다른 검색어로 시도해보세요"
+    },
+    "card": {
+      "players": "{min}~{max}인",
+      "playTime": "{time}분",
+      "difficulty": {
+        "easy": "쉬움",
+        "medium": "보통",
+        "hard": "어려움"
+      },
+      "available": "대여가능",
+      "unavailable": "대여중",
+      "recommended": "추천"
+    }
+  },
   "TabletHome": {
     "header": {
       "storeName": "홀리쉣보드게임(성수점)",

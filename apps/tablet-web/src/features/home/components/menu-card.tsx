@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation';
 
 type MenuCardVariant = 'primary' | 'progress' | 'complete' | 'warning';
 
-interface MenuCardProps {
+interface Props {
   title: string;
   subtitle: string;
   icon: ReactNode;
@@ -19,7 +19,7 @@ const variantStyles: Record<MenuCardVariant, string> = {
   warning: 'bg-status-warning',
 };
 
-export function MenuCard({ title, subtitle, icon, href, variant }: MenuCardProps) {
+export function MenuCard({ title, subtitle, icon, href, variant }: Props) {
   return (
     <Link
       href={href}

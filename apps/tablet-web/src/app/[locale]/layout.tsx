@@ -5,7 +5,7 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import { cn } from '@repo/ui';
 import { locales, isValidLocale } from '@repo/i18n';
 import { notFound } from 'next/navigation';
-import { ToastProvider } from '@/components/toast-provider';
+import { ToastProvider } from '@/components/shared';
 import '../globals.css';
 
 interface Props {

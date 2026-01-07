@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { ArrowLeft, Home } from 'lucide-react';
 import { cn } from '@repo/ui';
 
-import { VideoPlayer } from '@/components/tablet/video-player';
+import { VideoPlayer } from '@/features/media';
 import { useRouter } from '@/i18n/navigation';
 
 export default function InfoVideoPage(): ReactNode {

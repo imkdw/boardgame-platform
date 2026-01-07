@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { Zap, Blocks, Smartphone } from 'lucide-react';
+import { Zap, Blocks, Smartphone, Palette } from 'lucide-react';
 import { isValidLocale } from '@repo/i18n';
 import { notFound } from 'next/navigation';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
+import { Link } from '@/i18n/navigation';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -91,6 +92,16 @@ function HomeContent(): ReactNode {
             </div>
             <h2 className="mb-2 text-lg font-semibold text-foreground md:text-xl">{t('webviewTest.title')}</h2>
             <p className="text-sm text-muted-foreground md:text-base">{t('webviewTest.description')}</p>
+          </div>
+
+          <div className="mt-10 flex justify-center md:mt-14">
+            <Link
+              href="/design-system"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+            >
+              <Palette className="h-4 w-4" />
+              Design System
+            </Link>
           </div>
 
           <footer className="mt-10 text-center md:mt-14">

@@ -15,7 +15,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { key: 'storeIntro', href: '/', icon: Home },
-  { key: 'guide', href: '/', icon: BookOpen },
+  { key: 'guide', href: '/guide', icon: BookOpen },
   { key: 'gameSearch', href: '/games', icon: Search },
   { key: 'myInfo', href: '/my-info', icon: User },
 ];

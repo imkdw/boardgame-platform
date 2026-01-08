@@ -20,7 +20,63 @@
   },
   "MyInfo": {
     "title": "내 이용정보",
-    "comingSoon": "준비 중입니다"
+    "timeInfo": {
+      "title": "이용 시간 정보",
+      "startTime": "입장 시각",
+      "purchasedTime": "구매 시간",
+      "remainingTime": "남은 시간",
+      "endTime": "종료 예정",
+      "hoursUnit": "{hours}시간",
+      "minutesUnit": "{minutes}분"
+    },
+    "paymentInfo": {
+      "title": "결제 내역",
+      "initialPayment": "입장 결제",
+      "extensionPayment": "연장 결제",
+      "extensionItem": "{minutes}분 연장",
+      "totalPayment": "총 결제 금액",
+      "currency": "원"
+    },
+    "actions": {
+      "extend": "시간 연장하기",
+      "exit": "퇴장하기"
+    },
+    "empty": {
+      "title": "이용 중인 세션이 없습니다",
+      "description": "입구 키오스크에서 입장 수속을 진행해주세요"
+    },
+    "extendDialog": {
+      "title": "시간 연장",
+      "currentStatus": "현재 상태",
+      "remainingTime": "남은 시간",
+      "endTime": "종료 예정",
+      "selectOption": "연장 옵션 선택",
+      "option30min": "30분 연장",
+      "option1hour": "1시간 연장",
+      "optionUnlimited": "무제한으로 변경",
+      "selectPayment": "결제 수단 선택",
+      "paymentKakao": "카카오페이",
+      "paymentNaver": "네이버페이",
+      "paymentCard": "카드",
+      "newEndTime": "새 종료 예정",
+      "confirm": "결제하고 연장하기",
+      "cancel": "취소"
+    },
+    "exitDialog": {
+      "title": "퇴장 확인",
+      "confirmMessage": "이용을 종료하시겠습니까?",
+      "usageSummary": "이용 내역",
+      "totalUsageTime": "총 이용 시간",
+      "paymentSummary": "결제 내역",
+      "initialPayment": "입장 결제",
+      "extensionPayment": "연장 결제",
+      "totalPayment": "총 결제 금액",
+      "alreadyPaid": "이미 결제 완료",
+      "noAdditionalPayment": "추가 결제할 금액이 없습니다",
+      "confirm": "퇴장하기",
+      "cancel": "취소",
+      "currency": "원"
+    }
   },
   "InfoVideo": {
     "title": "매장 소개",

@@ -20,7 +20,63 @@
   },
   "MyInfo": {
     "title": "My Info",
-    "comingSoon": "Coming Soon"
+    "timeInfo": {
+      "title": "Usage Time Info",
+      "startTime": "Check-in Time",
+      "purchasedTime": "Purchased Time",
+      "remainingTime": "Remaining Time",
+      "endTime": "End Time",
+      "hoursUnit": "{hours}h",
+      "minutesUnit": "{minutes}m"
+    },
+    "paymentInfo": {
+      "title": "Payment History",
+      "initialPayment": "Initial Payment",
+      "extensionPayment": "Extension Payment",
+      "extensionItem": "{minutes}min extension",
+      "totalPayment": "Total Payment",
+      "currency": "KRW"
+    },
+    "actions": {
+      "extend": "Extend Time",
+      "exit": "Exit"
+    },
+    "empty": {
+      "title": "No Active Session",
+      "description": "Please check in at the entrance kiosk"
+    },
+    "extendDialog": {
+      "title": "Extend Time",
+      "currentStatus": "Current Status",
+      "remainingTime": "Remaining Time",
+      "endTime": "End Time",
+      "selectOption": "Select Extension",
+      "option30min": "30 minutes",
+      "option1hour": "1 hour",
+      "optionUnlimited": "Unlimited",
+      "selectPayment": "Select Payment",
+      "paymentKakao": "Kakao Pay",
+      "paymentNaver": "Naver Pay",
+      "paymentCard": "Card",
+      "newEndTime": "New End Time",
+      "confirm": "Pay & Extend",
+      "cancel": "Cancel"
+    },
+    "exitDialog": {
+      "title": "Confirm Exit",
+      "confirmMessage": "Would you like to end your session?",
+      "usageSummary": "Usage Summary",
+      "totalUsageTime": "Total Usage Time",
+      "paymentSummary": "Payment Summary",
+      "initialPayment": "Initial Payment",
+      "extensionPayment": "Extension Payment",
+      "totalPayment": "Total Payment",
+      "alreadyPaid": "Already Paid",
+      "noAdditionalPayment": "No additional payment required",
+      "confirm": "Exit",
+      "cancel": "Cancel",
+      "currency": "KRW"
+    }
   },
   "InfoVideo": {
     "title": "Store Introduction",

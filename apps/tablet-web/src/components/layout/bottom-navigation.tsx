@@ -17,7 +17,7 @@ const NAV_ITEMS: NavItem[] = [
   { key: 'storeIntro', href: '/', icon: Home },
   { key: 'guide', href: '/', icon: BookOpen },
   { key: 'gameSearch', href: '/games', icon: Search },
-  { key: 'myInfo', href: '/', icon: User },
+  { key: 'myInfo', href: '/my-info', icon: User },
 ];
 
 export function BottomNavigation() {

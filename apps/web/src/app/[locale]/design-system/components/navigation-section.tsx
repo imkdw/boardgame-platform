@@ -36,9 +36,9 @@ export function NavigationSection(): ReactNode {
                 <AccordionItem value="item-1">
                   <AccordionTrigger>How do I request a game?</AccordionTrigger>
                   <AccordionContent>
-                    Browse our game collection using the tablet at your table. Tap "Request Game" on any available
-                    title, and our staff will bring it to you within 5 minutes. You can also ask staff directly for
-                    recommendations!
+                    Browse our game collection using the tablet at your table. Tap &quot;Request Game&quot; on any
+                    available title, and our staff will bring it to you within 5 minutes. You can also ask staff
+                    directly for recommendations!
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
@@ -51,8 +51,9 @@ export function NavigationSection(): ReactNode {
                 <AccordionItem value="item-3">
                   <AccordionTrigger>How can I extend my time?</AccordionTrigger>
                   <AccordionContent>
-                    Tap "Extend Session" on your tablet or ask our staff. Extensions are available in 30-minute
-                    increments, subject to availability. You'll receive a notification when 15 minutes remain.
+                    Tap &quot;Extend Session&quot; on your tablet or ask our staff. Extensions are available in
+                    30-minute increments, subject to availability. You&apos;ll receive a notification when 15 minutes
+                    remain.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>

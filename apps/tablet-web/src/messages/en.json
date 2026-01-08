@@ -98,5 +98,35 @@
     "ko": "한국어",
     "en": "English",
     "ja": "日本語"
+  },
+  "GameDetail": {
+    "back": "Back",
+    "recommended": "Recommended",
+    "players": "{min}~{max} players",
+    "playTime": "{time} min",
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "availability": {
+      "available": "Available",
+      "unavailable": "All rented out"
+    },
+    "sections": {
+      "description": "About This Game",
+      "rules": "How to Play"
+    },
+    "actions": {
+      "requestGame": "Bring me this game",
+      "watchTutorial": "Watch Tutorial"
+    },
+    "toast": {
+      "requestSuccess": "Request sent to staff. Please wait a moment."
+    },
+    "video": {
+      "title": "Game Tutorial",
+      "comingSoon": "Coming Soon"
+    }
   }
 }

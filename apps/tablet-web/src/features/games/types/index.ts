@@ -6,6 +6,7 @@ export interface Game {
   name: string;
   nameEn: string;
   thumbnail: string;
+  images: string[];
   minPlayers: number;
   maxPlayers: number;
   playTime: number;
@@ -15,4 +16,7 @@ export interface Game {
   isRecommended: boolean;
   stock: number;
   availableStock: number;
+  description: string;
+  rules: string;
+  videoUrl?: string;
 }

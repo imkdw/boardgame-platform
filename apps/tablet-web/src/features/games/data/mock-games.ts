@@ -6,6 +6,10 @@ export const mockGames: Game[] = [
     name: '스플렌더',
     nameEn: 'Splendor',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: [
+      'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+      'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    ],
     minPlayers: 2,
     maxPlayers: 4,
     playTime: 30,
@@ -15,12 +19,17 @@ export const mockGames: Game[] = [
     isRecommended: true,
     stock: 3,
     availableStock: 2,
+    description:
+      '스플렌더는 르네상스 시대의 보석 상인이 되어 보석 광산, 운송 수단, 상점을 확보하고 귀족들의 후원을 받아 가장 부유한 상인이 되는 것을 목표로 하는 전략 게임입니다. 보석 토큰을 모아 카드를 구매하고, 더 강력한 카드를 얻기 위한 엔진을 구축하세요.',
+    rules:
+      '1. 자신의 차례에 보석 토큰 3개(서로 다른 색) 또는 같은 색 2개를 가져가거나, 보유한 보석으로 개발 카드를 구매하거나, 카드 1장을 예약할 수 있습니다.\n2. 개발 카드는 영구적인 보석 보너스를 제공합니다.\n3. 조건을 충족하면 귀족 타일을 획득합니다.\n4. 먼저 15점에 도달한 플레이어가 승리합니다.',
   },
   {
     id: '2',
     name: '루미큐브',
     nameEn: 'Rummikub',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 2,
     maxPlayers: 4,
     playTime: 45,
@@ -30,12 +39,17 @@ export const mockGames: Game[] = [
     isRecommended: true,
     stock: 4,
     availableStock: 3,
+    description:
+      '루미큐브는 숫자 타일을 조합하여 세트(같은 숫자, 다른 색상 3-4개)나 런(같은 색상, 연속 숫자 3개 이상)을 만드는 게임입니다. 손에 있는 타일을 모두 내려놓으면 승리합니다. 간단한 규칙이지만 깊은 전략이 필요한 클래식 게임입니다.',
+    rules:
+      '1. 각 플레이어는 14개의 타일을 가져갑니다.\n2. 첫 등록 시 합이 30점 이상인 조합을 내려놓아야 합니다.\n3. 차례마다 타일을 내려놓거나, 없으면 1개를 가져갑니다.\n4. 테이블 위의 타일을 재조합할 수 있습니다.\n5. 먼저 타일을 모두 내려놓은 플레이어가 승리합니다.',
   },
   {
     id: '3',
     name: '다빈치코드',
     nameEn: 'Davinci Code',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 2,
     maxPlayers: 4,
     playTime: 20,
@@ -45,12 +59,17 @@ export const mockGames: Game[] = [
     isRecommended: false,
     stock: 2,
     availableStock: 1,
+    description:
+      '다빈치코드는 상대방의 숨겨진 숫자 타일을 추리하는 게임입니다. 논리적 추론과 약간의 운을 활용하여 상대의 코드를 먼저 해독하는 플레이어가 승리합니다. 간단하지만 중독성 있는 추리 게임입니다.',
+    rules:
+      '1. 각자 4개의 타일을 가져와 작은 숫자부터 순서대로 세웁니다.\n2. 차례마다 타일 1개를 가져오고 상대 타일 1개를 추리합니다.\n3. 맞히면 해당 타일을 공개하고 계속 추리할 수 있습니다.\n4. 틀리면 가져온 타일을 공개하고 차례가 끝납니다.\n5. 마지막까지 타일이 남은 플레이어가 승리합니다.',
   },
   {
     id: '4',
     name: '할리갈리',
     nameEn: 'Halli Galli',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 2,
     maxPlayers: 6,
     playTime: 15,
@@ -60,12 +79,17 @@ export const mockGames: Game[] = [
     isRecommended: true,
     stock: 3,
     availableStock: 0,
+    description:
+      '할리갈리는 빠른 반응속도가 필요한 순발력 게임입니다. 카드에 그려진 과일의 개수를 재빠르게 세어서, 같은 종류의 과일이 정확히 5개가 되면 종을 쳐야 합니다. 남녀노소 누구나 즐길 수 있는 파티 게임입니다.',
+    rules:
+      '1. 카드를 똑같이 나누어 가지고 뒤집어 놓습니다.\n2. 차례대로 자기 앞에 카드 1장을 공개합니다.\n3. 보이는 카드 중 같은 과일이 정확히 5개면 종을 칩니다.\n4. 먼저 종을 친 사람이 공개된 모든 카드를 가져갑니다.\n5. 카드를 모두 잃은 플레이어는 탈락합니다.\n6. 마지막까지 남은 플레이어가 승리합니다.',
   },
   {
     id: '5',
     name: '텔레스트레이션',
     nameEn: 'Telestrations',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 4,
     maxPlayers: 8,
     playTime: 30,
@@ -75,12 +99,17 @@ export const mockGames: Game[] = [
     isRecommended: true,
     stock: 2,
     availableStock: 2,
+    description:
+      '텔레스트레이션은 그림 전화 게임입니다. 제시어를 그림으로 그리고, 다음 사람은 그 그림을 보고 단어를 추측합니다. 이 과정을 반복하면서 원래 단어가 어떻게 변형되는지 보는 재미가 있는 파티 게임입니다.',
+    rules:
+      '1. 각자 제시어 카드를 뽑아 단어를 확인합니다.\n2. 첫 페이지에 단어를 적고 다음 페이지에 그림을 그립니다.\n3. 스케치북을 옆 사람에게 넘기고 그림을 보고 단어를 추측합니다.\n4. 이 과정을 스케치북이 한 바퀴 돌 때까지 반복합니다.\n5. 결과를 공개하며 웃음을 나눕니다.',
   },
   {
     id: '6',
     name: '뱅',
     nameEn: 'Bang',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 4,
     maxPlayers: 7,
     playTime: 40,
@@ -90,12 +119,17 @@ export const mockGames: Game[] = [
     isRecommended: false,
     stock: 2,
     availableStock: 1,
+    description:
+      '뱅은 서부 시대를 배경으로 한 정체 숨김 게임입니다. 보안관, 부관, 무법자, 배신자 중 하나의 역할을 맡아 각자의 승리 조건을 달성해야 합니다. 뱅 카드로 상대를 공격하고 빗나가기로 방어하세요!',
+    rules:
+      '1. 역할 카드와 캐릭터 카드를 받습니다. 보안관만 공개합니다.\n2. 차례에 카드를 뽑고 카드를 사용합니다.\n3. 뱅 카드로 사거리 내 상대를 공격할 수 있습니다.\n4. 빗나가기 카드로 방어할 수 있습니다.\n5. 체력이 0이 되면 탈락하고 역할을 공개합니다.\n6. 승리 조건: 보안관/부관은 무법자 제거, 무법자는 보안관 제거, 배신자는 최후 생존.',
   },
   {
     id: '7',
     name: '아발론',
     nameEn: 'Avalon',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 5,
     maxPlayers: 10,
     playTime: 30,
@@ -105,12 +139,17 @@ export const mockGames: Game[] = [
     isRecommended: true,
     stock: 3,
     availableStock: 2,
+    description:
+      '아발론은 아서왕 전설을 배경으로 한 정체 숨김 팀 게임입니다. 선의 세력(아서왕의 충신들)과 악의 세력(모드레드의 하수인들)으로 나뉘어 퀘스트의 성공과 실패를 놓고 대결합니다. 멀린은 악의 세력을 알지만 정체가 들키면 안 됩니다.',
+    rules:
+      '1. 역할 카드를 나눠받고 밤 페이즈에서 정보를 확인합니다.\n2. 리더가 퀘스트 참가자를 지명하고 투표로 결정합니다.\n3. 퀘스트 참가자는 성공/실패 카드를 비밀리에 제출합니다.\n4. 실패 카드가 1장이라도 있으면 퀘스트 실패입니다.\n5. 3번의 퀘스트를 먼저 성공/실패시키는 팀이 승리합니다.\n6. 선이 이겨도 암살자가 멀린을 맞히면 악이 승리합니다.',
   },
   {
     id: '8',
     name: '딕싯',
     nameEn: 'Dixit',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 3,
     maxPlayers: 6,
     playTime: 30,
@@ -120,12 +159,17 @@ export const mockGames: Game[] = [
     isRecommended: false,
     stock: 2,
     availableStock: 0,
+    description:
+      '딕싯은 아름다운 그림 카드를 사용하는 상상력 게임입니다. 이야기꾼이 카드를 보고 힌트를 말하면, 다른 플레이어들은 그 힌트에 맞는 카드를 제출합니다. 너무 쉽거나 너무 어렵지 않은 힌트를 주는 것이 핵심입니다.',
+    rules:
+      '1. 각자 6장의 카드를 받습니다.\n2. 이야기꾼이 카드 1장을 골라 힌트를 말합니다.\n3. 다른 플레이어도 힌트에 맞는 카드 1장을 제출합니다.\n4. 모든 카드를 섞어 공개하고 이야기꾼 카드를 추측합니다.\n5. 모두 맞히거나 아무도 못 맞히면 이야기꾼은 0점입니다.\n6. 일부만 맞히면 이야기꾼과 정답자가 3점을 받습니다.',
   },
   {
     id: '9',
     name: '카탄',
     nameEn: 'Catan',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 3,
     maxPlayers: 4,
     playTime: 90,
@@ -135,12 +179,17 @@ export const mockGames: Game[] = [
     isRecommended: true,
     stock: 2,
     availableStock: 1,
+    description:
+      '카탄은 무인도를 개척하는 전략 게임입니다. 자원을 수집하고 거래하여 도로, 마을, 도시를 건설합니다. 주사위 운과 협상, 전략적 배치가 조화를 이루는 현대 보드게임의 클래식입니다.',
+    rules:
+      '1. 초기 배치로 마을 2개와 도로 2개를 놓습니다.\n2. 주사위를 굴려 해당 숫자의 타일에서 자원을 생산합니다.\n3. 자원으로 도로, 마을, 도시를 건설하거나 개발 카드를 뽑습니다.\n4. 다른 플레이어와 자원을 거래할 수 있습니다.\n5. 7이 나오면 도둑을 이동시키고 자원을 뺏을 수 있습니다.\n6. 먼저 10점에 도달한 플레이어가 승리합니다.',
   },
   {
     id: '10',
     name: '티켓투라이드',
     nameEn: 'Ticket to Ride',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 2,
     maxPlayers: 5,
     playTime: 60,
@@ -150,12 +199,17 @@ export const mockGames: Game[] = [
     isRecommended: false,
     stock: 2,
     availableStock: 2,
+    description:
+      '티켓투라이드는 기차 노선을 연결하는 전략 게임입니다. 목적지 카드의 두 도시를 연결하면 점수를 얻고, 실패하면 점수를 잃습니다. 간단한 규칙이지만 경로 선점과 카드 관리가 중요한 게임입니다.',
+    rules:
+      '1. 목적지 카드를 받고 최소 2장을 선택합니다.\n2. 차례에 기차 카드 뽑기, 노선 점령, 목적지 카드 뽑기 중 하나를 합니다.\n3. 같은 색 기차 카드를 모아 노선을 점령합니다.\n4. 목적지 두 도시가 연결되면 해당 점수를 얻습니다.\n5. 누군가의 기차가 2개 이하로 남으면 마지막 라운드입니다.\n6. 가장 높은 점수를 얻은 플레이어가 승리합니다.',
   },
   {
     id: '11',
     name: '코드네임',
     nameEn: 'Codenames',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 4,
     maxPlayers: 8,
     playTime: 20,
@@ -165,12 +219,17 @@ export const mockGames: Game[] = [
     isRecommended: true,
     stock: 3,
     availableStock: 3,
+    description:
+      '코드네임은 두 팀으로 나뉘어 단어 카드를 맞히는 게임입니다. 각 팀의 스파이마스터는 단어 하나와 숫자로 힌트를 주고, 팀원들은 힌트를 바탕으로 자기 팀의 단어를 찾아야 합니다. 암살자 단어를 고르면 즉시 패배합니다.',
+    rules:
+      '1. 25장의 단어 카드를 5x5로 배치합니다.\n2. 스파이마스터만 색상 배치표를 봅니다.\n3. 스파이마스터가 힌트(단어 + 숫자)를 줍니다.\n4. 팀원들이 자기 팀 단어를 추측합니다.\n5. 정답이면 계속, 오답이면 차례가 끝납니다.\n6. 암살자를 고르면 즉시 패배, 먼저 자기 팀 단어를 모두 찾은 팀이 승리합니다.',
   },
   {
     id: '12',
     name: '테라포밍마스',
     nameEn: 'Terraforming Mars',
     thumbnail: 'https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg',
+    images: ['https://cdnfile.koreaboardgames.com/upload/2025-10-13/KiTWN4T0W5nniyHBmzQt.jpg'],
     minPlayers: 1,
     maxPlayers: 5,
     playTime: 120,
@@ -180,5 +239,9 @@ export const mockGames: Game[] = [
     isRecommended: false,
     stock: 1,
     availableStock: 1,
+    description:
+      '테라포밍마스는 화성을 인류가 살 수 있는 행성으로 개조하는 전략 게임입니다. 기업을 운영하며 프로젝트 카드를 사용해 산소, 온도, 바다를 늘려 화성을 테라포밍합니다. 깊은 전략과 엔진 빌딩이 특징인 게임입니다.',
+    rules:
+      '1. 기업과 시작 프로젝트 카드를 선택합니다.\n2. 매 세대마다 프로젝트 카드를 구매하고 자원을 생산합니다.\n3. 프로젝트 카드로 산소, 온도, 바다 등을 올리고 화성에 타일을 배치합니다.\n4. 테라포밍 지수(TR)와 승점을 모읍니다.\n5. 산소 14%, 온도 8도, 바다 9개가 되면 게임이 끝납니다.\n6. 가장 높은 승점을 얻은 플레이어가 승리합니다.',
   },
 ];

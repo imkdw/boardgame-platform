@@ -98,5 +98,35 @@
     "ko": "한국어",
     "en": "English",
     "ja": "日本語"
+  },
+  "GameDetail": {
+    "back": "戻る",
+    "recommended": "おすすめ",
+    "players": "{min}~{max}人",
+    "playTime": "{time}分",
+    "difficulty": {
+      "easy": "簡単",
+      "medium": "普通",
+      "hard": "難しい"
+    },
+    "availability": {
+      "available": "貸出可",
+      "unavailable": "全て貸出中"
+    },
+    "sections": {
+      "description": "ゲーム紹介",
+      "rules": "遊び方"
+    },
+    "actions": {
+      "requestGame": "このゲームをお願いします",
+      "watchTutorial": "説明動画を見る"
+    },
+    "toast": {
+      "requestSuccess": "スタッフに伝えました。少々お待ちください。"
+    },
+    "video": {
+      "title": "ゲーム説明動画",
+      "comingSoon": "準備中です"
+    }
   }
 }

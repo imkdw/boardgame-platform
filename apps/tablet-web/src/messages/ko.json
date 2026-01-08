@@ -98,5 +98,35 @@
     "ko": "한국어",
     "en": "English",
     "ja": "日本語"
+  },
+  "GameDetail": {
+    "back": "뒤로가기",
+    "recommended": "추천",
+    "players": "{min}~{max}인",
+    "playTime": "{time}분",
+    "difficulty": {
+      "easy": "쉬움",
+      "medium": "보통",
+      "hard": "어려움"
+    },
+    "availability": {
+      "available": "대여 가능",
+      "unavailable": "모두 대여 중"
+    },
+    "sections": {
+      "description": "게임 소개",
+      "rules": "게임 방법"
+    },
+    "actions": {
+      "requestGame": "이 게임 가져다주세요",
+      "watchTutorial": "게임 설명 보기"
+    },
+    "toast": {
+      "requestSuccess": "직원에게 요청했습니다. 잠시만 기다려주세요."
+    },
+    "video": {
+      "title": "게임 설명 영상",
+      "comingSoon": "준비 중입니다"
+    }
   }
 }

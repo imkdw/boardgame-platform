@@ -89,6 +89,7 @@
         "ssid": "HOLY_SHIT_WIFI",
         "passwordLabel": "パスワード",
         "password": "wtf1234",
+        "qrScanHint": "スマートフォンでQRコードをスキャンするとWiFiに接続できます",
         "close": "閉じる"
       }
     }

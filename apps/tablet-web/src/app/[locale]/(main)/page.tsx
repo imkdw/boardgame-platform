@@ -88,6 +88,7 @@ export default function TabletHomePage(): ReactNode {
         ssid={t('dialogs.wifi.ssid')}
         passwordLabel={t('dialogs.wifi.passwordLabel')}
         password={t('dialogs.wifi.password')}
+        qrScanHint={t('dialogs.wifi.qrScanHint')}
         closeText={t('dialogs.wifi.close')}
       />
       <StaffCallDialog

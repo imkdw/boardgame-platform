@@ -5,7 +5,12 @@
       "WebFetch(domain:api.github.com)",
       "Bash(pnpm check-types:*)",
       "Bash(pnpm ui build:*)",
-      "Bash(pnpm ui lint:*)"
+      "Bash(pnpm ui lint:*)",
+      "Bash(pnpm tablet-web add:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm tablet-web check-types:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm build:*)"
     ]
   },
   "spinnerTipsEnabled": false

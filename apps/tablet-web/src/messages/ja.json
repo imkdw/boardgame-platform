@@ -196,6 +196,33 @@
     "en": "English",
     "ja": "日本語"
   },
+  "FoodOrder": {
+    "pageTitle": "フード注文",
+    "empty": "このカテゴリーにメニューがありません",
+    "currency": "円",
+    "badge": {
+      "popular": "人気",
+      "new": "新メニュー",
+      "soldOut": "品切れ"
+    },
+    "cart": {
+      "title": "カート",
+      "empty": "カートが空です",
+      "total": "合計",
+      "currency": "円",
+      "order": "注文する"
+    },
+    "orderConfirm": {
+      "title": "注文確認",
+      "message": "以下の内容で注文しますか？",
+      "orderSummary": "注文内容",
+      "total": "合計",
+      "currency": "円",
+      "notice": "ご注文後、テーブルにお届けします。",
+      "confirm": "注文する",
+      "cancel": "キャンセル"
+    }
+  },
   "GameDetail": {
     "back": "戻る",
     "recommended": "おすすめ",

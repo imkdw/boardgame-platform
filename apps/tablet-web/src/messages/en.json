@@ -196,6 +196,33 @@
     "en": "English",
     "ja": "日本語"
   },
+  "FoodOrder": {
+    "pageTitle": "Food Order",
+    "empty": "No items in this category",
+    "currency": " KRW",
+    "badge": {
+      "popular": "Popular",
+      "new": "New",
+      "soldOut": "Sold Out"
+    },
+    "cart": {
+      "title": "Cart",
+      "empty": "Your cart is empty",
+      "total": "Total",
+      "currency": " KRW",
+      "order": "Order Now"
+    },
+    "orderConfirm": {
+      "title": "Confirm Order",
+      "message": "Would you like to place this order?",
+      "orderSummary": "Order Summary",
+      "total": "Total",
+      "currency": " KRW",
+      "notice": "Your order will be delivered to your table.",
+      "confirm": "Place Order",
+      "cancel": "Cancel"
+    }
+  },
   "GameDetail": {
     "back": "Back",
     "recommended": "Recommended",

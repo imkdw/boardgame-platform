@@ -39,7 +39,7 @@ export default function TabletHomePage(): ReactNode {
               title={t('menu.foodMenu.title')}
               subtitle={t('menu.foodMenu.subtitle')}
               icon={<UtensilsCrossed className="h-12 w-12" />}
-              href="/menu"
+              href="/food-order"
               variant="complete"
             />
             <MenuCard

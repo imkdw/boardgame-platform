@@ -196,6 +196,33 @@
     "en": "English",
     "ja": "日本語"
   },
+  "FoodOrder": {
+    "pageTitle": "먹거리 주문",
+    "empty": "해당 카테고리에 메뉴가 없습니다",
+    "currency": "원",
+    "badge": {
+      "popular": "인기",
+      "new": "신메뉴",
+      "soldOut": "품절"
+    },
+    "cart": {
+      "title": "장바구니",
+      "empty": "장바구니가 비어있습니다",
+      "total": "총 금액",
+      "currency": "원",
+      "order": "주문하기"
+    },
+    "orderConfirm": {
+      "title": "주문 확인",
+      "message": "아래 내용으로 주문하시겠습니까?",
+      "orderSummary": "주문 내역",
+      "total": "총 금액",
+      "currency": "원",
+      "notice": "주문 후 테이블로 음식이 배달됩니다.",
+      "confirm": "주문하기",
+      "cancel": "취소"
+    }
+  },
   "GameDetail": {
     "back": "뒤로가기",
     "recommended": "추천",

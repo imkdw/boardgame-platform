@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import typography from '@tailwindcss/typography';
+import animate from 'tailwindcss-animate';
 import { tailwindPreset } from '@repo/ui/tailwind-preset';
 
 const config: Config = {
@@ -11,7 +12,7 @@ const config: Config = {
     './src/features/**/*.{js,ts,jsx,tsx,mdx}',
     '../../packages/ui/src/**/*.{js,ts,jsx,tsx}',
   ],
-  plugins: [typography],
+  plugins: [typography, animate],
 };
 
 export default config;

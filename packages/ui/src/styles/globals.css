@@ -4,104 +4,264 @@
 
 @layer base {
   :root {
+    /* ========================================
+       BGP (BoardGame Platform) Design System
+       Primitive colors from design.json
+       ======================================== */
+
+    /* === Primary (Purple) Scale === */
+    --bgp-primary-10: #f0e7fe;
+    --bgp-primary-20: #d3b7fb;
+    --bgp-primary-30: #b687f8;
+    --bgp-primary-40: #9957f5;
+    --bgp-primary-50: #7c27f2;
+    --bgp-primary-60: #620dd8;
+    --bgp-primary-70: #4c0aa8;
+    --bgp-primary-80: #370778;
+    --bgp-primary-90: #210448;
+
+    /* === Accent (Pink) Scale === */
+    --bgp-accent-10: #fee7f1;
+    --bgp-accent-20: #fbb7d4;
+    --bgp-accent-30: #f887b8;
+    --bgp-accent-40: #f5579b;
+    --bgp-accent-50: #f2277f;
+    --bgp-accent-60: #d80d65;
+    --bgp-accent-70: #a80a4f;
+    --bgp-accent-80: #780738;
+    --bgp-accent-90: #480422;
+
+    /* === Gray Scale === */
+    --bgp-gray-0: #ffffff;
+    --bgp-gray-10: #f2f2f2;
+    --bgp-gray-20: #dddddd;
+    --bgp-gray-30: #b3b3b3;
+    --bgp-gray-40: #999999;
+    --bgp-gray-50: #8a8a8a;
+    --bgp-gray-60: #777777;
+    --bgp-gray-70: #595959;
+    --bgp-gray-80: #333333;
+    --bgp-gray-90: #1a1a1a;
+    --bgp-gray-100: #111111;
+
+    /* === Danger (Red) Scale === */
+    --bgp-danger-10: #ffbdad;
+    --bgp-danger-20: #ff937a;
+    --bgp-danger-30: #ff6a47;
+    --bgp-danger-40: #ff4014;
+    --bgp-danger-50: #e22a00;
+    --bgp-danger-60: #ad2000;
+    --bgp-danger-70: #7a1700;
+    --bgp-danger-80: #470d00;
+    --bgp-danger-90: #140400;
+
+    /* === Warning (Yellow) Scale === */
+    --bgp-warning-10: #fff1cc;
+    --bgp-warning-20: #ffe499;
+    --bgp-warning-30: #ffd666;
+    --bgp-warning-40: #ffc933;
+    --bgp-warning-50: #ffbb00;
+    --bgp-warning-60: #cc9600;
+    --bgp-warning-70: #997000;
+    --bgp-warning-80: #664b00;
+    --bgp-warning-90: #332500;
+
+    /* === Complete/Success (Green) Scale === */
+    --bgp-complete-10: #c8eede;
+    --bgp-complete-20: #a1e3c7;
+    --bgp-complete-30: #7ad7af;
+    --bgp-complete-40: #53cb98;
+    --bgp-complete-50: #36b37e;
+    --bgp-complete-60: #2b8d63;
+    --bgp-complete-70: #1f6648;
+    --bgp-complete-80: #133f2c;
+    --bgp-complete-90: #071811;
+
+    /* === Alpha (Transparency) === */
+    --bgp-alpha-black-90: rgba(17, 17, 17, 0.9);
+    --bgp-alpha-black-80: rgba(17, 17, 17, 0.8);
+    --bgp-alpha-black-70: rgba(17, 17, 17, 0.7);
+    --bgp-alpha-black-60: rgba(17, 17, 17, 0.6);
+    --bgp-alpha-black-50: rgba(17, 17, 17, 0.5);
+    --bgp-alpha-black-40: rgba(17, 17, 17, 0.4);
+    --bgp-alpha-black-30: rgba(17, 17, 17, 0.3);
+    --bgp-alpha-black-20: rgba(17, 17, 17, 0.2);
+    --bgp-alpha-black-10: rgba(17, 17, 17, 0.1);
+    --bgp-alpha-black-0: rgba(17, 17, 17, 0);
+    --bgp-alpha-white-90: rgba(255, 255, 255, 0.9);
+    --bgp-alpha-white-80: rgba(255, 255, 255, 0.8);
+    --bgp-alpha-white-70: rgba(255, 255, 255, 0.7);
+    --bgp-alpha-white-60: rgba(255, 255, 255, 0.6);
+    --bgp-alpha-white-50: rgba(255, 255, 255, 0.5);
+    --bgp-alpha-white-40: rgba(255, 255, 255, 0.4);
+    --bgp-alpha-white-30: rgba(255, 255, 255, 0.3);
+    --bgp-alpha-white-20: rgba(255, 255, 255, 0.2);
+    --bgp-alpha-white-10: rgba(255, 255, 255, 0.1);
+    --bgp-alpha-white-0: rgba(255, 255, 255, 0);
+
+    /* ========================================
+       Semantic Color Tokens
+       ======================================== */
+
+    /* === Usually (General Purpose) === */
+    --color-usually-primary: var(--bgp-primary-50);
+    --color-usually-hover: var(--bgp-primary-50);
+    --color-usually-click: var(--bgp-primary-70);
+    --color-usually-white: var(--bgp-gray-0);
+    --color-usually-black: var(--bgp-gray-100);
+    --color-usually-border: var(--bgp-gray-20);
+    --color-usually-disabled: var(--bgp-gray-20);
+    --color-usually-success: var(--bgp-complete-60);
+    --color-usually-danger: var(--bgp-danger-50);
+    --color-usually-warning: var(--bgp-warning-50);
+
+    /* === Text Colors === */
+    --color-text-title: var(--bgp-gray-100);
+    --color-text-black2: var(--bgp-gray-80);
+    --color-text-white: var(--bgp-gray-0);
+    --color-text-description: var(--bgp-gray-70);
+    --color-text-placeholder: var(--bgp-gray-40);
+    --color-text-disabled: var(--bgp-gray-30);
+    --color-text-information: var(--bgp-gray-50);
+    --color-text-primary: var(--bgp-primary-50);
+    --color-text-success: var(--bgp-complete-60);
+    --color-text-danger: var(--bgp-danger-50);
+    --color-text-warning: var(--bgp-warning-50);
+
+    /* === Background Colors === */
+    --color-bg-white: var(--bgp-gray-0);
+    --color-bg-light-gray: #f8fafc;
+    --color-bg-dim: var(--bgp-alpha-black-40);
+
+    /* ========================================
+       Shadcn/UI Semantic Mapping
+       ======================================== */
+
     /* Background & Foreground */
-    --background: 210 40% 99%; /* #f8fafc - boardgame-bg-contents */
-    --foreground: 0 0% 7%; /* #111111 - text-deepblack */
+    --background: var(--color-bg-light-gray);
+    --foreground: var(--color-text-title);
 
     /* Card */
-    --card: 0 0% 100%; /* #ffffff */
-    --card-foreground: 0 0% 7%; /* #111111 */
+    --card: var(--color-bg-white);
+    --card-foreground: var(--color-text-title);
 
     /* Popover */
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 7%;
+    --popover: var(--color-bg-white);
+    --popover-foreground: var(--color-text-title);
 
-    /* Primary - boardgame-primary #7c27f2 */
-    --primary: 266 87% 55%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary */
+    --primary: var(--color-usually-primary);
+    --primary-foreground: var(--color-usually-white);
+    --primary-hover: var(--color-usually-hover);
+    --primary-click: var(--color-usually-click);
 
-    /* Secondary - btn-gray #f6f6f6 */
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 7%;
+    /* Secondary */
+    --secondary: var(--bgp-gray-10);
+    --secondary-foreground: var(--color-text-title);
 
     /* Muted */
-    --muted: 210 40% 96%;
-    --muted-foreground: 0 0% 47%; /* #777777 - text-lightblack */
+    --muted: var(--bgp-gray-10);
+    --muted-foreground: var(--color-text-description);
 
     /* Accent */
-    --accent: 210 40% 96%;
-    --accent-foreground: 0 0% 7%;
+    --accent: var(--bgp-accent-50);
+    --accent-foreground: var(--color-usually-white);
 
-    /* Destructive - status-error #e22a00 */
-    --destructive: 10 100% 44%;
-    --destructive-foreground: 0 0% 100%;
+    /* Destructive */
+    --destructive: var(--color-usually-danger);
+    --destructive-foreground: var(--color-usually-white);
 
-    /* Border & Input - boardgame-border #e5e5e5 */
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 266 87% 55%; /* primary */
+    /* Border & Input & Ring */
+    --border: var(--color-usually-border);
+    --input: var(--color-usually-border);
+    --ring: var(--color-usually-primary);
+
+    /* Border Width */
+    --border-width-regular: 1px;
+    --border-width-medium: 2px;
 
     /* Radius */
     --radius: 0.5rem;
 
-    /* ===== Custom Status Colors ===== */
-    --status-progress: 216 100% 50%; /* #0065ff - 이용 중 */
-    --status-complete: 153 52% 47%; /* #36b37e - 완료 */
-    --status-warning: 40 100% 50%; /* #ffab00 - 경고 */
-    --status-error: 10 100% 44%; /* #e22a00 - 에러 */
-    --status-default: 225 14% 93%; /* #ebecf0 - 기본 */
-    --status-new: 252 43% 54%; /* #6554c0 - 신규 */
+    /* ===== Status Colors ===== */
+    --status-progress: var(--bgp-primary-50);
+    --status-complete: var(--color-usually-success);
+    --status-warning: var(--color-usually-warning);
+    --status-error: var(--color-usually-danger);
+    --status-default: var(--bgp-gray-20);
+    --status-new: var(--bgp-accent-50);
 
-    /* ===== Custom Text Colors ===== */
-    --text-deepblack: 0 0% 7%; /* #111111 */
-    --text-black: 0 0% 20%; /* #333333 */
-    --text-lightblack: 0 0% 47%; /* #777777 */
-    --text-gray: 0 0% 60%; /* #999999 */
-    --text-lightgray: 0 0% 87%; /* #dddddd */
+    /* ===== Text Hierarchy (Semantic) ===== */
+    --text-title: var(--color-text-title);
+    --text-body: var(--color-text-black2);
+    --text-description: var(--color-text-description);
+    --text-placeholder: var(--color-text-placeholder);
+    --text-disabled: var(--color-text-disabled);
+    --text-information: var(--color-text-information);
 
-    /* ===== Custom Button Colors ===== */
-    --btn-default: 0 0% 7%; /* #111111 */
-    --btn-hover: 266 87% 55%; /* #7c27f2 */
-    --btn-focused: 333 87% 55%; /* #f2277f */
-    --btn-click: 266 67% 43%; /* #6123b7 */
+    /* ===== Button States ===== */
+    --btn-default: var(--color-usually-primary);
+    --btn-hover: var(--color-usually-hover);
+    --btn-click: var(--color-usually-click);
+    --btn-disabled: var(--color-usually-disabled);
+
+    /* ===== Typography ===== */
+    --font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   }
 
   .dark {
-    --background: 0 0% 7%;
-    --foreground: 210 40% 98%;
+    /* === Semantic Overrides for Dark Mode === */
+    --background: var(--bgp-gray-100);
+    --foreground: var(--bgp-gray-0);
 
-    --card: 0 0% 10%;
-    --card-foreground: 210 40% 98%;
+    --card: var(--bgp-gray-90);
+    --card-foreground: var(--bgp-gray-0);
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 210 40% 98%;
+    --popover: var(--bgp-gray-90);
+    --popover-foreground: var(--bgp-gray-0);
 
-    --primary: 266 87% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: var(--bgp-primary-40);
+    --primary-foreground: var(--bgp-gray-0);
+    --primary-hover: var(--bgp-primary-30);
+    --primary-click: var(--bgp-primary-60);
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: var(--bgp-gray-80);
+    --secondary-foreground: var(--bgp-gray-0);
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: var(--bgp-gray-80);
+    --muted-foreground: var(--bgp-gray-40);
 
-    --accent: 0 0% 15%;
-    --accent-foreground: 210 40% 98%;
+    --accent: var(--bgp-accent-40);
+    --accent-foreground: var(--bgp-gray-0);
 
-    --destructive: 10 100% 50%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: var(--bgp-danger-40);
+    --destructive-foreground: var(--bgp-gray-0);
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 266 87% 60%;
+    --border: var(--bgp-gray-70);
+    --input: var(--bgp-gray-70);
+    --ring: var(--bgp-primary-40);
 
-    /* Status colors remain similar in dark mode */
-    --status-progress: 216 100% 55%;
-    --status-complete: 153 52% 52%;
-    --status-warning: 40 100% 55%;
-    --status-error: 10 100% 50%;
-    --status-default: 0 0% 25%;
-    --status-new: 252 43% 60%;
+    /* Status colors in dark mode */
+    --status-progress: var(--bgp-primary-40);
+    --status-complete: var(--bgp-complete-50);
+    --status-warning: var(--bgp-warning-40);
+    --status-error: var(--bgp-danger-40);
+    --status-default: var(--bgp-gray-70);
+    --status-new: var(--bgp-accent-40);
+
+    /* Text hierarchy in dark mode */
+    --text-title: var(--bgp-gray-0);
+    --text-body: var(--bgp-gray-20);
+    --text-description: var(--bgp-gray-40);
+    --text-placeholder: var(--bgp-gray-50);
+    --text-disabled: var(--bgp-gray-60);
+    --text-information: var(--bgp-gray-50);
+
+    /* Button states in dark mode */
+    --btn-default: var(--bgp-primary-40);
+    --btn-hover: var(--bgp-primary-30);
+    --btn-click: var(--bgp-primary-60);
+    --btn-disabled: var(--bgp-gray-70);
   }
 }
 
@@ -111,5 +271,6 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-family);
   }
 }

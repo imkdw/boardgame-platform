@@ -155,7 +155,7 @@
   "TabletHome": {
     "header": {
       "storeName": "WeAZ Boardgame (Gunpo)",
-      "tableLabel": "GATE"
+      "tableLabel": "Room Number"
     },
     "menu": {
       "storeIntro": { "subtitle": "Watch video", "title": "Store Intro" },

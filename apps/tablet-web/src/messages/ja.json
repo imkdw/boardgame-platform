@@ -155,7 +155,7 @@
   "TabletHome": {
     "header": {
       "storeName": "ウィアズボードゲーム(軍浦店)",
-      "tableLabel": "GATE"
+      "tableLabel": "部屋番号"
     },
     "menu": {
       "storeIntro": { "subtitle": "動画で見る", "title": "店舗紹介" },

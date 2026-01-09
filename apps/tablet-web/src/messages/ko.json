@@ -155,7 +155,7 @@
   "TabletHome": {
     "header": {
       "storeName": "홀리쉣보드게임(성수점)",
-      "tableLabel": "GATE"
+      "tableLabel": "방 번호"
     },
     "menu": {
       "storeIntro": { "subtitle": "동영상으로 보는", "title": "매장소개" },

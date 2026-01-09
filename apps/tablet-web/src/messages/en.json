@@ -134,10 +134,51 @@
       "name": "Name",
       "difficulty": "Difficulty"
     },
+    "filter": {
+      "all": "All",
+      "groupLabel": {
+        "players": "Players",
+        "genre": "Genre",
+        "difficulty": "Difficulty",
+        "playTime": "Time",
+        "other": "Other"
+      },
+      "players": {
+        "2": "2 Players",
+        "3": "3 Players",
+        "4": "4 Players",
+        "5+": "5+ Players"
+      },
+      "genres": {
+        "전략": "Strategy",
+        "파티": "Party",
+        "추리": "Deduction",
+        "협동": "Cooperative",
+        "블러핑": "Bluffing",
+        "순발력": "Speed",
+        "단어": "Word",
+        "팀전": "Team"
+      },
+      "difficulty": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "playTime": {
+        "30": "Under 30 min",
+        "60": "30-60 min",
+        "60+": "Over 60 min"
+      },
+      "availableOnly": "Available",
+      "recommendedOnly": "Recommended",
+      "reset": "Reset"
+    },
     "resultCount": "{count} results",
     "empty": {
       "title": "No results found",
-      "description": "Try a different search term"
+      "description": "Try a different search term",
+      "filterSuggestion": "Try relaxing filter conditions",
+      "resetFilters": "Reset Filters"
     },
     "card": {
       "players": "{min}~{max} players",

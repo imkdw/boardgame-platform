@@ -3,7 +3,8 @@
 import { useTranslations } from 'next-intl';
 import { Search } from 'lucide-react';
 import { Input, Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@repo/ui';
-import type { GameSortBy } from '../types';
+import type { GameSortBy, GameFiltersState } from '../types';
+import { GameFilters } from './game-filters';
 
 interface Props {
   inputValue: string;
@@ -11,10 +12,21 @@ interface Props {
   onSearch: () => void;
   sortBy: GameSortBy;
   onSortChange: (sort: GameSortBy) => void;
+  filters: GameFiltersState;
+  onFiltersChange: (filters: GameFiltersState) => void;
   resultCount: number;
 }
 
-export function GameSearchBar({ inputValue, onInputChange, onSearch, sortBy, onSortChange, resultCount }: Props) {
+export function GameSearchBar({
+  inputValue,
+  onInputChange,
+  onSearch,
+  sortBy,
+  onSortChange,
+  filters,
+  onFiltersChange,
+  resultCount,
+}: Props) {
   const t = useTranslations('GameSearch');
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -41,6 +53,8 @@ export function GameSearchBar({ inputValue, onInputChange, onSearch, sortBy, onS
           {t('searchButton')}
         </Button>
       </div>
+
+      <GameFilters filters={filters} onFiltersChange={onFiltersChange} />
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">

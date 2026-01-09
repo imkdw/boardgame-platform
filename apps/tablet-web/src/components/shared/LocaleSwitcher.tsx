@@ -7,7 +7,7 @@ import { useTransition } from 'react';
 import { locales, localeFlags, type Locale } from '@repo/i18n';
 import { Globe } from 'lucide-react';
 
-export default function LocaleSwitcher(): ReactNode {
+export function LocaleSwitcher(): ReactNode {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();

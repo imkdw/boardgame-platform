@@ -199,7 +199,7 @@
   "FoodOrder": {
     "pageTitle": "Food Order",
     "empty": "No items in this category",
-    "currency": " KRW",
+    "currency": "won",
     "badge": {
       "popular": "Popular",
       "new": "New",
@@ -209,7 +209,7 @@
       "title": "Cart",
       "empty": "Your cart is empty",
       "total": "Total",
-      "currency": " KRW",
+      "currency": "won",
       "order": "Order Now"
     },
     "orderConfirm": {
@@ -217,7 +217,7 @@
       "message": "Would you like to place this order?",
       "orderSummary": "Order Summary",
       "total": "Total",
-      "currency": " KRW",
+      "currency": "won",
       "notice": "Your order will be delivered to your table.",
       "confirm": "Place Order",
       "cancel": "Cancel"

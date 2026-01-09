@@ -10,7 +10,17 @@
       "Bash(pnpm add:*)",
       "Bash(pnpm tablet-web check-types:*)",
       "Bash(pnpm lint:*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(pnpm install:*)",
+      "Bash(echo:*)",
+      "Bash(ls:*)",
+      "Bash(pnpm list:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(cat:*)",
+      "Bash(lsof:*)",
+      "Bash(npm show:*)",
+      "Bash(pnpm info:*)"
     ]
   },
   "spinnerTipsEnabled": false

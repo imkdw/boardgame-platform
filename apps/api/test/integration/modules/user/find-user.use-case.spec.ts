@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { FindUserUseCase } from '@/modules/user/use-case/find-user.use-case';
 import { CreateUserUseCase } from '@/modules/user/use-case/create-user.use-case';
-import { PrismaService } from '@/infra/database';
+import { PrismaService } from '@repo/server-shared';
 import { UserNotFoundException } from '@/modules/user/exception/user-not-found.exception';
 import { randomUUID } from 'crypto';
 

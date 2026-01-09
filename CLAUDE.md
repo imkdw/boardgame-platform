@@ -47,7 +47,6 @@ apps/
   api/                      # NestJS 11 backend
     src/
       modules/              # Feature modules (use-case pattern)
-      infra/                # Infrastructure (database, etc.)
     prisma/schema/          # Prisma schema files
     test/                   # unit/, integration/, e2e/
   tablet-web/               # Next.js 16 frontend (App Router)
@@ -64,7 +63,7 @@ packages/
   eslint-config/            # ESLint presets (base, nestjs, next)
   typescript-config/        # TSConfig presets
   i18n/                     # Shared i18n config
-  server-shared/            # NestJS shared (filters, interceptors, config)
+  server-shared/            # NestJS shared (database, filters, interceptors, config)
   shared/
     consts/                 # Shared constants
     types/                  # Shared TypeScript types

@@ -1,24 +1,26 @@
 # CLAUDE.md
 
-This is a Turborepo monorepo with Next.js web frontend, NestJS backend API, Expo React Native mobile app, and Electron desktop app.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+This is a Turborepo monorepo for a Board Game Café POS System with Next.js tablet web, NestJS backend API, Expo React Native mobile app, and Electron kiosk app.
 
 ## Quick Reference
 
-| App     | Location       | Port     | Run                |
-| ------- | -------------- | -------- | ------------------ |
-| API     | `apps/api`     | 8000     | `pnpm dev`         |
-| Web     | `apps/web`     | 3000     | `pnpm dev`         |
-| Mobile  | `apps/mobile`  | -        | `pnpm dev:mobile`  |
-| Desktop | `apps/kiosk` | -        | `pnpm dev:kiosk` |
-| Swagger | -              | 8000/api | Auto with API      |
+| App        | Location          | Port | Run               |
+| ---------- | ----------------- | ---- | ----------------- |
+| API        | `apps/api`        | 8000 | `pnpm dev`        |
+| Tablet Web | `apps/tablet-web` | 3001 | `pnpm dev`        |
+| Mobile     | `apps/mobile`     | -    | `pnpm dev:mobile` |
+| Kiosk      | `apps/kiosk`      | -    | `pnpm dev:kiosk`  |
+| Swagger    | -                 | 8000 | Auto with API     |
 
 ## Commands
 
 ```bash
 # Development
-pnpm dev                    # Start API + Web (not mobile/desktop)
+pnpm dev                    # Start API + Tablet Web (not mobile/kiosk)
 pnpm dev:mobile             # Start mobile app separately
-pnpm dev:kiosk            # Start desktop app separately
+pnpm dev:kiosk              # Start kiosk app separately
 pnpm build                  # Build all packages
 pnpm lint                   # Lint with auto-fix
 pnpm check-types            # TypeScript type check
@@ -35,7 +37,7 @@ pnpm api prisma db push     # Push schema changes
 pnpm api test:unit          # API unit tests
 pnpm api test:integration   # API integration tests
 pnpm api test:e2e           # API e2e tests
-pnpm web build              # Build web only
+pnpm tablet-web build       # Build tablet-web only
 ```
 
 ## Project Structure
@@ -48,14 +50,14 @@ apps/
       infra/                # Infrastructure (database, etc.)
     prisma/schema/          # Prisma schema files
     test/                   # unit/, integration/, e2e/
-  web/                      # Next.js 16 frontend (App Router)
+  tablet-web/               # Next.js 16 frontend (App Router)
     src/
       app/[locale]/         # i18n routes with next-intl
       components/           # React components
       i18n/                 # Internationalization config
       messages/             # en.json, ko.json
   mobile/                   # Expo 54 mobile app
-  desktop/                  # Electron desktop app (electron-forge)
+  kiosk/                    # Electron kiosk app (electron-forge)
 
 packages/
   ui/                       # Shared React components (CVA + Tailwind)
@@ -114,7 +116,7 @@ interface MyComponentProps {
 }
 ```
 
-This convention applies to all UI components and frontend apps (`packages/ui`, `apps/web`, `apps/tablet-web`, `apps/kiosk`).
+This convention applies to all UI components and frontend apps (`packages/ui`, `apps/tablet-web`, `apps/kiosk`).
 
 ### Imports
 
@@ -284,13 +286,13 @@ SWAGGER_PASSWORD=xxx
 
 ### Add i18n translations
 
-1. Add keys to `apps/web/src/messages/en.json` and `ko.json`
+1. Add keys to `apps/tablet-web/src/messages/en.json` and `ko.json`
 2. Use `useTranslations()` hook from `next-intl`
 
 ## Performance Notes
 
 - Turborepo caches builds - use `turbo run build --force` to bypass
-- Dev excludes mobile and desktop by default (use `pnpm dev:mobile` or `pnpm dev:kiosk` separately)
+- Dev excludes mobile and kiosk by default (use `pnpm dev:mobile` or `pnpm dev:kiosk` separately)
 - Prisma client auto-generates on install
 
 ## Troubleshooting

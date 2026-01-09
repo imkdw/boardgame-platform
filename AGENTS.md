@@ -9,7 +9,7 @@ This is a Turborepo monorepo with Next.js web frontend, NestJS backend API, Expo
 | API     | `apps/api`     | 8000     | `pnpm dev`         |
 | Web     | `apps/web`     | 3000     | `pnpm dev`         |
 | Mobile  | `apps/mobile`  | -        | `pnpm dev:mobile`  |
-| Desktop | `apps/desktop` | -        | `pnpm dev:desktop` |
+| Desktop | `apps/kiosk` | -        | `pnpm dev:kiosk` |
 | Swagger | -              | 8000/api | Auto with API      |
 
 ## Commands
@@ -18,7 +18,7 @@ This is a Turborepo monorepo with Next.js web frontend, NestJS backend API, Expo
 # Development
 pnpm dev                    # Start API + Web (not mobile/desktop)
 pnpm dev:mobile             # Start mobile app separately
-pnpm dev:desktop            # Start desktop app separately
+pnpm dev:kiosk            # Start desktop app separately
 pnpm build                  # Build all packages
 pnpm lint                   # Lint with auto-fix
 pnpm check-types            # TypeScript type check
@@ -114,7 +114,7 @@ interface MyComponentProps {
 }
 ```
 
-This convention applies to all UI components and frontend apps (`packages/ui`, `apps/web`, `apps/tablet-web`, `apps/desktop`).
+This convention applies to all UI components and frontend apps (`packages/ui`, `apps/web`, `apps/tablet-web`, `apps/kiosk`).
 
 ### Imports
 
@@ -212,7 +212,7 @@ throw new CustomException({
 
 ### Building
 
-- Development: `pnpm dev:desktop` or `pnpm desktop dev`
+- Development: `pnpm dev:kiosk` or `pnpm desktop dev`
 - Package: `pnpm desktop package`
 - Make distributable: `pnpm desktop make`
 
@@ -290,7 +290,7 @@ SWAGGER_PASSWORD=xxx
 ## Performance Notes
 
 - Turborepo caches builds - use `turbo run build --force` to bypass
-- Dev excludes mobile and desktop by default (use `pnpm dev:mobile` or `pnpm dev:desktop` separately)
+- Dev excludes mobile and desktop by default (use `pnpm dev:mobile` or `pnpm dev:kiosk` separately)
 - Prisma client auto-generates on install
 
 ## Troubleshooting

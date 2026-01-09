@@ -84,7 +84,7 @@ apps/
   api/        # NestJS 11 백엔드 (Prisma, Swagger)
   web/        # Next.js 16 프론트엔드 (Turbopack, next-intl)
   mobile/     # Expo 54 모바일 (Expo Router)
-  desktop/    # Electron 39 데스크톱 (electron-forge)
+  kiosk/    # Electron 키오스크 (electron-forge)
 
 packages/
   ui/                    # 공유 React 컴포넌트 (CVA, Tailwind)

@@ -1,9 +1,9 @@
 {
-  "name": "@repo/desktop",
-  "productName": "desktop",
+  "name": "@repo/kiosk",
+  "productName": "kiosk",
   "version": "0.0.1",
   "private": true,
-  "description": "Electron desktop application",
+  "description": "Electron kiosk application",
   "main": ".webpack/main",
   "scripts": {
     "dev": "electron-forge start",

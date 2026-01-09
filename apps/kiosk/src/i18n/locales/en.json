@@ -2,32 +2,69 @@
   "localeSwitcher": {
     "label": "Select language"
   },
-  "home": {
-    "title": "Turborepo Monorepo",
-    "subtitle": "Next.js · NestJS · Expo · Electron",
-    "features": {
-      "turborepo": {
-        "title": "Turborepo",
-        "description": "Speed up development with high-speed build system and caching"
-      },
-      "sharedPackages": {
-        "title": "Shared Packages",
-        "description": "Share UI, types, and configs as packages for consistency"
-      },
-      "crossPlatform": {
-        "title": "Cross Platform",
-        "description": "Support all platforms: Web, Mobile, Desktop"
-      },
-      "desktopApp": {
-        "title": "Desktop App",
-        "description": "Native desktop app powered by Electron"
-      }
-    },
-    "aboutLink": "About →"
+  "common": {
+    "back": "Back",
+    "change": "Change",
+    "step": "Step {{current}} of {{total}}",
+    "autoRedirect": "Redirecting to home in {{seconds}} seconds"
   },
-  "about": {
-    "title": "About",
-    "description": "This desktop app is part of the Turborepo monorepo template. Built with Electron + React + Tailwind CSS + HashRouter.",
-    "homeLink": "← Home"
+  "idle": {
+    "welcome": "Welcome!",
+    "storeName": "Board Game Cafe",
+    "touchToStart": "Touch to Start",
+    "hint": "Touch the screen to begin",
+    "warningTitle": "Continue?",
+    "warningMessage": "You will be redirected to home due to inactivity.",
+    "continue": "Continue",
+    "exit": "Exit"
+  },
+  "selectPeople": {
+    "title": "How many people?",
+    "subtitle": "Select the number of people"
+  },
+  "selectRoom": {
+    "title": "Select a room",
+    "subtitle": "We recommend rooms based on your group size",
+    "recommended": "Recommended",
+    "other": "Other rooms",
+    "occupied": "Occupied",
+    "confirmRoom": "Select Room {{number}}",
+    "selectPrompt": "Please select a room"
+  },
+  "selectTime": {
+    "title": "Select duration",
+    "subtitle": "Choose your preferred duration",
+    "hint": "You can extend later if needed!",
+    "confirm": "Select {{time}}",
+    "selectPrompt": "Please select duration"
+  },
+  "payment": {
+    "title": "Payment",
+    "summary": "Summary",
+    "room": "Room",
+    "people": "People",
+    "time": "Duration",
+    "total": "Total",
+    "selectMethod": "Select payment method",
+    "payAndEnter": "Pay & Enter",
+    "processing": "Processing..."
+  },
+  "complete": {
+    "title": "Payment Complete!",
+    "subtitle": "Have fun!",
+    "duration": "Duration",
+    "endTime": "End time",
+    "unlimited": "Unlimited",
+    "goToRoom": "Please go to Room {{number}}!",
+    "tabletHint": "You can search for games on the tablet",
+    "returnNow": "Return to Home"
+  },
+  "room": {
+    "available": "Available",
+    "occupied": "Occupied",
+    "recommended": "Recommended"
+  },
+  "time": {
+    "recommended": "Recommended"
   }
 }

@@ -2,32 +2,69 @@
   "localeSwitcher": {
     "label": "言語を選択"
   },
-  "home": {
-    "title": "Turborepo Monorepo",
-    "subtitle": "Next.js · NestJS · Expo · Electron",
-    "features": {
-      "turborepo": {
-        "title": "Turborepo",
-        "description": "高速ビルドシステムとキャッシングで開発速度を向上"
-      },
-      "sharedPackages": {
-        "title": "Shared Packages",
-        "description": "UI、型、設定をパッケージとして共有し一貫性を維持"
-      },
-      "crossPlatform": {
-        "title": "Cross Platform",
-        "description": "Web、Mobile、Desktopすべてのプラットフォームに対応"
-      },
-      "desktopApp": {
-        "title": "Desktop App",
-        "description": "Electronで動作するネイティブデスクトップアプリ"
-      }
-    },
-    "aboutLink": "About →"
+  "common": {
+    "back": "戻る",
+    "change": "変更",
+    "step": "{{current}} / {{total}} ステップ",
+    "autoRedirect": "{{seconds}}秒後にホームに戻ります"
   },
-  "about": {
-    "title": "About",
-    "description": "このデスクトップアプリはTurborepoモノレポテンプレートの一部です。Electron + React + Tailwind CSS + HashRouterで構成されています。",
-    "homeLink": "← Home"
+  "idle": {
+    "welcome": "いらっしゃいませ！",
+    "storeName": "ボードゲームカフェ",
+    "touchToStart": "タッチして開始",
+    "hint": "画面をタッチして入店を開始します",
+    "warningTitle": "続けますか？",
+    "warningMessage": "一定時間操作がないため、ホームに戻ります。",
+    "continue": "続ける",
+    "exit": "終了"
+  },
+  "selectPeople": {
+    "title": "何名様ですか？",
+    "subtitle": "人数を選択してください"
+  },
+  "selectRoom": {
+    "title": "部屋を選択してください",
+    "subtitle": "人数に合ったおすすめの部屋をご案内します",
+    "recommended": "おすすめ",
+    "other": "その他の部屋",
+    "occupied": "利用中",
+    "confirmRoom": "{{number}}番部屋を選択",
+    "selectPrompt": "部屋を選択してください"
+  },
+  "selectTime": {
+    "title": "利用時間を選択してください",
+    "subtitle": "ご希望の利用時間を選択してください",
+    "hint": "時間が足りなければ、後で延長できます！",
+    "confirm": "{{time}}を選択",
+    "selectPrompt": "時間を選択してください"
+  },
+  "payment": {
+    "title": "お支払い",
+    "summary": "利用内容",
+    "room": "部屋",
+    "people": "人数",
+    "time": "利用時間",
+    "total": "合計金額",
+    "selectMethod": "お支払い方法を選択してください",
+    "payAndEnter": "支払って入店",
+    "processing": "処理中..."
+  },
+  "complete": {
+    "title": "お支払い完了！",
+    "subtitle": "楽しい時間をお過ごしください",
+    "duration": "利用時間",
+    "endTime": "終了時刻",
+    "unlimited": "無制限",
+    "goToRoom": "{{number}}番部屋へお進みください！",
+    "tabletHint": "テーブルのタブレットでゲームを検索できます",
+    "returnNow": "ホームに戻る"
+  },
+  "room": {
+    "available": "利用可能",
+    "occupied": "利用中",
+    "recommended": "おすすめ"
+  },
+  "time": {
+    "recommended": "おすすめ"
   }
 }

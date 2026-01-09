@@ -16,11 +16,107 @@
   },
   "Guide": {
     "title": "ご利用案内",
-    "comingSoon": "準備中です"
+    "steps": {
+      "gameSearch": {
+        "title": "ゲームを検索する",
+        "description": "ゲーム検索タブでお好みのゲームを探せます。人数、難易度、ジャンルでフィルタリングできます。"
+      },
+      "gameRental": {
+        "title": "ゲームをレンタルする",
+        "description": "ゲームを選択して「持ってきてください」ボタンを押すと、スタッフがお届けします。"
+      },
+      "timeExtension": {
+        "title": "時間を延長する",
+        "description": "マイ情報タブの「時間延長」ボタンで利用時間を延長できます。"
+      },
+      "staffCall": {
+        "title": "スタッフを呼ぶ",
+        "description": "上部のスタッフ呼出ボタンを押すと、スタッフがテーブルに伺います。"
+      },
+      "exit": {
+        "title": "退場する",
+        "description": "マイ情報タブの「退場する」ボタンで利用を終了できます。"
+      }
+    },
+    "faq": {
+      "title": "よくある質問",
+      "timeExpired": {
+        "question": "時間が終わったらどうなりますか？",
+        "answer": "終了10分前に通知が表示されます。延長または退場を選択できます。"
+      },
+      "changeGame": {
+        "question": "利用中にゲームを変更できますか？",
+        "answer": "はい、いつでも別のゲームをリクエストできます。ゲーム検索で新しいゲームを選んでください。"
+      },
+      "payment": {
+        "question": "どの決済方法が使えますか？",
+        "answer": "カカオペイ、NAVERペイ、クレジットカードがご利用いただけます。"
+      },
+      "gameRules": {
+        "question": "ゲームのルール説明を受けられますか？",
+        "answer": "はい、ゲーム詳細画面で「ルール説明を聞きたい」ボタンを押すと、スタッフが説明いたします。"
+      }
+    }
   },
   "MyInfo": {
     "title": "マイ情報",
-    "comingSoon": "準備中です"
+    "timeInfo": {
+      "title": "利用時間情報",
+      "startTime": "入場時刻",
+      "purchasedTime": "購入時間",
+      "remainingTime": "残り時間",
+      "endTime": "終了予定",
+      "hoursUnit": "{hours}時間",
+      "minutesUnit": "{minutes}分"
+    },
+    "paymentInfo": {
+      "title": "決済履歴",
+      "initialPayment": "入場決済",
+      "extensionPayment": "延長決済",
+      "extensionItem": "{minutes}分延長",
+      "totalPayment": "合計金額",
+      "currency": "円"
+    },
+    "actions": {
+      "extend": "時間延長",
+      "exit": "退場する"
+    },
+    "empty": {
+      "title": "利用中のセッションがありません",
+      "description": "入口のキオスクで入場手続きをしてください"
+    },
+    "extendDialog": {
+      "title": "時間延長",
+      "currentStatus": "現在の状態",
+      "remainingTime": "残り時間",
+      "endTime": "終了予定",
+      "selectOption": "延長オプション選択",
+      "option30min": "30分延長",
+      "option1hour": "1時間延長",
+      "optionUnlimited": "無制限に変更",
+      "selectPayment": "決済方法選択",
+      "paymentKakao": "カカオペイ",
+      "paymentNaver": "NAVERペイ",
+      "paymentCard": "カード",
+      "newEndTime": "新しい終了予定",
+      "confirm": "決済して延長",
+      "cancel": "キャンセル"
+    },
+    "exitDialog": {
+      "title": "退場確認",
+      "confirmMessage": "利用を終了しますか?",
+      "usageSummary": "利用内容",
+      "totalUsageTime": "合計利用時間",
+      "paymentSummary": "決済内容",
+      "initialPayment": "入場決済",
+      "extensionPayment": "延長決済",
+      "totalPayment": "合計金額",
+      "alreadyPaid": "決済完了済み",
+      "noAdditionalPayment": "追加決済はありません",
+      "confirm": "退場する",
+      "cancel": "キャンセル",
+      "currency": "円"
+    }
   },
   "InfoVideo": {
     "title": "店舗紹介",

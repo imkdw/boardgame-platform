@@ -16,11 +16,107 @@
   },
   "Guide": {
     "title": "Guide",
-    "comingSoon": "Coming Soon"
+    "steps": {
+      "gameSearch": {
+        "title": "Search Games",
+        "description": "Find games in the Game Search tab. Filter by number of players, difficulty, or genre."
+      },
+      "gameRental": {
+        "title": "Rent a Game",
+        "description": "Select a game and tap 'Bring it to me'. A staff member will deliver it to your table."
+      },
+      "timeExtension": {
+        "title": "Extend Time",
+        "description": "Tap 'Extend Time' in My Info tab to extend your session."
+      },
+      "staffCall": {
+        "title": "Call Staff",
+        "description": "Tap the Staff Call button at the top to request assistance."
+      },
+      "exit": {
+        "title": "Exit",
+        "description": "Tap 'Exit' in My Info tab to end your session."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "timeExpired": {
+        "question": "What happens when time runs out?",
+        "answer": "You'll receive a notification 10 minutes before your time expires. You can choose to extend or exit."
+      },
+      "changeGame": {
+        "question": "Can I switch games during my session?",
+        "answer": "Yes, you can request a different game anytime. Just select a new game from Game Search."
+      },
+      "payment": {
+        "question": "What payment methods are available?",
+        "answer": "We accept Kakao Pay, Naver Pay, and credit cards."
+      },
+      "gameRules": {
+        "question": "Can I get game rule explanations?",
+        "answer": "Yes, tap 'I want game instructions' on the game detail screen and a staff member will explain."
+      }
+    }
   },
   "MyInfo": {
     "title": "My Info",
-    "comingSoon": "Coming Soon"
+    "timeInfo": {
+      "title": "Usage Time Info",
+      "startTime": "Check-in Time",
+      "purchasedTime": "Purchased Time",
+      "remainingTime": "Remaining Time",
+      "endTime": "End Time",
+      "hoursUnit": "{hours}h",
+      "minutesUnit": "{minutes}m"
+    },
+    "paymentInfo": {
+      "title": "Payment History",
+      "initialPayment": "Initial Payment",
+      "extensionPayment": "Extension Payment",
+      "extensionItem": "{minutes}min extension",
+      "totalPayment": "Total Payment",
+      "currency": "KRW"
+    },
+    "actions": {
+      "extend": "Extend Time",
+      "exit": "Exit"
+    },
+    "empty": {
+      "title": "No Active Session",
+      "description": "Please check in at the entrance kiosk"
+    },
+    "extendDialog": {
+      "title": "Extend Time",
+      "currentStatus": "Current Status",
+      "remainingTime": "Remaining Time",
+      "endTime": "End Time",
+      "selectOption": "Select Extension",
+      "option30min": "30 minutes",
+      "option1hour": "1 hour",
+      "optionUnlimited": "Unlimited",
+      "selectPayment": "Select Payment",
+      "paymentKakao": "Kakao Pay",
+      "paymentNaver": "Naver Pay",
+      "paymentCard": "Card",
+      "newEndTime": "New End Time",
+      "confirm": "Pay & Extend",
+      "cancel": "Cancel"
+    },
+    "exitDialog": {
+      "title": "Confirm Exit",
+      "confirmMessage": "Would you like to end your session?",
+      "usageSummary": "Usage Summary",
+      "totalUsageTime": "Total Usage Time",
+      "paymentSummary": "Payment Summary",
+      "initialPayment": "Initial Payment",
+      "extensionPayment": "Extension Payment",
+      "totalPayment": "Total Payment",
+      "alreadyPaid": "Already Paid",
+      "noAdditionalPayment": "No additional payment required",
+      "confirm": "Exit",
+      "cancel": "Cancel",
+      "currency": "KRW"
+    }
   },
   "InfoVideo": {
     "title": "Store Introduction",

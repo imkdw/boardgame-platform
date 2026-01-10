@@ -10,6 +10,7 @@ This is a Turborepo monorepo for a Board Game Café POS System with Next.js tabl
 | ---------- | ----------------- | ---- | ----------------- |
 | API        | `apps/api`        | 8000 | `pnpm dev`        |
 | Tablet Web | `apps/tablet-web` | 3001 | `pnpm dev`        |
+| Admin      | `apps/admin`      | 3002 | `pnpm dev`        |
 | Mobile     | `apps/mobile`     | -    | `pnpm dev:mobile` |
 | Kiosk      | `apps/kiosk`      | -    | `pnpm dev:kiosk`  |
 | POS        | `apps/pos`        | -    | `pnpm dev:pos`    |
@@ -19,7 +20,7 @@ This is a Turborepo monorepo for a Board Game Café POS System with Next.js tabl
 
 ```bash
 # Development
-pnpm dev                    # Start API + Tablet Web (not mobile/kiosk/pos)
+pnpm dev                    # Start API + Tablet Web + Admin (not mobile/kiosk/pos)
 pnpm dev:mobile             # Start mobile app separately
 pnpm dev:kiosk              # Start kiosk app separately
 pnpm dev:pos                # Start POS app separately
@@ -57,6 +58,10 @@ apps/
       components/           # React components
       i18n/                 # Internationalization config
       messages/             # en.json, ko.json
+  admin/                    # Next.js 16 admin dashboard (한국어 전용)
+    src/
+      app/                  # App Router pages
+      components/           # React components
   mobile/                   # Expo 54 mobile app
   kiosk/                    # Electron kiosk app (electron-forge, 1080x1920 세로)
   pos/                      # Electron POS app (electron-forge, 1920x1080 가로)
@@ -264,6 +269,21 @@ SWAGGER_PASSWORD=xxx
 - PostgreSQL via Docker on port 6432
 - Container name: `my-monorepo-postgres`
 - Start: `docker-compose up -d`
+
+## Post-Work Verification
+
+After completing any task, **always run verification commands from the repository root**:
+
+```bash
+pnpm lint                   # Run from root - checks all packages
+pnpm build                  # Run from root - builds all packages
+```
+
+**Important rules:**
+- NEVER run lint/build from a specific app folder (e.g., `cd apps/api && pnpm lint`)
+- ALWAYS run from the monorepo root to ensure the entire project passes
+- Both commands must succeed before considering work complete
+- This catches cross-package issues and ensures monorepo consistency
 
 ## Git Workflow
 

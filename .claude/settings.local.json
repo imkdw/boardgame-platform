@@ -38,7 +38,9 @@
       "Bash(pnpm pos check-types:*)",
       "Bash(npx tsc:*)",
       "Bash(pnpm pos add:*)",
-      "Bash(pnpm tsc:*)"
+      "Bash(pnpm tsc:*)",
+      "Bash(pnpm admin check-types:*)",
+      "Bash(pnpm --filter @repo/tablet-web check-types:*)"
     ]
   },
   "spinnerTipsEnabled": false

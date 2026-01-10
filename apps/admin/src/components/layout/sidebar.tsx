@@ -30,7 +30,7 @@ const navItems: NavItem[] = [
   },
   {
     title: '매장 관리',
-    href: '/dashboard/stores',
+    href: '/stores',
     icon: <Building2 className="size-5" />,
   },
   {

@@ -223,11 +223,11 @@ import { APP_ENV } from '@repo/consts'; // Constants
 - Webpack 대비 빠른 HMR
 - 일부 Webpack 플러그인 미지원 가능
 
-## Mobile WebView Integration
+## Tablet App WebView Integration
 
-이 웹 앱은 Mobile 앱의 WebView에서도 실행됩니다:
+이 웹 앱은 Tablet App의 WebView에서도 실행됩니다:
 
-- `--hostname 0.0.0.0`: 모바일 디바이스에서 접근 가능
+- `--hostname 0.0.0.0`: 태블릿 디바이스에서 접근 가능
 - Android 에뮬레이터: `10.0.2.2:3000`
 - iOS 시뮬레이터: `localhost:3000`
 

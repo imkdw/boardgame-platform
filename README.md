@@ -41,7 +41,7 @@ pnpm dev
 | `apps/api/.env`                   | `DATABASE_URL`의 DB명, 포트 등           |
 | `apps/api/prisma/schema/*.prisma` | 실제 도메인 모델로 교체                  |
 | `apps/web/src/messages/*.json`    | i18n 메시지                              |
-| `apps/mobile/app.json`            | `name`, `slug`, `bundleIdentifier` 등    |
+| `apps/tablet-app/app.json`        | `name`, `slug`, `bundleIdentifier` 등    |
 
 ### 선택 변경
 
@@ -56,7 +56,7 @@ pnpm dev
 ```bash
 # 개발
 pnpm dev                # 웹 + API 개발 서버
-pnpm dev:mobile         # 모바일 앱 (별도 실행)
+pnpm dev:tablet-app     # 태블릿 앱 (별도 실행)
 pnpm dev:desktop        # 데스크톱 앱 (별도 실행)
 
 # 빌드 & 검증
@@ -73,7 +73,7 @@ pnpm api prisma generate # Prisma 클라이언트 생성
 # 패키지별 실행
 pnpm api <명령어>       # API 패키지
 pnpm web <명령어>       # 웹 패키지
-pnpm mobile <명령어>    # 모바일 패키지
+pnpm tablet-app <명령어> # 태블릿 앱 패키지
 pnpm desktop <명령어>   # 데스크톱 패키지
 ```
 
@@ -83,7 +83,7 @@ pnpm desktop <명령어>   # 데스크톱 패키지
 apps/
   api/        # NestJS 11 백엔드 (Prisma, Swagger)
   web/        # Next.js 16 프론트엔드 (Turbopack, next-intl)
-  mobile/     # Expo 54 모바일 (Expo Router)
+  tablet-app/ # Expo 54 태블릿 앱 (Expo Router)
   kiosk/    # Electron 키오스크 (electron-forge)
 
 packages/
@@ -120,7 +120,7 @@ SWAGGER_PASSWORD=password
 | 모노레포 | Turborepo + pnpm                   |
 | 백엔드   | NestJS 11, Prisma, PostgreSQL      |
 | 웹       | Next.js 16, React 19, Tailwind CSS |
-| 모바일   | Expo 54, React Native 0.81         |
+| 태블릿   | Expo 54, React Native 0.81         |
 | 데스크톱 | Electron 39, electron-forge        |
 | 언어     | TypeScript 5.9 (strict)            |
 

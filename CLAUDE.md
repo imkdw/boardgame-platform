@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-This is a Turborepo monorepo for a Board Game Café POS System with Next.js tablet web, NestJS backend API, Expo React Native mobile app, and Electron kiosk app.
+This is a Turborepo monorepo for a Board Game Café POS System with Next.js tablet web, NestJS backend API, Expo React Native tablet app, and Electron kiosk app.
 
 ## Quick Reference
 
@@ -11,7 +11,7 @@ This is a Turborepo monorepo for a Board Game Café POS System with Next.js tabl
 | API        | `apps/api`        | 8000 | `pnpm dev`        |
 | Tablet Web | `apps/tablet-web` | 3001 | `pnpm dev`        |
 | Admin      | `apps/admin`      | 3002 | `pnpm dev`        |
-| Mobile     | `apps/mobile`     | -    | `pnpm dev:mobile` |
+| Tablet App | `apps/tablet-app` | -    | `pnpm dev:tablet-app` |
 | Kiosk      | `apps/kiosk`      | -    | `pnpm dev:kiosk`  |
 | POS        | `apps/pos`        | -    | `pnpm dev:pos`    |
 | Swagger    | -                 | 8000 | Auto with API     |
@@ -20,8 +20,8 @@ This is a Turborepo monorepo for a Board Game Café POS System with Next.js tabl
 
 ```bash
 # Development
-pnpm dev                    # Start API + Tablet Web + Admin (not mobile/kiosk/pos)
-pnpm dev:mobile             # Start mobile app separately
+pnpm dev                    # Start API + Tablet Web + Admin (not tablet-app/kiosk/pos)
+pnpm dev:tablet-app         # Start tablet app separately
 pnpm dev:kiosk              # Start kiosk app separately
 pnpm dev:pos                # Start POS app separately
 pnpm build                  # Build all packages
@@ -62,7 +62,7 @@ apps/
     src/
       app/                  # App Router pages
       components/           # React components
-  mobile/                   # Expo 54 mobile app
+  tablet-app/               # Expo 54 tablet app
   kiosk/                    # Electron kiosk app (electron-forge, 1080x1920 세로)
   pos/                      # Electron POS app (electron-forge, 1920x1080 가로)
 
@@ -197,7 +197,7 @@ throw new CustomException({
 - Import shared components from `@repo/ui`
 - Use `lucide-react` for icons
 
-## Mobile Patterns (Expo)
+## Tablet App Patterns (Expo)
 
 ### Expo Router
 
@@ -207,7 +207,7 @@ throw new CustomException({
 
 ### Building
 
-- Development: `pnpm mobile start`
+- Development: `pnpm tablet-app start`
 - Production: Use EAS Build (not local builds)
 
 ## Desktop Patterns (Electron)
@@ -319,7 +319,7 @@ pnpm build                  # Run from root - builds all packages
 ## Performance Notes
 
 - Turborepo caches builds - use `turbo run build --force` to bypass
-- Dev excludes mobile, kiosk, and pos by default (use `pnpm dev:mobile`, `pnpm dev:kiosk`, or `pnpm dev:pos` separately)
+- Dev excludes tablet-app, kiosk, and pos by default (use `pnpm dev:tablet-app`, `pnpm dev:kiosk`, or `pnpm dev:pos` separately)
 - Prisma client auto-generates on install
 
 ## Troubleshooting

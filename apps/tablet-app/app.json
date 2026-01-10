@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "app",
-    "slug": "app",
+    "name": "tablet-app",
+    "slug": "tablet-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "app",
+    "scheme": "tablet-app",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

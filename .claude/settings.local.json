@@ -40,7 +40,12 @@
       "Bash(pnpm pos add:*)",
       "Bash(pnpm tsc:*)",
       "Bash(pnpm admin check-types:*)",
-      "Bash(pnpm --filter @repo/tablet-web check-types:*)"
+      "Bash(pnpm --filter @repo/tablet-web check-types:*)",
+      "Bash(git checkout:*)",
+      "Bash(pnpm --filter @repo/tablet-app build:*)",
+      "Bash(pnpm --filter @repo/tablet-web build:*)",
+      "Bash(pnpm admin build:*)",
+      "Bash(git add:*)"
     ]
   },
   "spinnerTipsEnabled": false

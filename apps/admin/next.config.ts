@@ -3,9 +3,12 @@ import path from 'path';
 
 const nextConfig: NextConfig = {
   transpilePackages: ['@repo/ui'],
-  turbopack: {
-    root: path.join(__dirname, '../..'),
-  },
+  turbopack:
+    process.env.NODE_ENV === 'development'
+      ? {
+          root: path.join(__dirname, '../..'),
+        }
+      : undefined,
   images: {
     remotePatterns: [
       {

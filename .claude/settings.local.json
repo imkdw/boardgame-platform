@@ -28,7 +28,8 @@
       "Bash(pnpm -F @repo/exception build:*)",
       "Bash(xargs:*)",
       "mcp__ide__getDiagnostics",
-      "Bash(git -C /Users/imkdw/boardgame-platform status --porcelain)"
+      "Bash(git -C /Users/imkdw/boardgame-platform status --porcelain)",
+      "Bash(pnpm dev:pos:*)"
     ]
   },
   "spinnerTipsEnabled": false

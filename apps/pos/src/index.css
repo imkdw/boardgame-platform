@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@repo/ui/globals.css';
+
+@layer base {
+  html,
+  body {
+    @apply h-full w-full overflow-hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #root {
+    @apply h-full w-full;
+  }
+}
+
+@layer utilities {
+  /* POS 화면 컨테이너 (1920x1080) */
+  .pos-container {
+    width: 1920px;
+    height: 1080px;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+
+  /* 터치 타겟 최소 크기 */
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  .touch-target-lg {
+    min-height: 64px;
+    min-width: 64px;
+  }
+}

@@ -12,15 +12,17 @@ This is a Turborepo monorepo for a Board Game Café POS System with Next.js tabl
 | Tablet Web | `apps/tablet-web` | 3001 | `pnpm dev`        |
 | Mobile     | `apps/mobile`     | -    | `pnpm dev:mobile` |
 | Kiosk      | `apps/kiosk`      | -    | `pnpm dev:kiosk`  |
+| POS        | `apps/pos`        | -    | `pnpm dev:pos`    |
 | Swagger    | -                 | 8000 | Auto with API     |
 
 ## Commands
 
 ```bash
 # Development
-pnpm dev                    # Start API + Tablet Web (not mobile/kiosk)
+pnpm dev                    # Start API + Tablet Web (not mobile/kiosk/pos)
 pnpm dev:mobile             # Start mobile app separately
 pnpm dev:kiosk              # Start kiosk app separately
+pnpm dev:pos                # Start POS app separately
 pnpm build                  # Build all packages
 pnpm lint                   # Lint with auto-fix
 pnpm check-types            # TypeScript type check
@@ -56,7 +58,8 @@ apps/
       i18n/                 # Internationalization config
       messages/             # en.json, ko.json
   mobile/                   # Expo 54 mobile app
-  kiosk/                    # Electron kiosk app (electron-forge)
+  kiosk/                    # Electron kiosk app (electron-forge, 1080x1920 세로)
+  pos/                      # Electron POS app (electron-forge, 1920x1080 가로)
 
 packages/
   ui/                       # Shared React components (CVA + Tailwind)
@@ -115,7 +118,7 @@ interface MyComponentProps {
 }
 ```
 
-This convention applies to all UI components and frontend apps (`packages/ui`, `apps/tablet-web`, `apps/kiosk`).
+This convention applies to all UI components and frontend apps (`packages/ui`, `apps/tablet-web`, `apps/kiosk`, `apps/pos`).
 
 ### Imports
 
@@ -211,11 +214,16 @@ throw new CustomException({
 - Renderer process: `src/renderer.ts`
 - Preload script: `src/preload.ts`
 
+### Apps
+
+- **Kiosk**: 고객용 키오스크 (1080x1920 세로, 다국어 지원)
+- **POS**: 직원용 POS 시스템 (1920x1080 가로, 한국어만)
+
 ### Building
 
-- Development: `pnpm dev:kiosk` or `pnpm desktop dev`
-- Package: `pnpm desktop package`
-- Make distributable: `pnpm desktop make`
+- Development: `pnpm dev:kiosk` / `pnpm dev:pos`
+- Package: `pnpm desktop package` / `pnpm pos package`
+- Make distributable: `pnpm desktop make` / `pnpm pos make`
 
 ### Notes
 
@@ -291,7 +299,7 @@ SWAGGER_PASSWORD=xxx
 ## Performance Notes
 
 - Turborepo caches builds - use `turbo run build --force` to bypass
-- Dev excludes mobile and kiosk by default (use `pnpm dev:mobile` or `pnpm dev:kiosk` separately)
+- Dev excludes mobile, kiosk, and pos by default (use `pnpm dev:mobile`, `pnpm dev:kiosk`, or `pnpm dev:pos` separately)
 - Prisma client auto-generates on install
 
 ## Troubleshooting

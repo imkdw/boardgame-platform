@@ -20,7 +20,9 @@
       "Bash(cat:*)",
       "Bash(lsof:*)",
       "Bash(npm show:*)",
-      "Bash(pnpm info:*)"
+      "Bash(pnpm info:*)",
+      "Bash(pnpm api prisma:*)",
+      "Bash(pnpm api check-types:*)"
     ]
   },
   "spinnerTipsEnabled": false

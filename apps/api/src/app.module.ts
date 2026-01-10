@@ -1,4 +1,5 @@
 import { AppController } from '@/app.controller';
+import { StoreModule } from '@/modules/store/store.module';
 import { UserModule } from '@/modules/user/user.module';
 import { Module } from '@nestjs/common';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
@@ -12,6 +13,7 @@ import {
   MyConfigModule,
   MyConfigService,
   TransformInterceptor,
+  ValidatorModule,
 } from '@repo/server-shared';
 import { WinstonModule } from 'nest-winston';
 
@@ -19,7 +21,9 @@ import { WinstonModule } from 'nest-winston';
   imports: [
     MyConfigModule,
     DatabaseModule,
+    ValidatorModule,
     UserModule,
+    StoreModule,
     ThrottlerModule.forRoot({
       throttlers: [{ ttl: 60000, limit: 100 }],
     }),

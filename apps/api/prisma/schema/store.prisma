@@ -1,0 +1,16 @@
+model Store {
+  id            String    @id
+  name          String
+  address       String
+  wifiName      String    @map("wifi_name")
+  wifiPassword  String    @map("wifi_password")
+  contact       String
+  introVideoUrl String?   @map("intro_video_url")
+  latitude      Float
+  longitude     Float
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt     DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt     DateTime? @map("deleted_at") @db.Timestamptz
+
+  @@map("store")
+}

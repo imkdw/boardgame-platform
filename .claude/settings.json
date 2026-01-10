@@ -1,7 +1,6 @@
 {
   "enabledPlugins": {
     "code-simplifier@claude-plugins-official": true,
-    "claude-dashboard@claude-dashboard": true,
     "claude-ultimate-hud@claude-ultimate-hud": true
   }
 }

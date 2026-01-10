@@ -1,0 +1,5 @@
+export const STORE_NAME_MAX_LENGTH = 50;
+export const STORE_ADDRESS_MAX_LENGTH = 200;
+export const STORE_WIFI_NAME_MAX_LENGTH = 50;
+export const STORE_WIFI_PASSWORD_MAX_LENGTH = 100;
+export const STORE_CONTACT_MAX_LENGTH = 20;

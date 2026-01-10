@@ -1,0 +1,11 @@
+export const STORE_EXCEPTION_CODES = {
+  STORE_NOT_FOUND: 'STORE-0001',
+  STORE_NAME_DUPLICATED: 'STORE-0002',
+} as const;
+
+type StoreExceptionCode = (typeof STORE_EXCEPTION_CODES)[keyof typeof STORE_EXCEPTION_CODES];
+
+export const STORE_EXCEPTION_MESSAGES: Record<StoreExceptionCode, string> = {
+  [STORE_EXCEPTION_CODES.STORE_NOT_FOUND]: '매장을 찾을 수 없습니다',
+  [STORE_EXCEPTION_CODES.STORE_NAME_DUPLICATED]: '이미 존재하는 매장 이름입니다',
+};

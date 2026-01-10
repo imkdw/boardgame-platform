@@ -1,12 +1,12 @@
 import { HttpStatus } from '@nestjs/common';
 import { EXCEPTION_CODES } from '@repo/exception';
-import { CustomException } from '../filter/custom.exception';
+import { CustomException } from '../../filter/custom.exception';
 
-export class StoreNotFoundException extends CustomException {
+export class StoreFoodNotFoundException extends CustomException {
   constructor(message: string) {
     super({
       message,
-      errorCode: EXCEPTION_CODES.STORE_NOT_FOUND,
+      errorCode: EXCEPTION_CODES.STORE_FOOD_NOT_FOUND,
       statusCode: HttpStatus.NOT_FOUND,
     });
   }

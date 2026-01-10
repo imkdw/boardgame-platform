@@ -1,0 +1,11 @@
+export const STORE_FOOD_EXCEPTION_CODES = {
+  STORE_FOOD_NOT_FOUND: 'STORE_FOOD-0001',
+  STORE_FOOD_NAME_DUPLICATED: 'STORE_FOOD-0002',
+} as const;
+
+type StoreFoodExceptionCode = (typeof STORE_FOOD_EXCEPTION_CODES)[keyof typeof STORE_FOOD_EXCEPTION_CODES];
+
+export const STORE_FOOD_EXCEPTION_MESSAGES: Record<StoreFoodExceptionCode, string> = {
+  [STORE_FOOD_EXCEPTION_CODES.STORE_FOOD_NOT_FOUND]: '음식을 찾을 수 없습니다',
+  [STORE_FOOD_EXCEPTION_CODES.STORE_FOOD_NAME_DUPLICATED]: '이미 존재하는 음식 이름입니다',
+};

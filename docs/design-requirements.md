@@ -1,3 +1,8 @@
+---
+name: bgp-api-implementation
+description: Implement the API requirements for the boardgame platform system.
+---
+
 # 보드게임 카페 POS 시스템 화면 설계서
 
 ## 목차

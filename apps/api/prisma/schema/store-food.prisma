@@ -1,0 +1,17 @@
+model StoreFood {
+  id          String    @id
+  storeId     String    @map("store_id")
+  name        String
+  description String
+  price       Int
+  isPopular   Boolean   @default(false) @map("is_popular")
+  isNew       Boolean   @default(false) @map("is_new")
+  imageUrl    String?   @map("image_url") // TODO: 실제 업로드 처리 필요
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt   DateTime? @map("deleted_at") @db.Timestamptz
+
+  store Store @relation(fields: [storeId], references: [id])
+
+  @@map("store_food")
+}

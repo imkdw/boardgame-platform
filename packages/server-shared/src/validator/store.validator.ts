@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Store } from '@prisma/client';
 import { PrismaService } from '../database/prisma.service';
-import { ExistStoreNameException } from '../exception/exist-store-name.exception';
-import { StoreNotFoundException } from '../exception/store-not-found.exception';
+import { ExistStoreNameException, StoreNotFoundException } from '../exception/store';
 
 @Injectable()
 export class StoreValidator {

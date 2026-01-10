@@ -1,3 +1,8 @@
+---
+name: bgp-api-implementation
+description: Guide for implementing NestJS API modules.
+---
+
 # API Implementer Skill
 
 Guide for implementing NestJS API modules.

@@ -22,7 +22,10 @@
       "Bash(npm show:*)",
       "Bash(pnpm info:*)",
       "Bash(pnpm api prisma:*)",
-      "Bash(pnpm api check-types:*)"
+      "Bash(pnpm api check-types:*)",
+      "Bash(tree:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(pnpm -F @repo/exception build:*)"
     ]
   },
   "spinnerTipsEnabled": false

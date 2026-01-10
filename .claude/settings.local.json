@@ -46,7 +46,11 @@
       "Bash(pnpm --filter @repo/tablet-web build:*)",
       "Bash(pnpm admin build:*)",
       "Bash(git add:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(pnpm kiosk dev:*)",
+      "Bash(pnpm pos dev:*)",
+      "Bash(timeout 30 pnpm kiosk dev:*)",
+      "Bash(pkill:*)"
     ]
   },
   "spinnerTipsEnabled": false

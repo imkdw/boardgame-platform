@@ -18,5 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "webpack.*.ts", "forge.config.ts", "tailwind.config.ts"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

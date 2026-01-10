@@ -92,7 +92,7 @@ export function GameCard({
   const mergedLabels = {
     ...defaultLabels,
     ...labels,
-    difficulty: { ...defaultLabels.difficulty, ...labels?.difficulty } as Record<GameDifficulty, string>,
+    difficulty: { ...defaultLabels.difficulty, ...labels.difficulty } as Record<GameDifficulty, string>,
   };
 
   const difficultyLabel = mergedLabels.difficulty[game.difficulty];
@@ -196,7 +196,6 @@ export function GameCard({
     >
       <div className="relative aspect-[3/2] w-full bg-muted">
         {game.thumbnail && (
-          // eslint-disable-next-line @next/next/no-img-element
           <img src={game.thumbnail} alt={game.name} className="h-full w-full object-cover" />
         )}
         <div className="absolute left-2 top-2 flex flex-wrap gap-1">

@@ -134,10 +134,51 @@
       "name": "名前順",
       "difficulty": "難易度順"
     },
+    "filter": {
+      "all": "全て",
+      "groupLabel": {
+        "players": "人数",
+        "genre": "ジャンル",
+        "difficulty": "難易度",
+        "playTime": "時間",
+        "other": "その他"
+      },
+      "players": {
+        "2": "2人",
+        "3": "3人",
+        "4": "4人",
+        "5+": "5人以上"
+      },
+      "genres": {
+        "전략": "戦略",
+        "파티": "パーティー",
+        "추리": "推理",
+        "협동": "協力",
+        "블러핑": "ブラフ",
+        "순발력": "瞬発力",
+        "단어": "ワード",
+        "팀전": "チーム戦"
+      },
+      "difficulty": {
+        "easy": "簡単",
+        "medium": "普通",
+        "hard": "難しい"
+      },
+      "playTime": {
+        "30": "30分以下",
+        "60": "30~60分",
+        "60+": "60分以上"
+      },
+      "availableOnly": "貸出可のみ",
+      "recommendedOnly": "おすすめのみ",
+      "reset": "リセット"
+    },
     "resultCount": "検索結果 {count}件",
     "empty": {
       "title": "検索結果がありません",
-      "description": "別の検索ワードをお試しください"
+      "description": "別の検索ワードをお試しください",
+      "filterSuggestion": "フィルター条件を緩めてみてください",
+      "resetFilters": "フィルターをリセット"
     },
     "card": {
       "players": "{min}~{max}人",

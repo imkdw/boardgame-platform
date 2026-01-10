@@ -100,7 +100,6 @@ export function FoodCard({
     >
       <div className="relative aspect-[4/3] w-full bg-muted">
         {food.thumbnail && (
-          // eslint-disable-next-line @next/next/no-img-element
           <img src={food.thumbnail} alt={displayName} className="h-full w-full object-cover" />
         )}
         <div className="absolute left-2 top-2 flex flex-wrap gap-1">

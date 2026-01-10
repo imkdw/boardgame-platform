@@ -183,6 +183,7 @@
     "card": {
       "players": "{min}~{max} players",
       "playTime": "{time} min",
+      "playTimeUnit": "min",
       "difficulty": {
         "easy": "Easy",
         "medium": "Medium",

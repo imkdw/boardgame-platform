@@ -32,7 +32,13 @@
       "Bash(pnpm dev:pos:*)",
       "Bash(pnpm --filter @repo/consts build:*)",
       "Bash(pnpm --filter @repo/exception build:*)",
-      "Bash(pnpm --filter @repo/server-shared build:*)"
+      "Bash(pnpm --filter @repo/server-shared build:*)",
+      "Bash(pnpm pos lint:*)",
+      "Bash(pnpm ui add:*)",
+      "Bash(pnpm pos check-types:*)",
+      "Bash(npx tsc:*)",
+      "Bash(pnpm pos add:*)",
+      "Bash(pnpm tsc:*)"
     ]
   },
   "spinnerTipsEnabled": false

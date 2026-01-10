@@ -3,10 +3,11 @@
 import type { ReactNode } from 'react';
 import { useState, useMemo, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
+import { useRouter } from '@/i18n/navigation';
+import { GameList, type GameCardItem } from '@repo/ui';
 
 import {
   GameSearchBar,
-  GameList,
   GameEmptyState,
   mockGames,
   type GameSortBy,
@@ -58,8 +59,27 @@ function matchesGenres(game: Game, genres: GameFiltersState['genres']): boolean 
   return genres.some(genre => game.genres.includes(genre));
 }
 
+function convertToCardItem(game: Game): GameCardItem {
+  return {
+    id: game.id,
+    name: game.name,
+    thumbnail: game.thumbnail,
+    minPlayers: game.minPlayers,
+    maxPlayers: game.maxPlayers,
+    playTime: game.playTime,
+    difficulty: game.difficulty,
+    genres: game.genres,
+    isAvailable: game.isAvailable,
+    isRecommended: game.isRecommended,
+    stock: game.stock,
+    availableStock: game.availableStock,
+  };
+}
+
 export default function GamesPage(): ReactNode {
+  const router = useRouter();
   const tGame = useTranslations('GameSearch');
+  const tCard = useTranslations('GameSearch.card');
 
   const [inputValue, setInputValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -88,7 +108,7 @@ export default function GamesPage(): ReactNode {
       // Text search
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
-        const matchesSearch = game.name.toLowerCase().includes(query) || game.nameEn.toLowerCase().includes(query);
+        const matchesSearch = game.name.toLowerCase().includes(query);
         if (!matchesSearch) return false;
       }
 
@@ -142,6 +162,24 @@ export default function GamesPage(): ReactNode {
     });
   }, [searchQuery, sortBy, filters]);
 
+  const gameCardItems = useMemo(() => filteredGames.map(convertToCardItem), [filteredGames]);
+
+  const handleGameClick = (game: GameCardItem) => {
+    router.push(`/games/${game.id}`);
+  };
+
+  const labels = {
+    recommended: tCard('recommended'),
+    available: tCard('available'),
+    unavailable: tCard('unavailable'),
+    playTime: tCard('playTimeUnit'),
+    difficulty: {
+      easy: tCard('difficulty.easy'),
+      medium: tCard('difficulty.medium'),
+      hard: tCard('difficulty.hard'),
+    },
+  };
+
   return (
     <div className="flex flex-1 flex-col gap-6 overflow-auto p-6">
       <div className="flex items-center gap-4">
@@ -158,7 +196,7 @@ export default function GamesPage(): ReactNode {
         resultCount={filteredGames.length}
       />
       {filteredGames.length > 0 ? (
-        <GameList games={filteredGames} />
+        <GameList games={gameCardItems} onClick={handleGameClick} labels={labels} />
       ) : (
         <GameEmptyState hasActiveFilters={hasActiveFilters} onResetFilters={handleResetFilters} />
       )}

@@ -183,6 +183,7 @@
     "card": {
       "players": "{min}~{max}인",
       "playTime": "{time}분",
+      "playTimeUnit": "분",
       "difficulty": {
         "easy": "쉬움",
         "medium": "보통",

@@ -142,6 +142,7 @@
     "card": {
       "players": "{min}~{max}人",
       "playTime": "{time}分",
+      "playTimeUnit": "分",
       "difficulty": {
         "easy": "簡単",
         "medium": "普通",

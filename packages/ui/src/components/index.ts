@@ -28,3 +28,6 @@ export * from './command';
 export * from './calendar';
 export * from './carousel';
 export * from './form';
+export * from './food-card';
+export * from './game-card';
+export * from './game-list';

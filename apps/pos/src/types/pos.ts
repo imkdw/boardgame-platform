@@ -1,14 +1,10 @@
 // POS 앱 타입 정의
+import type { FoodItem } from '@repo/types';
 
 export type OrderStatus = 'pending' | 'in_progress' | 'completed' | 'cancelled';
 
-export interface MenuItem {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
-  imageUrl?: string;
-}
+// FoodItem을 MenuItem으로 re-export (기존 코드 호환성)
+export type MenuItem = FoodItem;
 
 export interface OrderItem {
   id: string;
@@ -22,17 +18,112 @@ export interface Order {
   items: OrderItem[];
   status: OrderStatus;
   totalPrice: number;
-  tableNumber?: number;
+  roomId?: string;
+  roomNumber?: number;
   createdAt: Date;
   updatedAt: Date;
+  paymentMethod?: 'cash' | 'card' | 'pg';
 }
 
 export interface POSSession {
   currentOrder: Order | null;
-  selectedTable: number | null;
+  selectedRoom: string | null;
 }
 
 export const initialPOSSession: POSSession = {
   currentOrder: null,
-  selectedTable: null,
+  selectedRoom: null,
 };
+
+// 추가 타입 정의
+
+export type RoomStatus = 'IN_USE' | 'AVAILABLE' | 'RESERVED' | 'MAINTENANCE';
+export type GameStatus = 'AVAILABLE' | 'RENTED' | 'REPAIR';
+
+export interface RentedGame {
+  id: string;
+  gameId: string;
+  gameName: string;
+  rentedAt: Date;
+}
+
+export interface ActiveRoom {
+  id: string;
+  roomNumber: number;
+  status: RoomStatus;
+  checkInTime: Date | null;
+  endTime: Date | null;
+  rentedGames: RentedGame[];
+  pendingOrderCount: number;
+  reservedTime?: Date;
+}
+
+export interface CartItem {
+  menuItemId: string;
+  menuItem: MenuItem;
+  quantity: number;
+}
+
+export interface SalesSummary {
+  timePackageSales: number;
+  menuSales: number;
+  totalSales: number;
+}
+
+export interface Game {
+  id: string;
+  name: string;
+  category: string;
+  minPlayers: number;
+  maxPlayers: number;
+  playTime: number;
+  difficulty: 1 | 2 | 3;
+  status: GameStatus;
+  rentedToRoomId?: string;
+  rentedToRoomNumber?: number;
+  rentedAt?: Date;
+}
+
+// 게임 재고 관리를 위한 타입
+export interface GameInventory {
+  id: string;
+  name: string;
+  category: string;
+  minPlayers: number;
+  maxPlayers: number;
+  playTime: number;
+  difficulty: 1 | 2 | 3;
+  totalCount: number; // 총 보유 개수
+  repairCount: number; // 수리 중인 개수
+}
+
+// 개별 게임 인스턴스 (대여 추적용)
+export interface GameInstance {
+  id: string;
+  gameId: string; // GameInventory.id 참조
+  status: GameStatus;
+  rentedToRoomId?: string;
+  rentedToRoomNumber?: number;
+  rentedAt?: Date;
+}
+
+// 재고 정보가 포함된 게임 뷰
+export interface GameWithStock {
+  id: string;
+  name: string;
+  category: string;
+  minPlayers: number;
+  maxPlayers: number;
+  playTime: number;
+  difficulty: 1 | 2 | 3;
+  totalCount: number;
+  availableCount: number;
+  rentedCount: number;
+  repairCount: number;
+  rentedInstances: GameInstance[]; // 대여 중인 인스턴스들
+}
+
+export interface MenuCategory {
+  id: string;
+  name: string;
+}

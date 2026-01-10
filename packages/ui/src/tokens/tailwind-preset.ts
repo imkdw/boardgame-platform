@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import tailwindcssAnimate from 'tailwindcss-animate';
 
 export const tailwindPreset: Partial<Config> = {
   darkMode: 'class',
@@ -233,5 +234,5 @@ export const tailwindPreset: Partial<Config> = {
       },
     },
   },
-  plugins: [],
+  plugins: [tailwindcssAnimate],
 };

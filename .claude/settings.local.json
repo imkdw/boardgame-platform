@@ -45,7 +45,8 @@
       "Bash(pnpm --filter @repo/tablet-app build:*)",
       "Bash(pnpm --filter @repo/tablet-web build:*)",
       "Bash(pnpm admin build:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(curl:*)"
     ]
   },
   "spinnerTipsEnabled": false

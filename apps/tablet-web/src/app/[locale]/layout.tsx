@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { cn } from '@repo/ui';
 import { locales, isValidLocale } from '@repo/i18n';
+import { pretendard } from '@repo/fonts/next';
 import { notFound } from 'next/navigation';
 import { ToastProvider } from '@/components/shared';
 import { FullscreenToggle } from '@/components/layout/fullscreen-toggle';
@@ -39,8 +40,8 @@ export default async function LocaleLayout({ children, params }: Props): Promise
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body className={cn('min-h-screen bg-background antialiased')}>
+    <html lang={locale} className={pretendard.variable} suppressHydrationWarning>
+      <body className={cn(pretendard.className, 'min-h-screen bg-background antialiased')}>
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
         <FullscreenToggle />
         <ToastProvider />

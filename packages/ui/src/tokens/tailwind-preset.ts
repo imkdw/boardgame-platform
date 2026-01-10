@@ -6,7 +6,19 @@ export const tailwindPreset: Partial<Config> = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Pretendard Variable', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        sans: [
+          'var(--font-pretendard)',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'system-ui',
+          'Roboto',
+          'Helvetica Neue',
+          'Segoe UI',
+          'Apple SD Gothic Neo',
+          'Noto Sans KR',
+          'Malgun Gothic',
+          'sans-serif',
+        ],
       },
       colors: {
         /* ========================================

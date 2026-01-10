@@ -26,6 +26,9 @@ importers:
       '@repo/consts':
         specifier: workspace:*
         version: link:../../packages/shared/consts
+      '@repo/fonts':
+        specifier: workspace:*
+        version: link:../../packages/fonts
       '@repo/types':
         specifier: workspace:*
         version: link:../../packages/shared/types
@@ -220,6 +223,9 @@ importers:
 
   apps/kiosk:
     dependencies:
+      '@repo/fonts':
+        specifier: workspace:*
+        version: link:../../packages/fonts
       '@repo/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
@@ -338,6 +344,9 @@ importers:
       '@repo/consts':
         specifier: workspace:*
         version: link:../../packages/shared/consts
+      '@repo/fonts':
+        specifier: workspace:*
+        version: link:../../packages/fonts
       '@repo/types':
         specifier: workspace:*
         version: link:../../packages/shared/types
@@ -556,6 +565,9 @@ importers:
       '@repo/consts':
         specifier: workspace:*
         version: link:../../packages/shared/consts
+      '@repo/fonts':
+        specifier: workspace:*
+        version: link:../../packages/fonts
       '@repo/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
@@ -677,6 +689,25 @@ importers:
       typescript-eslint:
         specifier: ^8.40.0
         version: 8.50.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)
+
+  packages/fonts:
+    dependencies:
+      next:
+        specifier: '>=14'
+        version: 16.1.1(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      eslint:
+        specifier: ^9.18.0
+        version: 9.39.1(jiti@2.6.1)
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
 
   packages/i18n:
     devDependencies:
@@ -18011,6 +18042,31 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
+  next@16.1.1(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+    dependencies:
+      '@next/env': 16.1.1
+      '@swc/helpers': 0.5.15
+      baseline-browser-mapping: 2.9.11
+      caniuse-lite: 1.0.30001761
+      postcss: 8.4.31
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      styled-jsx: 5.1.6(react@19.2.0)
+    optionalDependencies:
+      '@next/swc-darwin-arm64': 16.1.1
+      '@next/swc-darwin-x64': 16.1.1
+      '@next/swc-linux-arm64-gnu': 16.1.1
+      '@next/swc-linux-arm64-musl': 16.1.1
+      '@next/swc-linux-x64-gnu': 16.1.1
+      '@next/swc-linux-x64-musl': 16.1.1
+      '@next/swc-win32-arm64-msvc': 16.1.1
+      '@next/swc-win32-x64-msvc': 16.1.1
+      babel-plugin-react-compiler: 1.0.0
+      sharp: 0.34.5
+    transitivePeerDependencies:
+      - '@babel/core'
+      - babel-plugin-macros
+
   nice-try@1.0.5: {}
 
   no-case@3.0.4:
@@ -19647,6 +19703,11 @@ snapshots:
     dependencies:
       client-only: 0.0.1
       react: 19.1.0
+
+  styled-jsx@5.1.6(react@19.2.0):
+    dependencies:
+      client-only: 0.0.1
+      react: 19.2.0
 
   styleq@0.1.3: {}
 

@@ -47,6 +47,7 @@
     "webpack": "^5.103.0"
   },
   "dependencies": {
+    "@repo/fonts": "workspace:*",
     "@repo/consts": "workspace:*",
     "@repo/types": "workspace:*",
     "@repo/ui": "workspace:*",

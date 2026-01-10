@@ -206,7 +206,8 @@
     --btn-disabled: var(--color-usually-disabled);
 
     /* ===== Typography ===== */
-    --font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    /* Note: --font-pretendard is provided by @repo/fonts */
+    --font-family: var(--font-pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif);
   }
 
   .dark {

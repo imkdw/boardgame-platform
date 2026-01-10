@@ -25,7 +25,8 @@
       "Bash(pnpm api check-types:*)",
       "Bash(tree:*)",
       "Bash(docker-compose up:*)",
-      "Bash(pnpm -F @repo/exception build:*)"
+      "Bash(pnpm -F @repo/exception build:*)",
+      "Bash(xargs:*)"
     ]
   },
   "spinnerTipsEnabled": false

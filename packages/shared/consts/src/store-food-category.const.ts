@@ -1,0 +1,1 @@
+export const STORE_FOOD_CATEGORY_NAME_MAX_LENGTH = 50;

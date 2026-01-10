@@ -12,7 +12,8 @@ model Store {
   updatedAt     DateTime  @updatedAt @map("updated_at") @db.Timestamptz
   deletedAt     DateTime? @map("deleted_at") @db.Timestamptz
 
-  foods StoreFood[]
+  foods      StoreFood[]
+  categories StoreFoodCategory[]
 
   @@map("store")
 }

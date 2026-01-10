@@ -1,0 +1,27 @@
+model StoreFoodCategory {
+  id        String    @id
+  storeId   String    @map("store_id")
+  name      String
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  store Store                   @relation(fields: [storeId], references: [id])
+  items StoreFoodCategoryItem[]
+
+  @@map("store_food_category")
+}
+
+model StoreFoodCategoryItem {
+  categoryId String   @map("category_id")
+  foodId     String   @map("food_id")
+  order      Int      @default(0)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  category StoreFoodCategory @relation(fields: [categoryId], references: [id])
+  food     StoreFood         @relation(fields: [foodId], references: [id])
+
+  @@id([categoryId, foodId])
+  @@map("store_food_category_item")
+}

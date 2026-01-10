@@ -7,10 +7,11 @@ import { FindStoresUseCase } from '@/modules/store/use-case/find-stores.use-case
 import { UpdateStoreUseCase } from '@/modules/store/use-case/update-store.use-case';
 import { StoreFoodModule } from './_food/store-food.module';
 import { StoreFoodCategoryModule } from './_food-category/store-food-category.module';
+import { StoreGameModule } from './_game/store-game.module';
 import { StoreRoomModule } from './_room/store-room.module';
 
 @Module({
-  imports: [StoreFoodModule, StoreFoodCategoryModule, StoreRoomModule],
+  imports: [StoreFoodModule, StoreFoodCategoryModule, StoreGameModule, StoreRoomModule],
   controllers: [StoreController],
   providers: [CreateStoreUseCase, DeleteStoreUseCase, FindStoreUseCase, FindStoresUseCase, UpdateStoreUseCase],
 })

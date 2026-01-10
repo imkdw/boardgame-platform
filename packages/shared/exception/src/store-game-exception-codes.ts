@@ -1,0 +1,11 @@
+export const STORE_GAME_EXCEPTION_CODES = {
+  STORE_GAME_NOT_FOUND: 'STORE_GAME-0001',
+  STORE_GAME_NAME_DUPLICATED: 'STORE_GAME-0002',
+} as const;
+
+type StoreGameExceptionCode = (typeof STORE_GAME_EXCEPTION_CODES)[keyof typeof STORE_GAME_EXCEPTION_CODES];
+
+export const STORE_GAME_EXCEPTION_MESSAGES: Record<StoreGameExceptionCode, string> = {
+  [STORE_GAME_EXCEPTION_CODES.STORE_GAME_NOT_FOUND]: '게임을 찾을 수 없습니다',
+  [STORE_GAME_EXCEPTION_CODES.STORE_GAME_NAME_DUPLICATED]: '이미 존재하는 게임 이름입니다',
+};

@@ -29,7 +29,10 @@
       "Bash(xargs:*)",
       "mcp__ide__getDiagnostics",
       "Bash(git -C /Users/imkdw/boardgame-platform status --porcelain)",
-      "Bash(pnpm dev:pos:*)"
+      "Bash(pnpm dev:pos:*)",
+      "Bash(pnpm --filter @repo/consts build:*)",
+      "Bash(pnpm --filter @repo/exception build:*)",
+      "Bash(pnpm --filter @repo/server-shared build:*)"
     ]
   },
   "spinnerTipsEnabled": false

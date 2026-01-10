@@ -1,0 +1,25 @@
+model StoreGame {
+  id             String    @id
+  storeId        String    @map("store_id")
+  name           String
+  thumbnail      String?
+  images         String[]
+  minPlayers     Int       @map("min_players")
+  maxPlayers     Int       @map("max_players")
+  playTime       Int       @map("play_time")
+  difficulty     String    @default("medium")
+  genres         String[]
+  isRecommended  Boolean   @default(false) @map("is_recommended")
+  stock          Int       @default(0)
+  availableStock Int       @default(0) @map("available_stock")
+  description    String
+  rules          String
+  videoUrl       String?   @map("video_url")
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt      DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt      DateTime? @map("deleted_at") @db.Timestamptz
+
+  store Store @relation(fields: [storeId], references: [id])
+
+  @@map("store_game")
+}

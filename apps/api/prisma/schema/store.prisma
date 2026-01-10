@@ -14,6 +14,7 @@ model Store {
 
   foods      StoreFood[]
   categories StoreFoodCategory[]
+  rooms      StoreRoom[]
 
   @@map("store")
 }

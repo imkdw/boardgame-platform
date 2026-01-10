@@ -26,7 +26,9 @@
       "Bash(tree:*)",
       "Bash(docker-compose up:*)",
       "Bash(pnpm -F @repo/exception build:*)",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(git -C /Users/imkdw/boardgame-platform status --porcelain)"
     ]
   },
   "spinnerTipsEnabled": false

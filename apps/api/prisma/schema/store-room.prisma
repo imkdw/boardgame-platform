@@ -1,0 +1,17 @@
+model StoreRoom {
+  id          String    @id
+  storeId     String    @map("store_id")
+  roomNumber  Int       @map("room_number")
+  status      String    @default("AVAILABLE")
+  minCapacity Int       @map("min_capacity")
+  maxCapacity Int       @map("max_capacity")
+  description String
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt   DateTime? @map("deleted_at") @db.Timestamptz
+
+  store Store @relation(fields: [storeId], references: [id])
+
+  @@unique([storeId, roomNumber])
+  @@map("store_room")
+}

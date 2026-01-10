@@ -72,6 +72,61 @@ import { FEATURE_NAME_MAX_LENGTH } from '@repo/consts';
 - `MIN_LENGTH` is unnecessary since `IsNotEmptyString` handles it
 - Define only `MAX_LENGTH` constants when needed
 
+## Enum/Status Values (IMPORTANT)
+
+**NEVER use Prisma enum or TypeScript enum.** Use `const ... = {} as const` pattern instead.
+
+### In Prisma Schema
+
+Use `String` type with default value:
+
+```prisma
+model Feature {
+  status String @default("ACTIVE")  // NOT enum
+}
+```
+
+### In Constants
+
+```typescript
+// packages/shared/consts/src/<feature>.const.ts
+export const FEATURE_STATUS = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  PENDING: 'PENDING',
+} as const;
+
+export type FeatureStatus = (typeof FEATURE_STATUS)[keyof typeof FEATURE_STATUS];
+
+export const FEATURE_STATUS_VALUES = Object.values(FEATURE_STATUS);
+```
+
+### In DTO
+
+```typescript
+import { IsIn } from 'class-validator';
+import { FEATURE_STATUS_VALUES, FeatureStatus } from '@repo/consts';
+
+export class CreateFeatureDto {
+  @ApiProperty({ enum: FEATURE_STATUS_VALUES })
+  @IsIn(FEATURE_STATUS_VALUES)
+  status: FeatureStatus;
+}
+```
+
+### In Mapper
+
+```typescript
+import { FeatureStatus } from '@repo/consts';
+
+export function toFeatureDto(feature: Feature): FeatureDto {
+  return plainToInstance(FeatureDto, {
+    status: feature.status as FeatureStatus,
+    // ...
+  } satisfies FeatureDto);
+}
+```
+
 ## Controller
 
 ```typescript

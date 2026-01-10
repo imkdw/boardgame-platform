@@ -7,9 +7,10 @@ import { FindStoresUseCase } from '@/modules/store/use-case/find-stores.use-case
 import { UpdateStoreUseCase } from '@/modules/store/use-case/update-store.use-case';
 import { StoreFoodModule } from './_food/store-food.module';
 import { StoreFoodCategoryModule } from './_food-category/store-food-category.module';
+import { StoreRoomModule } from './_room/store-room.module';
 
 @Module({
-  imports: [StoreFoodModule, StoreFoodCategoryModule],
+  imports: [StoreFoodModule, StoreFoodCategoryModule, StoreRoomModule],
   controllers: [StoreController],
   providers: [CreateStoreUseCase, DeleteStoreUseCase, FindStoreUseCase, FindStoresUseCase, UpdateStoreUseCase],
 })

@@ -1,13 +1,4 @@
-export interface Food {
-  id: string;
-  storeId: string;
-  name: string;
-  description: string;
-  price: number;
-  isPopular: boolean;
-  isNew: boolean;
-  imageUrl: string | null;
-}
+export type { Food } from '@repo/types';
 
 export interface CreateFoodDto {
   categoryId: string;

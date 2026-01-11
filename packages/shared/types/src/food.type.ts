@@ -1,6 +1,3 @@
-/**
- * 음식 카테고리 타입
- */
 export interface FoodCategory {
   id: string;
   name: string;
@@ -9,9 +6,6 @@ export interface FoodCategory {
   order: number;
 }
 
-/**
- * 음식 아이템 타입
- */
 export interface FoodItem {
   id: string;
   categoryId: string;
@@ -26,9 +20,6 @@ export interface FoodItem {
   isNew?: boolean;
 }
 
-/**
- * 장바구니 아이템 타입
- */
 export interface FoodCartItem {
   foodItem: FoodItem;
   quantity: number;

@@ -1,8 +1,6 @@
-import type { ApiResponse } from '@repo/types';
 import { fetchApi } from './api';
-import type { FoodCategory, CreateFoodCategoryDto, UpdateFoodCategoryDto } from './types';
-
-export type { FoodCategory, CreateFoodCategoryDto, UpdateFoodCategoryDto } from './types';
+import type { FoodCategory, ApiResponse } from '@repo/types';
+import type { CreateFoodCategoryDto, UpdateFoodCategoryDto } from './types';
 
 export async function getFoodCategories(storeId: string): Promise<FoodCategory[]> {
   const response = await fetchApi<ApiResponse<FoodCategory[]>>(`/stores/${storeId}/food-categories`);

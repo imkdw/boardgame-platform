@@ -1,14 +1,4 @@
-export interface Store {
-  id: string;
-  name: string;
-  address: string;
-  wifiName: string;
-  wifiPassword: string;
-  contact: string;
-  introVideoUrl: string | null;
-  latitude: number;
-  longitude: number;
-}
+export type { Store } from '@repo/types';
 
 export interface CreateStoreDto {
   name: string;

@@ -6,15 +6,15 @@ This is a Turborepo monorepo for a Board Game Café POS System with Next.js tabl
 
 ## Quick Reference
 
-| App        | Location          | Port | Run               |
-| ---------- | ----------------- | ---- | ----------------- |
-| API        | `apps/api`        | 8000 | `pnpm dev`        |
-| Tablet Web | `apps/tablet-web` | 3001 | `pnpm dev`        |
-| Admin      | `apps/admin`      | 3002 | `pnpm dev`        |
+| App        | Location          | Port | Run                   |
+| ---------- | ----------------- | ---- | --------------------- |
+| API        | `apps/api`        | 4000 | `pnpm dev`            |
+| Tablet Web | `apps/tablet-web` | 3001 | `pnpm dev`            |
+| Admin      | `apps/admin`      | 3002 | `pnpm dev`            |
 | Tablet App | `apps/tablet-app` | -    | `pnpm dev:tablet-app` |
-| Kiosk      | `apps/kiosk`      | -    | `pnpm dev:kiosk`  |
-| POS        | `apps/pos`        | -    | `pnpm dev:pos`    |
-| Swagger    | -                 | 8000 | Auto with API     |
+| Kiosk      | `apps/kiosk`      | -    | `pnpm dev:kiosk`      |
+| POS        | `apps/pos`        | -    | `pnpm dev:pos`        |
+| Swagger    | -                 | 8000 | Auto with API         |
 
 ## Commands
 
@@ -134,8 +134,66 @@ This convention applies to all UI components and frontend apps (`packages/ui`, `
 
 ### Type Management
 
-- Types should be separated into `*.types.ts` files
+#### Shared vs App-Specific Types
+
+**Rule**: Only entity types shared across multiple apps should go in `packages/shared/types`. App-specific DTOs remain in the app.
+
+```typescript
+// ✅ CORRECT - Shared entity in packages/shared/types
+// packages/shared/types/src/store-food.type.ts
+export interface Store {
+  id: string;
+  name: string;
+  // ... fields
+}
+
+export interface Food {
+  id: string;
+  storeId: string;
+  // ... fields
+}
+
+// ✅ CORRECT - App-specific DTO in app
+// apps/admin/src/lib/types/foods.types.ts
+export type { Food } from '@repo/types';
+
+export interface CreateFoodDto {
+  categoryId: string;
+  name: string;
+  // ... fields (create-specific)
+}
+
+export interface UpdateFoodDto {
+  name: string;
+  // ... fields (update-specific)
+}
+
+// ❌ WRONG - Entity DTOs should NOT be in shared types
+// packages/shared/types/src/food.type.ts should NOT have CreateFoodDto, UpdateFoodDto
+```
+
+#### Type Export Pattern
+
+When moving entity types to `packages/shared/types`:
+
+1. Create or update the type file in `packages/shared/types/src/`
+2. Export from `packages/shared/types/src/index.ts` using `export *`
+3. In apps, import entities from `@repo/types`, keep DTOs local
+
+```typescript
+// packages/shared/types/src/index.ts
+export * from './food.type';
+export * from './store-food.type';
+
+// apps/admin/src/lib/foods.ts
+import type { ApiResponse, Food } from '@repo/types';
+import type { CreateFoodDto, UpdateFoodDto } from './types';
+```
+
+#### Barrel Exports
+
 - Use `export * from './...'` pattern for barrel exports (index.ts)
+- Keeps exports consistent and simplifies maintenance
 
 ```typescript
 // lib/stores.types.ts
@@ -305,6 +363,7 @@ pnpm build                  # Run from root - builds all packages
 ```
 
 **Important rules:**
+
 - NEVER run lint/build from a specific app folder (e.g., `cd apps/api && pnpm lint`)
 - ALWAYS run from the monorepo root to ensure the entire project passes
 - Both commands must succeed before considering work complete

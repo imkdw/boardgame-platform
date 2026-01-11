@@ -4,17 +4,7 @@ import { useState, type ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn, ScrollArea } from '@repo/ui';
-import {
-  Building2,
-  ChevronDown,
-  Gamepad2,
-  LayoutDashboard,
-  Package,
-  Settings,
-  ShoppingCart,
-  Users,
-  UtensilsCrossed,
-} from 'lucide-react';
+import { Building2, ChevronDown, Gamepad2, LayoutDashboard, UtensilsCrossed } from 'lucide-react';
 
 interface NavItem {
   title: string;
@@ -48,26 +38,6 @@ const navItems: NavItem[] = [
     href: '/dashboard/games',
     icon: <Gamepad2 className="size-5" />,
   },
-  {
-    title: '상품 관리',
-    href: '/dashboard/products',
-    icon: <Package className="size-5" />,
-  },
-  {
-    title: '주문 관리',
-    href: '/dashboard/orders',
-    icon: <ShoppingCart className="size-5" />,
-  },
-  {
-    title: '회원 관리',
-    href: '/dashboard/users',
-    icon: <Users className="size-5" />,
-  },
-  {
-    title: '설정',
-    href: '/dashboard/settings',
-    icon: <Settings className="size-5" />,
-  },
 ];
 
 interface Props {
@@ -78,7 +48,7 @@ export function Sidebar({ className }: Props): ReactNode {
   const pathname = usePathname();
   const [expandedItems, setExpandedItems] = useState<Set<string>>(() => {
     const expanded = new Set<string>();
-    navItems.forEach((item) => {
+    navItems.forEach(item => {
       if (item.children && pathname.startsWith(item.href)) {
         expanded.add(item.href);
       }
@@ -87,7 +57,7 @@ export function Sidebar({ className }: Props): ReactNode {
   });
 
   function toggleExpanded(href: string) {
-    setExpandedItems((prev) => {
+    setExpandedItems(prev => {
       const next = new Set(prev);
       if (next.has(href)) {
         next.delete(href);
@@ -99,9 +69,7 @@ export function Sidebar({ className }: Props): ReactNode {
   }
 
   return (
-    <aside
-      className={cn('flex h-screen w-64 flex-col border-r bg-card', className)}
-    >
+    <aside className={cn('flex h-screen w-64 flex-col border-r bg-card', className)}>
       {/* Logo */}
       <div className="flex h-16 items-center gap-2 border-b px-6">
         <div className="flex size-8 items-center justify-center rounded-lg bg-primary">
@@ -113,7 +81,7 @@ export function Sidebar({ className }: Props): ReactNode {
       {/* Navigation */}
       <ScrollArea className="flex-1 px-3 py-4">
         <nav className="space-y-1">
-          {navItems.map((item) => {
+          {navItems.map(item => {
             const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
             const isExpanded = expandedItems.has(item.href);
             const hasChildren = !!item.children;
@@ -133,16 +101,11 @@ export function Sidebar({ className }: Props): ReactNode {
                   >
                     {item.icon}
                     <span>{item.title}</span>
-                    <ChevronDown
-                      className={cn(
-                        'ml-auto size-4 transition-transform',
-                        isExpanded && 'rotate-180'
-                      )}
-                    />
+                    <ChevronDown className={cn('ml-auto size-4 transition-transform', isExpanded && 'rotate-180')} />
                   </button>
                   {isExpanded && item.children && (
                     <div className="ml-6 mt-1 space-y-1 border-l pl-3">
-                      {item.children.map((child) => {
+                      {item.children.map(child => {
                         const isChildActive = pathname === child.href;
                         return (
                           <Link

@@ -237,6 +237,8 @@ const fetchApi = createFetchApi({ baseUrl: API_BASE_URL });
 export { fetchApi, ApiError };
 ```
 
+**참고**: API 서버 기본 포트는 **4000**입니다.
+
 ### 타입 정의
 
 ```typescript

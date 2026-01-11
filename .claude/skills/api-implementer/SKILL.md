@@ -59,12 +59,14 @@ export const FEATURE_DESCRIPTION_MAX_LENGTH = 200;
 ```
 
 Then export from index:
+
 ```typescript
 // packages/shared/consts/src/index.ts
 export * from './<feature>.const';
 ```
 
 Import in DTO:
+
 ```typescript
 import { FEATURE_NAME_MAX_LENGTH } from '@repo/consts';
 ```
@@ -142,7 +144,7 @@ export class FeatureController {
     private readonly deleteFeatureUseCase: DeleteFeatureUseCase,
     private readonly findFeatureUseCase: FindFeatureUseCase,
     private readonly findFeaturesUseCase: FindFeaturesUseCase,
-    private readonly updateFeatureUseCase: UpdateFeatureUseCase,
+    private readonly updateFeatureUseCase: UpdateFeatureUseCase
   ) {}
 
   @Swagger.createFeature('Create feature')
@@ -209,6 +211,76 @@ export function deleteFeature(summary: string) {
   return applyDecorators(ApiOperation({ summary }), ApiNoContentResponse());
 }
 ```
+
+## Shared vs App-Specific Types
+
+**Rule**: Only entity types shared across multiple apps should go in `packages/shared/types`. App-specific DTOs remain in the app (e.g., `apps/admin/src/lib/types`).
+
+### When to Move Types to Shared
+
+Move entity types to `packages/shared/types` when:
+
+- Used across 2+ apps (admin, tablet-web, tablet-app, etc.)
+- Represent domain entities (Store, Food, FoodCategory, User, etc.)
+- Need to be type-consistent across different consumers
+
+### What to Keep Local
+
+Keep DTOs in app-specific locations:
+
+- Create DTOs (`CreateXxxDto`) - request shapes differ by consumer
+- Update DTOs (`UpdateXxxDto`) - validation rules vary by context
+- App-specific response DTOs - if API returns different shapes per consumer
+
+### Pattern Example
+
+```typescript
+// ✅ CORRECT - Shared entity
+// packages/shared/types/src/store-food.type.ts
+export interface Store {
+  id: string;
+  name: string;
+  // ... fields
+}
+
+export interface Food {
+  id: string;
+  storeId: string;
+  // ... fields
+}
+
+// ✅ CORRECT - App-specific DTO
+// apps/admin/src/lib/types/foods.types.ts
+export type { Food } from '@repo/types';
+
+export interface CreateFoodDto {
+  categoryId: string; // Required on create, not in entity
+  name: string;
+  // ... fields
+}
+
+export interface UpdateFoodDto {
+  name: string;
+  // ... fields
+}
+
+// ✅ CORRECT - Import pattern in app
+// apps/admin/src/lib/foods.ts
+import type { ApiResponse, Food } from '@repo/types';
+import type { CreateFoodDto, UpdateFoodDto } from './types';
+
+export type { Food } from '@repo/types';
+export type { CreateFoodDto, UpdateFoodDto } from './types';
+```
+
+### Shared Type Organization
+
+Create separate files per domain in `packages/shared/types/src/`:
+
+- `food.type.ts` - FoodItem, FoodCategory (consumer-facing)
+- `store-food.type.ts` - Store, Food (admin-focused)
+- `game.type.ts` - Game-related entities
+- Export all from `index.ts` using `export *`
 
 ## DTO
 
@@ -283,7 +355,7 @@ export function toFeatureDto(feature: Feature): FeatureDto {
 export class CreateFeatureUseCase {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly featureValidator: FeatureValidator,
+    private readonly featureValidator: FeatureValidator
   ) {}
 
   async execute(dto: CreateFeatureDto): Promise<Feature> {
@@ -336,7 +408,7 @@ export class FindFeaturesUseCase {
 export class UpdateFeatureUseCase {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly featureValidator: FeatureValidator,
+    private readonly featureValidator: FeatureValidator
   ) {}
 
   async execute(featureId: string, dto: UpdateFeatureDto): Promise<void> {
@@ -364,7 +436,7 @@ export class UpdateFeatureUseCase {
 export class DeleteFeatureUseCase {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly featureValidator: FeatureValidator,
+    private readonly featureValidator: FeatureValidator
   ) {}
 
   async execute(featureId: string): Promise<void> {

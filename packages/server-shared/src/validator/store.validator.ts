@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Store } from '@prisma/client';
 import { PrismaService } from '../database/prisma.service';
-import { ExistStoreNameException, StoreNotFoundException } from '../exception/store';
+import { ExistStoreIpException, ExistStoreNameException, StoreNotFoundException } from '../exception/store';
 
 @Injectable()
 export class StoreValidator {
@@ -27,5 +27,27 @@ export class StoreValidator {
     if (existingStore) {
       throw new ExistStoreNameException(`Store with name ${name} already exists`);
     }
+  }
+
+  async checkExistIp(ip: string): Promise<void> {
+    const existingStore = await this.prisma.store.findFirst({
+      where: { ip, deletedAt: null },
+    });
+
+    if (existingStore) {
+      throw new ExistStoreIpException(`Store with ip ${ip} already exists`);
+    }
+  }
+
+  async checkExistByIp(ip: string): Promise<Store> {
+    const store = await this.prisma.store.findFirst({
+      where: { ip, deletedAt: null },
+    });
+
+    if (!store) {
+      throw new StoreNotFoundException(`Store with ip ${ip} not found`);
+    }
+
+    return store;
   }
 }

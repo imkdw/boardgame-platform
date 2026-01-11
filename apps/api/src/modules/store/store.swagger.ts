@@ -16,6 +16,13 @@ export function findStores(summary: string) {
   return applyDecorators(ApiOperation({ summary }), ApiOkResponse({ type: [StoreDto] }));
 }
 
+export function findStoreByIp(summary: string) {
+  return applyDecorators(
+    ApiOperation({ summary, description: '요청 IP 주소를 기반으로 매장 정보를 조회합니다.' }),
+    ApiOkResponse({ type: StoreDto })
+  );
+}
+
 export function findStore(summary: string) {
   return applyDecorators(ApiOperation({ summary }), ApiOkResponse({ type: StoreDto }));
 }

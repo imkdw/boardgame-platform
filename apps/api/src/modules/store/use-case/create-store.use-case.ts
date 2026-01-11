@@ -8,11 +8,11 @@ import { randomUUID } from 'crypto';
 export class CreateStoreUseCase {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly storeValidator: StoreValidator,
+    private readonly storeValidator: StoreValidator
   ) {}
 
   async execute(dto: CreateStoreDto): Promise<Store> {
-    await this.storeValidator.checkExistName(dto.name);
+    await Promise.all([this.storeValidator.checkExistName(dto.name), this.storeValidator.checkExistIp(dto.ip)]);
 
     return this.prisma.store.create({
       data: {
@@ -23,6 +23,7 @@ export class CreateStoreUseCase {
         wifiPassword: dto.wifiPassword,
         contact: dto.contact,
         introVideoUrl: dto.introVideoUrl ?? null,
+        ip: dto.ip,
         latitude: dto.latitude,
         longitude: dto.longitude,
       },

@@ -1,10 +1,12 @@
 import { CreateStoreUseCase } from '@/modules/store/use-case/create-store.use-case';
 import { DeleteStoreUseCase } from '@/modules/store/use-case/delete-store.use-case';
+import { FindStoreByIpUseCase } from '@/modules/store/use-case/find-store-by-ip.use-case';
 import { FindStoreUseCase } from '@/modules/store/use-case/find-store.use-case';
 import { FindStoresUseCase } from '@/modules/store/use-case/find-stores.use-case';
 import { UpdateStoreUseCase } from '@/modules/store/use-case/update-store.use-case';
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { Ip } from '@repo/server-shared';
 import { CreateStoreDto } from './dto/create-store.dto';
 import { UpdateStoreDto } from './dto/update-store.dto';
 import * as Swagger from './store.swagger';
@@ -15,9 +17,10 @@ export class StoreController {
   constructor(
     private readonly createStoreUseCase: CreateStoreUseCase,
     private readonly deleteStoreUseCase: DeleteStoreUseCase,
+    private readonly findStoreByIpUseCase: FindStoreByIpUseCase,
     private readonly findStoreUseCase: FindStoreUseCase,
     private readonly findStoresUseCase: FindStoresUseCase,
-    private readonly updateStoreUseCase: UpdateStoreUseCase,
+    private readonly updateStoreUseCase: UpdateStoreUseCase
   ) {}
 
   @Swagger.createStore('매장 생성')
@@ -30,6 +33,12 @@ export class StoreController {
   @Get()
   async findStores() {
     return this.findStoresUseCase.execute();
+  }
+
+  @Swagger.findStoreByIp('IP 기반 매장 조회')
+  @Get('ip')
+  async findStoreByIp(@Ip() ip: string) {
+    return this.findStoreByIpUseCase.execute(ip);
   }
 
   @Swagger.findStore('매장 상세 조회')

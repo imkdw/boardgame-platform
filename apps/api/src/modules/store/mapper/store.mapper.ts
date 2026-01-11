@@ -11,6 +11,7 @@ export function toStoreDto(store: Store): StoreDto {
     wifiPassword: store.wifiPassword,
     contact: store.contact,
     introVideoUrl: store.introVideoUrl,
+    ip: store.ip,
     latitude: store.latitude,
     longitude: store.longitude,
   } satisfies StoreDto);

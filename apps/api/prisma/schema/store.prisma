@@ -6,6 +6,7 @@ model Store {
   wifiPassword  String    @map("wifi_password")
   contact       String
   introVideoUrl String?   @map("intro_video_url")
+  ip            String
   latitude      Float
   longitude     Float
   createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz
@@ -17,5 +18,6 @@ model Store {
   rooms      StoreRoom[]
   games      StoreGame[]
 
+  @@index([ip])
   @@map("store")
 }

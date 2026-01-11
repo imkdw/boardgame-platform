@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, MaxLength } from 'class-validator';
+import { IsIP, IsNumber, MaxLength } from 'class-validator';
 import { IsNotEmptyString } from '@repo/server-shared';
 import {
   STORE_NAME_MAX_LENGTH,
@@ -38,6 +38,10 @@ export class CreateStoreDto {
   @ApiProperty({ example: 'https://youtube.com/watch?v=abc123', nullable: true })
   @IsNotEmptyString({ nullable: true })
   introVideoUrl: string | null;
+
+  @ApiProperty({ example: '192.168.0.1', description: '매장 IP 주소' })
+  @IsIP()
+  ip: string;
 
   @ApiProperty({ example: 37.5665, description: '위도' })
   @IsNumber()

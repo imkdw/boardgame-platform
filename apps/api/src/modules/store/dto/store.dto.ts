@@ -22,6 +22,9 @@ export class StoreDto {
   @ApiProperty({ description: '매장 소개 동영상 URL', example: 'https://youtube.com/watch?v=abc123', nullable: true })
   introVideoUrl: string | null;
 
+  @ApiProperty({ description: '매장 IP 주소', example: '192.168.0.1' })
+  ip: string;
+
   @ApiProperty({ description: '위도', example: 37.5665 })
   latitude: number;
 

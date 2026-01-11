@@ -2,7 +2,7 @@ import type { NextConfig } from 'next';
 import path from 'path';
 
 const nextConfig: NextConfig = {
-  transpilePackages: ['@repo/ui'],
+  transpilePackages: ['@repo/ui', '@repo/utils', '@repo/types', '@repo/exception'],
   turbopack:
     process.env.NODE_ENV === 'development'
       ? {

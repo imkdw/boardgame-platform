@@ -132,6 +132,27 @@ This convention applies to all UI components and frontend apps (`packages/ui`, `
 - Destructure imports when possible
 - Newline after import block
 
+### Type Management
+
+- Types should be separated into `*.types.ts` files
+- Use `export * from './...'` pattern for barrel exports (index.ts)
+
+```typescript
+// lib/stores.types.ts
+export interface Store {
+  id: string;
+  name: string;
+}
+
+// lib/stores.ts
+import type { Store } from './stores.types';
+export type { Store } from './stores.types';
+
+// lib/index.ts
+export * from './api';
+export * from './stores';
+```
+
 ## API Patterns (NestJS)
 
 ### Module Structure
@@ -269,6 +290,10 @@ SWAGGER_PASSWORD=xxx
 - PostgreSQL via Docker on port 6432
 - Container name: `my-monorepo-postgres`
 - Start: `docker-compose up -d`
+
+## Development Server
+
+**NEVER run `pnpm dev` or start development servers directly.** The user manages development servers separately. Assume servers are already running when needed.
 
 ## Post-Work Verification
 

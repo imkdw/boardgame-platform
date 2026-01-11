@@ -5,3 +5,4 @@ export * from './store-food-category-exception-codes';
 export * from './store-game-exception-codes';
 export * from './store-room-exception-codes';
 export * from './user-exception-codes';
+export * from './exception-messages';

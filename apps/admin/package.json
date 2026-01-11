@@ -10,11 +10,12 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/exception": "workspace:*",
     "@repo/fonts": "workspace:*",
     "@repo/consts": "workspace:*",
     "@repo/types": "workspace:*",
     "@repo/ui": "workspace:*",
-    "@repo/utils": "workspace:*",
+    "@repo/web-shared": "workspace:*",
     "@tailwindcss/typography": "^0.5.16",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.462.0",

@@ -26,6 +26,9 @@ importers:
       '@repo/consts':
         specifier: workspace:*
         version: link:../../packages/shared/consts
+      '@repo/exception':
+        specifier: workspace:*
+        version: link:../../packages/shared/exception
       '@repo/fonts':
         specifier: workspace:*
         version: link:../../packages/fonts
@@ -35,9 +38,9 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@repo/utils':
+      '@repo/web-shared':
         specifier: workspace:*
-        version: link:../../packages/shared/utils
+        version: link:../../packages/web-shared
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.19(tailwindcss@3.4.19(yaml@2.8.2))
@@ -838,6 +841,10 @@ importers:
         version: 5.9.2
 
   packages/shared/utils:
+    dependencies:
+      '@repo/types':
+        specifier: workspace:*
+        version: link:../types
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -980,6 +987,34 @@ importers:
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
+
+  packages/web-shared:
+    dependencies:
+      '@repo/exception':
+        specifier: workspace:*
+        version: link:../shared/exception
+      '@repo/types':
+        specifier: workspace:*
+        version: link:../shared/types
+      react:
+        specifier: ^18.0.0 || ^19.0.0
+        version: 19.1.0
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.2
+      eslint:
+        specifier: ^9.18.0
+        version: 9.39.1(jiti@2.6.1)
       typescript:
         specifier: 5.9.2
         version: 5.9.2

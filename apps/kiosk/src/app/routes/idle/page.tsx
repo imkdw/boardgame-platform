@@ -5,12 +5,14 @@ import { Hand } from 'lucide-react';
 import { KioskLayout } from '../../../components/KioskLayout';
 import { LocaleSwitcher } from '../../../components/LocaleSwitcher';
 import { useKioskSession } from '../../../hooks/useKioskSession';
+import { useStore } from '../../../hooks/useStore';
 import { useEffect } from 'react';
 
 export default function IdlePage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { reset } = useKioskSession();
+  const { store, isLoading } = useStore();
 
   useEffect(() => {
     reset();
@@ -24,9 +26,11 @@ export default function IdlePage() {
     <KioskLayout>
       <div className="absolute left-8 top-8 z-10 flex items-center gap-3">
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary">
-          <span className="text-2xl font-bold text-white">B</span>
+          <span className="text-2xl font-bold text-white">{store?.name?.charAt(0) ?? 'B'}</span>
         </div>
-        <span className="text-xl font-semibold text-foreground">{t('idle.storeName')}</span>
+        <span className="text-xl font-semibold text-foreground">
+          {isLoading ? t('idle.storeName') : store?.name ?? t('idle.storeName')}
+        </span>
       </div>
 
       <div className="absolute right-8 top-8 z-10">

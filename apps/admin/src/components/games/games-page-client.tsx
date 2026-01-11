@@ -17,7 +17,8 @@ import { Gamepad2, Loader2, Star, Package } from 'lucide-react';
 import { toast } from 'sonner';
 import type { Store, StoreGame } from '@repo/types';
 import { getStores, getGames } from '@/lib';
-import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
+import { getApiErrorMessage } from '@repo/api-error';
+import { useAsyncAction } from '@repo/web-shared';
 import { CreateGameDialog } from './create-game-dialog';
 import { GameTable } from './game-table';
 

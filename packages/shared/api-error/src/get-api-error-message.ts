@@ -1,5 +1,5 @@
 import { EXCEPTION_MESSAGES } from '@repo/exception';
-import { ApiError } from './api-client';
+import { ApiError } from './api-error';
 
 function isApiError(error: unknown): error is ApiError {
   return (

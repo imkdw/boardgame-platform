@@ -1,4 +1,5 @@
-import { createFetchApi, ApiError } from '@repo/web-shared';
+import { ApiError } from '@repo/api-error';
+import { createFetchApi } from '@repo/web-shared';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/v1';
 

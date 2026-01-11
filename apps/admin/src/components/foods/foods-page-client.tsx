@@ -17,7 +17,8 @@ import { UtensilsCrossed, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import type { Food, Store, FoodCategory } from '@repo/types';
 import { getStores, getFoodCategories, getFoods, getFoodsByCategory } from '@/lib';
-import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
+import { getApiErrorMessage } from '@repo/api-error';
+import { useAsyncAction } from '@repo/web-shared';
 import { FoodCategoryList } from './food-category-list';
 import { FoodList } from './food-list';
 

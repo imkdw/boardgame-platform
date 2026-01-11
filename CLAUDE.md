@@ -73,10 +73,13 @@ packages/
   i18n/                     # Shared i18n config
   server-shared/            # NestJS shared (database, filters, interceptors, config)
   shared/
+    api-error/              # API error handling (ApiError, getApiErrorMessage)
     consts/                 # Shared constants
     types/                  # Shared TypeScript types
     exception/              # Exception codes
     utils/                  # Shared utilities
+  web-shared/               # Web app shared utilities (Next.js)
+  electron-shared/          # Electron app shared utilities
 ```
 
 ## Code Style
@@ -131,6 +134,23 @@ This convention applies to all UI components and frontend apps (`packages/ui`, `
 - ES modules (import/export), not CommonJS
 - Destructure imports when possible
 - Newline after import block
+
+### Re-export 금지 규칙
+
+**NEVER re-export external packages** - 외부 패키지의 내용을 중복으로 re-export하지 않습니다.
+
+```typescript
+// ❌ WRONG - 외부 패키지를 re-export
+// packages/web-shared/src/api-error.ts
+export { ApiError } from '@repo/api-error';
+
+// ✅ CORRECT - 직접 import해서 사용
+// apps/admin/src/components/my-component.tsx
+import { ApiError, getApiErrorMessage } from '@repo/api-error';
+import { createFetchApi } from '@repo/web-shared';
+```
+
+각 패키지는 자신만의 고유한 기능만 export하고, 다른 패키지의 기능은 사용하는 곳에서 직접 import합니다.
 
 ### Type Management
 

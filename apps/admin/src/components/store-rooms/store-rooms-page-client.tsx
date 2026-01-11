@@ -16,7 +16,8 @@ import {
 import { DoorOpen, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { getStores, getStoreRooms } from '@/lib';
-import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
+import { getApiErrorMessage } from '@repo/api-error';
+import { useAsyncAction } from '@repo/web-shared';
 import { CreateStoreRoomDialog } from './create-store-room-dialog';
 import { StoreRoomTable } from './store-room-table';
 import type { Store, StoreRoom } from '@repo/types';

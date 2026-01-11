@@ -1,5 +1,5 @@
 {
-  "name": "@repo/web-shared",
+  "name": "@repo/electron-shared",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.js",
@@ -26,6 +26,6 @@
     "@repo/typescript-config": "workspace:*",
     "@types/react": "^19.0.0",
     "eslint": "^9.18.0",
-    "typescript": "5.9.2"
+    "typescript": "5.7.2"
   }
 }

@@ -50,8 +50,10 @@
     "webpack": "^5.103.0"
   },
   "dependencies": {
+    "@repo/electron-shared": "workspace:*",
     "@repo/fonts": "workspace:*",
     "@repo/i18n": "workspace:*",
+    "@repo/types": "workspace:*",
     "@repo/ui": "workspace:*",
     "electron-squirrel-startup": "^1.0.1",
     "i18next": "^25.7.3",

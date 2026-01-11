@@ -8,10 +8,11 @@ interface FetchOptions extends RequestInit {
 interface CreateFetchApiOptions {
   baseUrl: string;
   defaultTimeout?: number;
+  defaultHeaders?: Record<string, string>;
 }
 
 export function createFetchApi(options: CreateFetchApiOptions) {
-  const { baseUrl, defaultTimeout = 10000 } = options;
+  const { baseUrl, defaultTimeout = 10000, defaultHeaders = {} } = options;
 
   return async function fetchApi<T>(endpoint: string, fetchOptions: FetchOptions = {}): Promise<T> {
     const { timeout = defaultTimeout, ...restOptions } = fetchOptions;
@@ -25,6 +26,7 @@ export function createFetchApi(options: CreateFetchApiOptions) {
         signal: controller.signal,
         headers: {
           'Content-Type': 'application/json',
+          ...defaultHeaders,
           ...restOptions.headers,
         },
       });

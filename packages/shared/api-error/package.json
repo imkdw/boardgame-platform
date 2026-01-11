@@ -1,5 +1,5 @@
 {
-  "name": "@repo/web-shared",
+  "name": "@repo/api-error",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.js",
@@ -8,11 +8,8 @@
     ".": "./dist/index.js"
   },
   "dependencies": {
-    "@repo/api-error": "workspace:*",
+    "@repo/exception": "workspace:*",
     "@repo/types": "workspace:*"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0"
   },
   "scripts": {
     "build": "tsc",
@@ -24,8 +21,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "^19.0.0",
     "eslint": "^9.18.0",
-    "typescript": "5.9.2"
+    "typescript": "5.7.2"
   }
 }

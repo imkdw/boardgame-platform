@@ -5,7 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo
 import { Building2, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { getStores } from '@/lib';
-import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
+import { getApiErrorMessage } from '@repo/api-error';
+import { useAsyncAction } from '@repo/web-shared';
 import { CreateStoreDialog } from './create-store-dialog';
 import { StoreTable } from './store-table';
 import type { Store } from '@repo/types';

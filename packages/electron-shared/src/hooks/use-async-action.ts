@@ -28,14 +28,12 @@ export function useAsyncAction<TArgs extends unknown[], TResult>(
   const { toast, onSuccess, onError, successMessage, showErrorToast = true } = options;
   const [isPending, setIsPending] = useState(false);
 
-  // Use refs to store the latest callbacks to keep execute stable
   const actionRef = useRef(action);
   const onSuccessRef = useRef(onSuccess);
   const onErrorRef = useRef(onError);
   const successMessageRef = useRef(successMessage);
   const showErrorToastRef = useRef(showErrorToast);
 
-  // Update refs on each render
   actionRef.current = action;
   onSuccessRef.current = onSuccess;
   onErrorRef.current = onError;

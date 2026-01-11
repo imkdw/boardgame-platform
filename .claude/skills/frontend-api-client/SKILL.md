@@ -566,7 +566,7 @@ export function EditStoreDialog({ store, onSuccess }: Props): ReactNode {
 }
 ```
 
-### Delete Dialog (수동 에러 처리)
+### Delete Dialog (useAsyncAction 사용)
 
 ```typescript
 // apps/<app>/src/components/<feature>/delete-<feature>-dialog.tsx
@@ -586,7 +586,7 @@ import {
 import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { deleteStore, type Store } from '@/lib/stores';
-import { getApiErrorMessage } from '@repo/web-shared';
+import { useAsyncAction } from '@repo/web-shared';
 
 interface Props {
   store: Store;
@@ -595,21 +595,20 @@ interface Props {
 
 export function DeleteStoreDialog({ store, onSuccess }: Props): ReactNode {
   const [open, setOpen] = useState(false);
-  const [isPending, setIsPending] = useState(false);
 
-  async function handleDelete() {
-    setIsPending(true);
-    try {
-      await deleteStore(store.id);
-      toast.success('매장이 삭제되었습니다.');
-      setOpen(false);
-      onSuccess();
-    } catch (error) {
-      toast.error(getApiErrorMessage(error));
-    } finally {
-      setIsPending(false);
+  const { execute: handleDelete, isPending } = useAsyncAction(
+    async () => {
+      return deleteStore(store.id);
+    },
+    {
+      toast,
+      successMessage: '매장이 삭제되었습니다.',
+      onSuccess: () => {
+        setOpen(false);
+        onSuccess();
+      },
     }
-  }
+  );
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -726,8 +725,9 @@ export default function StoresPage(): ReactNode {
 
 1. **타입 분리**: `*.types.ts` 파일에 타입 정의
 2. **barrel export**: `index.ts`에서 `export * from './...'` 패턴 사용
-3. **useAsyncAction**: Create/Update에서 사용, 자동 에러 처리 + 토스트
-4. **getApiErrorMessage**: 수동 에러 처리 시 사용 (Delete, 목록 조회 등)
+3. **useAsyncAction**: Create/Update/Delete에서 사용, 자동 에러 처리 + 토스트
+4. **getApiErrorMessage**: 수동 에러 처리 시 사용 (목록 조회 등)
 5. **FormData 사용**: 폼 제출 시 FormData → DTO 변환
-6. **onSuccess 콜백**: 성공 시 다이얼로그 닫기 + 목록 새로고침
-7. **Server Component 래퍼**: page.tsx는 Server Component로 유지, Client Component를 import
+6. **onSubmit + preventDefault**: 에러 발생 시 폼 데이터 유지를 위해 `form action` 대신 `onSubmit` 사용
+7. **onSuccess 콜백**: 성공 시 다이얼로그 닫기 + 목록 새로고침
+8. **Server Component 래퍼**: page.tsx는 Server Component로 유지, Client Component를 import

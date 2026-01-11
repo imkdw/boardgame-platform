@@ -1,6 +1,6 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn, ScrollArea } from '@repo/ui';
@@ -13,6 +13,7 @@ import {
   Settings,
   ShoppingCart,
   Users,
+  UtensilsCrossed,
 } from 'lucide-react';
 
 interface NavItem {
@@ -32,6 +33,15 @@ const navItems: NavItem[] = [
     title: '매장 관리',
     href: '/stores',
     icon: <Building2 className="size-5" />,
+  },
+  {
+    title: '음식 관리',
+    href: '/food',
+    icon: <UtensilsCrossed className="size-5" />,
+    children: [
+      { title: '음식 카테고리', href: '/food-categories' },
+      { title: '음식', href: '/foods' },
+    ],
   },
   {
     title: '게임 관리',
@@ -66,6 +76,27 @@ interface Props {
 
 export function Sidebar({ className }: Props): ReactNode {
   const pathname = usePathname();
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(() => {
+    const expanded = new Set<string>();
+    navItems.forEach((item) => {
+      if (item.children && pathname.startsWith(item.href)) {
+        expanded.add(item.href);
+      }
+    });
+    return expanded;
+  });
+
+  function toggleExpanded(href: string) {
+    setExpandedItems((prev) => {
+      const next = new Set(prev);
+      if (next.has(href)) {
+        next.delete(href);
+      } else {
+        next.add(href);
+      }
+      return next;
+    });
+  }
 
   return (
     <aside
@@ -84,6 +115,55 @@ export function Sidebar({ className }: Props): ReactNode {
         <nav className="space-y-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+            const isExpanded = expandedItems.has(item.href);
+            const hasChildren = !!item.children;
+
+            if (hasChildren) {
+              return (
+                <div key={item.href}>
+                  <button
+                    type="button"
+                    onClick={() => toggleExpanded(item.href)}
+                    className={cn(
+                      'flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                      isActive
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                    )}
+                  >
+                    {item.icon}
+                    <span>{item.title}</span>
+                    <ChevronDown
+                      className={cn(
+                        'ml-auto size-4 transition-transform',
+                        isExpanded && 'rotate-180'
+                      )}
+                    />
+                  </button>
+                  {isExpanded && item.children && (
+                    <div className="ml-6 mt-1 space-y-1 border-l pl-3">
+                      {item.children.map((child) => {
+                        const isChildActive = pathname === child.href;
+                        return (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className={cn(
+                              'block rounded-lg px-3 py-2 text-sm transition-colors',
+                              isChildActive
+                                ? 'bg-primary/10 font-medium text-primary'
+                                : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                            )}
+                          >
+                            {child.title}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            }
 
             return (
               <div key={item.href}>
@@ -98,9 +178,6 @@ export function Sidebar({ className }: Props): ReactNode {
                 >
                   {item.icon}
                   <span>{item.title}</span>
-                  {item.children && (
-                    <ChevronDown className="ml-auto size-4" />
-                  )}
                 </Link>
               </div>
             );

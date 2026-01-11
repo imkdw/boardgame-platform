@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@repo/ui';
 import { UtensilsCrossed } from 'lucide-react';
-import type { FoodCategory } from '@/components/stores/lib';
+import type { FoodCategory } from '@repo/types';
 import { EditFoodCategoryDialog } from './edit-food-category-dialog';
 import { DeleteFoodCategoryDialog } from './delete-food-category-dialog';
 

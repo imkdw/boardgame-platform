@@ -13,7 +13,7 @@ import {
 } from '@repo/ui';
 import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { deleteStore } from '@/components/stores/lib';
+import { deleteStore } from '@/lib';
 import type { Store } from '@repo/types';
 import { useAsyncAction } from '@repo/web-shared';
 

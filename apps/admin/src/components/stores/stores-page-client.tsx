@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback, type ReactNode } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui';
 import { Building2, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { getStores } from '@/components/stores/lib';
+import { getStores } from '@/lib';
 import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
 import { CreateStoreDialog } from './create-store-dialog';
 import { StoreTable } from './store-table';

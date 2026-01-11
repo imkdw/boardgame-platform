@@ -148,7 +148,8 @@ export function GameCard({
             </span>
             <span className="inline-flex items-center gap-1">
               <Clock className="size-3.5" />
-              {game.playTime}{mergedLabels.playTime}
+              {game.playTime}
+              {mergedLabels.playTime}
             </span>
             <span className="inline-flex items-center gap-1">
               <Star className="size-3.5" />
@@ -195,9 +196,7 @@ export function GameCard({
       )}
     >
       <div className="relative aspect-[3/2] w-full bg-muted">
-        {game.thumbnail && (
-          <img src={game.thumbnail} alt={game.name} className="h-full w-full object-cover" />
-        )}
+        {game.thumbnail && <img src={game.thumbnail} alt={game.name} className="h-full w-full object-cover" />}
         <div className="absolute left-2 top-2 flex flex-wrap gap-1">
           {game.isRecommended && <Badge variant="default">{mergedLabels.recommended}</Badge>}
           {isAvailable ? (
@@ -218,7 +217,8 @@ export function GameCard({
           </span>
           <span className="inline-flex items-center gap-1">
             <Clock className="size-4" />
-            {game.playTime}{mergedLabels.playTime}
+            {game.playTime}
+            {mergedLabels.playTime}
           </span>
           <span className="inline-flex items-center gap-1">
             <Star className="size-4" />

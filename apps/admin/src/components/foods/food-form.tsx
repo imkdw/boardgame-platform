@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@repo/ui';
-import type { Food, FoodCategory } from '@/components/stores/lib';
+import type { Food, FoodCategory } from '@repo/types';
 
 interface Props {
   food?: Food;

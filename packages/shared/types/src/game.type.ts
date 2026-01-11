@@ -1,5 +1,7 @@
 import type { GameDifficulty, GameGenre } from '@repo/consts';
 
+export type { GameDifficulty, GameGenre } from '@repo/consts';
+
 /**
  * 게임 아이템 타입 (공통)
  * - tablet-web, kiosk: 게임 검색/상세 표시

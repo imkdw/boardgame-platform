@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { cn } from '@repo/ui';
 import { UtensilsCrossed } from 'lucide-react';
-import type { FoodCategory } from '@/components/stores/lib';
+import type { FoodCategory } from '@repo/types';
 
 interface Props {
   categories: FoodCategory[];

@@ -5,7 +5,9 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Plus } from 'lucide-react';
 import { toast } from 'sonner';
 import { FoodForm } from './food-form';
-import { createFood, type CreateFoodDto, type FoodCategory } from '@/components/stores/lib';
+import { createFood } from '@/lib';
+import type { CreateFoodDto } from '@/types';
+import type { FoodCategory } from '@repo/types';
 import { useAsyncAction } from '@repo/web-shared';
 
 interface Props {

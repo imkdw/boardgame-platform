@@ -6,7 +6,8 @@ import { Pencil } from 'lucide-react';
 import { toast } from 'sonner';
 import { StoreForm } from './store-form';
 import type { Store } from '@repo/types';
-import { updateStore, type UpdateStoreDto } from '@/components/stores/lib';
+import { updateStore } from '@/lib';
+import type { UpdateStoreDto } from '@/types';
 import { useAsyncAction } from '@repo/web-shared';
 
 interface Props {

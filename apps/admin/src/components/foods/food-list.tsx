@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { UtensilsCrossed } from 'lucide-react';
-import type { Food, FoodCategory } from '@/components/stores/lib';
+import type { Food, FoodCategory } from '@repo/types';
 import { CreateFoodDialog } from './create-food-dialog';
 import { FoodItemRow } from './food-item-row';
 

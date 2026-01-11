@@ -6,7 +6,8 @@ import { Plus } from 'lucide-react';
 import { toast } from 'sonner';
 import { FoodCategoryForm } from './food-category-form';
 import { useAsyncAction } from '@repo/web-shared';
-import { createFoodCategory, CreateFoodCategoryDto } from '@/components/stores/lib';
+import { createFoodCategory } from '@/lib';
+import type { CreateFoodCategoryDto } from '@/types';
 
 interface Props {
   storeId: string;

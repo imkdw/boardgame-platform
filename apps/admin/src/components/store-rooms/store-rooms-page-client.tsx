@@ -15,7 +15,7 @@ import {
 } from '@repo/ui';
 import { DoorOpen, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { getStores, getStoreRooms } from '@/components/stores/lib';
+import { getStores, getStoreRooms } from '@/lib';
 import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
 import { CreateStoreRoomDialog } from './create-store-room-dialog';
 import { StoreRoomTable } from './store-room-table';

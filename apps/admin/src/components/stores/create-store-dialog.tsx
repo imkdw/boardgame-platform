@@ -5,7 +5,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Plus } from 'lucide-react';
 import { toast } from 'sonner';
 import { StoreForm } from './store-form';
-import { createStore, type CreateStoreDto } from '@/components/stores/lib';
+import { createStore } from '@/lib';
+import type { CreateStoreDto } from '@/types';
 import { useAsyncAction } from '@repo/web-shared';
 
 interface Props {

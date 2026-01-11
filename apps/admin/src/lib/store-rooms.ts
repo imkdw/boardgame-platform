@@ -1,6 +1,6 @@
 import { fetchApi } from './api';
 import type { StoreRoom, ApiResponse } from '@repo/types';
-import type { CreateStoreRoomDto, UpdateStoreRoomDto } from './types';
+import type { CreateStoreRoomDto, UpdateStoreRoomDto } from '@/types';
 
 export async function getStoreRooms(storeId: string): Promise<StoreRoom[]> {
   const response = await fetchApi<ApiResponse<StoreRoom[]>>(`/stores/${storeId}/rooms`);

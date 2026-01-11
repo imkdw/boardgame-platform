@@ -2,7 +2,7 @@
 
 import type { ReactNode, FormEvent } from 'react';
 import { Button, Input, Label } from '@repo/ui';
-import type { FoodCategory } from '@/components/stores/lib';
+import type { FoodCategory } from '@repo/types';
 
 interface Props {
   category?: FoodCategory;

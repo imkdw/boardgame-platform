@@ -5,7 +5,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Edit2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { StoreRoomForm } from './store-room-form';
-import { updateStoreRoom, type UpdateStoreRoomDto } from '@/components/stores/lib';
+import { updateStoreRoom } from '@/lib';
+import type { UpdateStoreRoomDto } from '@/types';
 import { useAsyncAction } from '@repo/web-shared';
 import type { StoreRoom } from '@repo/types';
 

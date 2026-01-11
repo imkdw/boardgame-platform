@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@repo/ui';
 import { Building2, MapPin, Phone } from 'lucide-react';
-import type { Store } from '@/components/stores/lib';
+import type { Store } from '@repo/types';
 import { EditStoreDialog } from './edit-store-dialog';
 import { DeleteStoreDialog } from './delete-store-dialog';
 

@@ -15,7 +15,8 @@ import {
 } from '@repo/ui';
 import { UtensilsCrossed, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { getFoodCategories, getStores, type FoodCategory } from '@/components/stores/lib';
+import { getFoodCategories, getStores } from '@/lib';
+import type { FoodCategory } from '@repo/types';
 import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
 import { CreateFoodCategoryDialog } from './create-food-category-dialog';
 import { FoodCategoryTable } from './food-category-table';

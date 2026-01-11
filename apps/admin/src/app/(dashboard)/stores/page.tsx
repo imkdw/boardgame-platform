@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { StoresPageClient } from '@/components/stores';
+import { StoresPageClient } from '@/features/stores';
 
 export default function StoresPage(): ReactNode {
   return <StoresPageClient />;

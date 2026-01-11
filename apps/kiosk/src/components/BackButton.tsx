@@ -13,9 +13,9 @@ export function BackButton({ to, onClick }: Props) {
   const { t } = useTranslation();
 
   const handleClick = () => {
-    if (onClick) {
-      onClick();
-    } else if (to) {
+    onClick?.();
+
+    if (to) {
       navigate(to);
     } else {
       navigate(-1);

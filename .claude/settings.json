@@ -64,5 +64,19 @@
       "Write(**/.env.*)"
     ]
   },
-  "spinnerTipsEnabled": false
+  "spinnerTipsEnabled": false,
+  "hooks": {
+    "Notification": [],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "say \"클로드 코드 알림\""
+          }
+        ]
+      }
+    ]
+  }
 }

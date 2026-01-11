@@ -26,13 +26,11 @@ pnpm dev:kiosk              # Start kiosk app separately
 pnpm dev:pos                # Start POS app separately
 pnpm build                  # Build all packages
 pnpm lint                   # Lint with auto-fix
-pnpm check-types            # TypeScript type check
 pnpm test                   # Run all tests
 pnpm format                 # Prettier format all files
 
 # Database
 pnpm setup:local            # Start PostgreSQL + push Prisma schema
-pnpm api prisma studio      # Open Prisma Studio
 pnpm api prisma generate    # Generate Prisma client
 pnpm api prisma db push     # Push schema changes
 

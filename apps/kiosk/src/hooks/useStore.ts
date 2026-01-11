@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { Store } from '@repo/types';
+import type { Store, ApiResponse } from '@repo/types';
 import { fetchApi } from '../lib/api';
 
 interface UseStoreResult {
@@ -17,8 +17,8 @@ export function useStore(): UseStoreResult {
     const fetchStore = async () => {
       try {
         setIsLoading(true);
-        const data = await fetchApi<Store>('/stores/ip');
-        setStore(data);
+        const response = await fetchApi<ApiResponse<Store>>('/stores/ip');
+        setStore(response.data);
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err : new Error('Failed to fetch store'));

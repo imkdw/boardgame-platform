@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { StoreNotFoundException, StoreValidator } from '@repo/server-shared';
+import { StoreValidator } from '@repo/server-shared';
 import { StoreDto } from '../dto/store.dto';
 import { toStoreDto } from '../mapper/store.mapper';
 

@@ -34,4 +34,8 @@ export class CreateStoreFoodDto {
   })
   @IsNotEmptyString({ nullable: true })
   imageUrl: string | null;
+
+  @ApiProperty({ example: 'uuid-string', description: '음식 카테고리 ID' })
+  @IsNotEmptyString()
+  categoryId: string;
 }

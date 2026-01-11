@@ -41,7 +41,7 @@ export class StoreFoodCategoryController {
   }
 
   @Swagger.findStoreFoodCategoryItems('카테고리 내 음식 목록 조회')
-  @Get(':categoryId/items')
+  @Get(':categoryId/foods')
   async findCategoryItems(@Param('storeId') storeId: string, @Param('categoryId') categoryId: string) {
     return this.findStoreFoodCategoryItemsUseCase.execute(storeId, categoryId);
   }

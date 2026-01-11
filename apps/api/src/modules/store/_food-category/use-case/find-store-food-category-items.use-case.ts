@@ -19,6 +19,8 @@ export class FindStoreFoodCategoryItemsUseCase {
       include: { food: true },
     });
 
+    console.log(items);
+
     return items.map(toStoreFoodCategoryItemDto);
   }
 }

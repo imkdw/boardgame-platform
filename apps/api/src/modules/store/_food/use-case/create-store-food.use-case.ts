@@ -16,17 +16,30 @@ export class CreateStoreFoodUseCase {
     await this.storeValidator.checkExist(storeId);
     await this.storeFoodValidator.checkExistName(storeId, dto.name);
 
-    return this.prisma.storeFood.create({
-      data: {
-        id: randomUUID(),
-        storeId,
-        name: dto.name,
-        description: dto.description,
-        price: dto.price,
-        isPopular: dto.isPopular,
-        isNew: dto.isNew,
-        imageUrl: dto.imageUrl ?? null,
-      },
+    const foodId = randomUUID();
+
+    return this.prisma.$transaction(async (tx) => {
+      const storeFood = await tx.storeFood.create({
+        data: {
+          id: foodId,
+          storeId,
+          name: dto.name,
+          description: dto.description,
+          price: dto.price,
+          isPopular: dto.isPopular,
+          isNew: dto.isNew,
+          imageUrl: dto.imageUrl ?? null,
+        },
+      });
+
+      await tx.storeFoodCategoryItem.create({
+        data: {
+          categoryId: dto.categoryId,
+          foodId: storeFood.id,
+        },
+      });
+
+      return storeFood;
     });
   }
 }

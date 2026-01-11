@@ -1,7 +1,7 @@
 {
   "active": true,
-  "started_at": "2026-01-11T23:10:02+09:00",
-  "original_prompt": "/ultrawork 나 분명 next-env.d.ts 파일들 git에서 추적 안하게 해놨는데 또 apps/tablet-web/next-env.d.ts 이게 추적되고있어 왜이래 ",
+  "started_at": "2026-01-11T23:29:05+09:00",
+  "original_prompt": "/ultrawork '/Users/imkdw/boardgame-platform/apps/api/src/modules/store' 내부를 분석해서 더미데이터 생성 스크립트를 만들어줘\\ \\ 데이터는 아래와 같아\\ 1. 매장: 100개소\\ 2. 카테고리 : 매장 당 10개\\ 3. 음식 : 카테고리 당 20개\\ 4. 게임 : 매장 당 100개\\ 5. 방 : 매장 당 30개\\ \\ 그리고 CLAUDE.md 내부에 디비 구조가 변경되면 이러한 더미데이터도 수정해야된다고 기록해줘\\ 음식쪽 이미지는 http://static.imkdw.dev/maratang.webp로 설정하고\\ 게임 이미지는 http://static.imkdw.dev/boardgame.webp로 설정해 ",
   "reinforcement_count": 0,
-  "last_checked_at": "2026-01-11T23:10:02+09:00"
+  "last_checked_at": "2026-01-11T23:29:05+09:00"
 }

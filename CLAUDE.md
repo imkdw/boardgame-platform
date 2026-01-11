@@ -33,6 +33,7 @@ pnpm format                 # Prettier format all files
 pnpm setup:local            # Start PostgreSQL + push Prisma schema
 pnpm api prisma generate    # Generate Prisma client
 pnpm api prisma db push     # Push schema changes
+pnpm api prisma:seed        # Seed database with dummy data
 
 # Package-specific (use pnpm <package> <command>)
 pnpm api test:unit          # API unit tests
@@ -366,6 +367,21 @@ SWAGGER_PASSWORD=xxx
 - PostgreSQL via Docker on port 6432
 - Container name: `my-monorepo-postgres`
 - Start: `docker-compose up -d`
+
+### Database Schema 변경 시 주의사항
+
+**IMPORTANT**: DB 스키마(Prisma schema)가 변경되면 다음 파일들도 함께 업데이트해야 합니다:
+
+1. **더미데이터 시드 스크립트**: `apps/api/prisma/seed.ts`
+   - 새로운 필드 추가 시 시드 데이터에도 반영
+   - 필드 삭제 시 시드 스크립트에서도 제거
+   - 관계 변경 시 시드 순서 및 연결 로직 수정
+
+2. **공유 상수**: `packages/shared/consts/src/`
+   - enum 타입의 DB 필드는 상수 파일과 동기화 필요
+   - 예: `STORE_ROOM_STATUS`, `GAME_DIFFICULTY`, `GAME_GENRE`
+
+시드 스크립트 실행: `pnpm api prisma:seed`
 
 ## Development Server
 

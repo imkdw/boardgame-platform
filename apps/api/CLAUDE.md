@@ -29,6 +29,7 @@ pnpm test:e2e               # E2E tests (requires DB)
 pnpm prisma studio          # Open Prisma Studio
 pnpm prisma generate        # Generate Prisma client
 pnpm prisma db push         # Push schema to DB
+pnpm prisma:seed            # Seed database with dummy data
 
 # Code Quality
 pnpm lint                   # ESLint with auto-fix
@@ -55,6 +56,7 @@ prisma/
   schema/
     schema.prisma           # Prisma config + generator
     user.prisma             # User model (example)
+  seed.ts                   # Dummy data seeder (MUST update when schema changes)
 
 test/
   unit/                     # Unit tests (no DB)
@@ -239,3 +241,19 @@ SWAGGER_PASSWORD=xxx              # Required for non-local
 - **Prisma 타입 오류**: `pnpm prisma generate` 실행
 - **DB 연결 실패**: Docker 컨테이너 확인 (`docker-compose up -d`)
 - **테스트 DB 오류**: `.env.test` 파일 확인
+
+## Database Schema 변경 시 주의사항
+
+**IMPORTANT**: Prisma 스키마가 변경되면 다음 파일도 반드시 업데이트해야 합니다:
+
+- **더미데이터 시드 스크립트**: `prisma/seed.ts`
+  - 새로운 필드 추가 시 시드 데이터에도 반영
+  - 필드 삭제 시 시드 스크립트에서도 제거
+  - 관계 변경 시 시드 순서 및 연결 로직 수정
+
+시드 데이터 규모:
+- 매장: 100개 (홀리쉣보드게임 001점 ~ 100점)
+- 카테고리: 매장당 10개 (총 1,000개)
+- 음식: 카테고리당 20개 (총 20,000개)
+- 게임: 매장당 100개 (총 10,000개)
+- 방: 매장당 30개 (총 3,000개)

@@ -23,6 +23,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'image.greating.co.kr',
       },
+      {
+        protocol: 'https',
+        hostname: 'static.imkdw.dev',
+      },
     ],
   },
 };

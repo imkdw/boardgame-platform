@@ -14,7 +14,8 @@
     "test:integration": "jest --config test/integration/jest.config.ts",
     "test:e2e": "dotenv -e ../../.env.test -- jest --config test/e2e/jest.config.ts",
     "prisma": "dotenv -e ../../.env -- prisma",
-    "prisma:generate": "dotenv -e ../../.env -- prisma generate"
+    "prisma:generate": "dotenv -e ../../.env -- prisma generate",
+    "prisma:seed": "dotenv -e ../../.env -- ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

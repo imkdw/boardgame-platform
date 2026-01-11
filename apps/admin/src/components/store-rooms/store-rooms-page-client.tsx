@@ -13,18 +13,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@repo/ui';
-import { UtensilsCrossed, Loader2 } from 'lucide-react';
+import { DoorOpen, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { getFoodCategories, getStores, type FoodCategory } from '@/components/stores/lib';
+import { getStores, getStoreRooms } from '@/components/stores/lib';
 import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
-import { CreateFoodCategoryDialog } from './create-food-category-dialog';
-import { FoodCategoryTable } from './food-category-table';
-import type { Store } from '@repo/types';
+import { CreateStoreRoomDialog } from './create-store-room-dialog';
+import { StoreRoomTable } from './store-room-table';
+import type { Store, StoreRoom } from '@repo/types';
 
-export function FoodCategoriesPageClient(): ReactNode {
+export function StoreRoomsPageClient(): ReactNode {
   const [stores, setStores] = useState<Store[]>([]);
   const [selectedStoreId, setSelectedStoreId] = useState<string>('');
-  const [categories, setCategories] = useState<FoodCategory[]>([]);
+  const [rooms, setRooms] = useState<StoreRoom[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const { execute: executeFetchStores, isPending: isLoading } = useAsyncAction(
@@ -46,16 +46,16 @@ export function FoodCategoriesPageClient(): ReactNode {
     }
   );
 
-  const { execute: executeFetchCategories, isPending: isCategoriesLoading } = useAsyncAction(
+  const { execute: executeFetchRooms, isPending: isRoomsLoading } = useAsyncAction(
     async (storeId: string) => {
       if (!storeId) return [];
       setError(null);
-      return getFoodCategories(storeId);
+      return getStoreRooms(storeId);
     },
     {
       toast,
       onSuccess: data => {
-        setCategories(data);
+        setRooms(data);
       },
       onError: error => {
         setError(getApiErrorMessage(error));
@@ -69,19 +69,19 @@ export function FoodCategoriesPageClient(): ReactNode {
 
   useEffect(() => {
     if (selectedStoreId) {
-      executeFetchCategories(selectedStoreId);
+      executeFetchRooms(selectedStoreId);
     }
-  }, [selectedStoreId, executeFetchCategories]);
+  }, [selectedStoreId, executeFetchRooms]);
 
   const handleRefresh = useCallback(() => {
     if (selectedStoreId) {
-      executeFetchCategories(selectedStoreId);
+      executeFetchRooms(selectedStoreId);
     }
-  }, [selectedStoreId, executeFetchCategories]);
+  }, [selectedStoreId, executeFetchRooms]);
 
   const handleStoreChange = useCallback((value: string) => {
     setSelectedStoreId(value);
-    setCategories([]);
+    setRooms([]);
   }, []);
 
   if (isLoading) {
@@ -95,29 +95,27 @@ export function FoodCategoriesPageClient(): ReactNode {
   if (stores.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
-        <UtensilsCrossed className="mb-4 size-12" />
+        <DoorOpen className="mb-4 size-12" />
         <p>먼저 매장을 등록해주세요.</p>
-        <p className="text-sm">음식 카테고리는 매장별로 관리됩니다.</p>
+        <p className="text-sm">방은 매장별로 관리됩니다.</p>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">음식 카테고리 관리</h1>
-          <p className="text-muted-foreground">매장별 음식 카테고리를 관리합니다.</p>
+          <h1 className="text-2xl font-bold">방 관리</h1>
+          <p className="text-muted-foreground">매장별 방을 관리합니다.</p>
         </div>
-        <CreateFoodCategoryDialog storeId={selectedStoreId} onSuccess={handleRefresh} />
+        <CreateStoreRoomDialog storeId={selectedStoreId} onSuccess={handleRefresh} />
       </div>
 
-      {/* Store Selector */}
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="text-base">매장 선택</CardTitle>
-          <CardDescription>음식 카테고리를 관리할 매장을 선택하세요.</CardDescription>
+          <CardDescription>방을 관리할 매장을 선택하세요.</CardDescription>
         </CardHeader>
         <CardContent>
           <Select value={selectedStoreId} onValueChange={handleStoreChange}>
@@ -135,31 +133,10 @@ export function FoodCategoriesPageClient(): ReactNode {
         </CardContent>
       </Card>
 
-      {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>전체 카테고리</CardDescription>
-            <CardTitle className="text-3xl">{categories.length}</CardTitle>
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>선택된 매장</CardDescription>
-            <CardTitle className="text-3xl text-primary">
-              {stores.find(s => s.id === selectedStoreId)?.name ?? '-'}
-            </CardTitle>
-          </CardHeader>
-        </Card>
-      </div>
-
-      {/* Table */}
       <Card>
         <CardHeader>
-          <div className="flex items-center gap-3">
-            <UtensilsCrossed className="size-5" />
-            <CardTitle>카테고리 목록</CardTitle>
-          </div>
+          <CardTitle>방 목록</CardTitle>
+          <CardDescription>총 {rooms.length}개의 방이 등록되어 있습니다.</CardDescription>
         </CardHeader>
         <CardContent>
           {error ? (
@@ -167,12 +144,12 @@ export function FoodCategoriesPageClient(): ReactNode {
               <p>{error}</p>
               <p className="mt-2 text-sm text-muted-foreground">API 서버가 실행 중인지 확인해주세요.</p>
             </div>
-          ) : isCategoriesLoading ? (
+          ) : isRoomsLoading ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="size-8 animate-spin text-muted-foreground" />
             </div>
           ) : (
-            <FoodCategoryTable storeId={selectedStoreId} categories={categories} onRefresh={handleRefresh} />
+            <StoreRoomTable storeId={selectedStoreId} rooms={rooms} onRefresh={handleRefresh} />
           )}
         </CardContent>
       </Card>

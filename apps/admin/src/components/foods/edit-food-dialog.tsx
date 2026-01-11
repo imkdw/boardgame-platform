@@ -1,19 +1,11 @@
 'use client';
 
 import { useState, type ReactNode } from 'react';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  Button,
-} from '@repo/ui';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Button } from '@repo/ui';
 import { Pencil } from 'lucide-react';
 import { toast } from 'sonner';
 import { FoodForm } from './food-form';
-import { updateFood, type Food, type UpdateFoodDto } from '@/lib';
+import { updateFood, type Food, type UpdateFoodDto } from '@/components/stores/lib';
 import { useAsyncAction } from '@repo/web-shared';
 
 interface Props {

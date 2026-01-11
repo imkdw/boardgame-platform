@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { cn } from '@repo/ui';
 import { UtensilsCrossed } from 'lucide-react';
-import type { FoodCategory } from '@/lib';
+import type { FoodCategory } from '@/components/stores/lib';
 
 interface Props {
   categories: FoodCategory[];
@@ -41,13 +41,11 @@ export function FoodCategoryList({
         )}
       >
         <span>전체 메뉴</span>
-        <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-medium">
-          {totalFoods}
-        </span>
+        <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-medium">{totalFoods}</span>
       </button>
 
       {/* Category items */}
-      {categories.map((category) => (
+      {categories.map(category => (
         <button
           key={category.id}
           type="button"

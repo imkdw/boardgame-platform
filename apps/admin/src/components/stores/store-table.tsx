@@ -1,16 +1,9 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@repo/ui';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@repo/ui';
 import { Building2, MapPin, Phone } from 'lucide-react';
-import type { Store } from '@/lib/stores';
+import type { Store } from '@/components/stores/lib';
 import { EditStoreDialog } from './edit-store-dialog';
 import { DeleteStoreDialog } from './delete-store-dialog';
 
@@ -42,7 +35,7 @@ export function StoreTable({ stores, onRefresh }: Props): ReactNode {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {stores.map((store) => (
+        {stores.map(store => (
           <TableRow key={store.id}>
             <TableCell>
               <div className="flex items-center gap-3">

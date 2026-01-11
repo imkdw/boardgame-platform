@@ -13,25 +13,26 @@ import {
 } from '@repo/ui';
 import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { deleteStore } from '@/components/stores/lib';
-import type { Store } from '@repo/types';
+import { deleteStoreRoom } from '@/components/stores/lib';
 import { useAsyncAction } from '@repo/web-shared';
+import type { StoreRoom } from '@repo/types';
 
 interface Props {
-  store: Store;
+  storeId: string;
+  room: StoreRoom;
   onSuccess: () => void;
 }
 
-export function DeleteStoreDialog({ store, onSuccess }: Props): ReactNode {
+export function DeleteStoreRoomDialog({ storeId, room, onSuccess }: Props): ReactNode {
   const [open, setOpen] = useState(false);
 
   const { execute: handleDelete, isPending } = useAsyncAction(
     async () => {
-      return deleteStore(store.id);
+      return deleteStoreRoom(storeId, room.id);
     },
     {
       toast,
-      successMessage: '매장이 삭제되었습니다.',
+      successMessage: '방이 삭제되었습니다.',
       onSuccess: () => {
         setOpen(false);
         onSuccess();
@@ -42,15 +43,16 @@ export function DeleteStoreDialog({ store, onSuccess }: Props): ReactNode {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon-sm">
+        <Button variant="ghost" size="icon">
           <Trash2 className="size-4 text-destructive" />
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>매장 삭제</DialogTitle>
+          <DialogTitle>방 삭제</DialogTitle>
           <DialogDescription>
-            정말 <strong>{store.name}</strong>을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.
+            정말로 <span className="font-semibold text-foreground">{room.roomNumber}호</span> 방을 삭제하시겠습니까?
+            <br />이 작업은 되돌릴 수 없습니다.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

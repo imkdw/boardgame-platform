@@ -15,9 +15,8 @@ import {
 } from '@repo/ui';
 import { UtensilsCrossed, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { getFoods, getFoodsByCategory, type Food } from '@/lib/foods';
-import { getFoodCategories, type FoodCategory } from '@/lib/food-categories';
-import { getStores, type Store } from '@/lib/stores';
+import type { Food, Store, FoodCategory } from '@repo/types';
+import { getStores, getFoodCategories, getFoods, getFoodsByCategory } from '@/components/stores/lib';
 import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
 import { FoodCategoryList } from './food-category-list';
 import { FoodList } from './food-list';
@@ -38,13 +37,13 @@ export function FoodsPageClient(): ReactNode {
     },
     {
       toast,
-      onSuccess: (data) => {
+      onSuccess: data => {
         setStores(data);
         if (data[0]) {
           setSelectedStoreId(data[0].id);
         }
       },
-      onError: (error) => {
+      onError: error => {
         setError(getApiErrorMessage(error));
       },
     }
@@ -58,10 +57,10 @@ export function FoodsPageClient(): ReactNode {
     },
     {
       toast,
-      onSuccess: (data) => {
+      onSuccess: data => {
         setCategories(data);
       },
-      onError: (error) => {
+      onError: error => {
         setError(getApiErrorMessage(error));
       },
     }
@@ -91,11 +90,11 @@ export function FoodsPageClient(): ReactNode {
     },
     {
       toast,
-      onSuccess: (data) => {
+      onSuccess: data => {
         setFoods(data.foods);
         setAllFoods(data.allFoods);
       },
-      onError: (error) => {
+      onError: error => {
         setError(getApiErrorMessage(error));
       },
     }
@@ -141,7 +140,7 @@ export function FoodsPageClient(): ReactNode {
   const foodCountByCategory: Record<string, number> = {};
   // Note: This is a placeholder - actual counts would need to come from API
   // For now, we'll just show the count when a category is selected
-  categories.forEach((cat) => {
+  categories.forEach(cat => {
     foodCountByCategory[cat.id] = 0; // Placeholder
   });
   if (selectedCategoryId === null) {
@@ -189,7 +188,7 @@ export function FoodsPageClient(): ReactNode {
               <SelectValue placeholder="매장 선택" />
             </SelectTrigger>
             <SelectContent>
-              {stores.map((store) => (
+              {stores.map(store => (
                 <SelectItem key={store.id} value={store.id}>
                   {store.name}
                 </SelectItem>
@@ -233,7 +232,7 @@ export function FoodsPageClient(): ReactNode {
             <CardHeader className="pb-3">
               <CardTitle className="text-base">
                 {selectedCategoryId
-                  ? categories.find((c) => c.id === selectedCategoryId)?.name ?? '메뉴 목록'
+                  ? (categories.find(c => c.id === selectedCategoryId)?.name ?? '메뉴 목록')
                   : '전체 메뉴'}
               </CardTitle>
             </CardHeader>

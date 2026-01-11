@@ -13,7 +13,7 @@ import {
 } from '@repo/ui';
 import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { deleteFood, type Food } from '@/lib';
+import { deleteFood, type Food } from '@/components/stores/lib';
 import { useAsyncAction } from '@repo/web-shared';
 
 interface Props {

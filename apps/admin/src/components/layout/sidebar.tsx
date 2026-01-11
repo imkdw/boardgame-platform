@@ -23,6 +23,10 @@ const navItems: NavItem[] = [
     title: '매장 관리',
     href: '/stores',
     icon: <Building2 className="size-5" />,
+    children: [
+      { title: '매장', href: '/stores' },
+      { title: '방', href: '/store-rooms' },
+    ],
   },
   {
     title: '음식 관리',

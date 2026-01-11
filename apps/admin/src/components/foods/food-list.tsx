@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { UtensilsCrossed } from 'lucide-react';
-import type { Food, FoodCategory } from '@/lib';
+import type { Food, FoodCategory } from '@/components/stores/lib';
 import { CreateFoodDialog } from './create-food-dialog';
 import { FoodItemRow } from './food-item-row';
 
@@ -16,9 +16,7 @@ interface Props {
 
 export function FoodList({ storeId, foods, categories, selectedCategoryId, onRefresh }: Props): ReactNode {
   // When viewing a specific category, we can show that category for all foods
-  const selectedCategory = selectedCategoryId
-    ? categories.find((c) => c.id === selectedCategoryId)
-    : undefined;
+  const selectedCategory = selectedCategoryId ? categories.find(c => c.id === selectedCategoryId) : undefined;
 
   return (
     <div className="space-y-4">
@@ -44,7 +42,7 @@ export function FoodList({ storeId, foods, categories, selectedCategoryId, onRef
         </div>
       ) : (
         <div className="space-y-3">
-          {foods.map((food) => (
+          {foods.map(food => (
             <FoodItemRow
               key={food.id}
               storeId={storeId}

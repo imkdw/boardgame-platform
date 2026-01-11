@@ -1,9 +1,8 @@
-// POS 앱 타입 정의
 import type { FoodItem } from '@repo/types';
+import type { StoreRoomStatus } from '@repo/consts';
 
 export type OrderStatus = 'pending' | 'in_progress' | 'completed' | 'cancelled';
 
-// FoodItem을 MenuItem으로 re-export (기존 코드 호환성)
 export type MenuItem = FoodItem;
 
 export interface OrderItem {
@@ -35,9 +34,7 @@ export const initialPOSSession: POSSession = {
   selectedRoom: null,
 };
 
-// 추가 타입 정의
-
-export type RoomStatus = 'IN_USE' | 'AVAILABLE' | 'RESERVED' | 'MAINTENANCE';
+export type RoomStatus = StoreRoomStatus;
 export type GameStatus = 'AVAILABLE' | 'RENTED' | 'REPAIR';
 
 export interface RentedGame {

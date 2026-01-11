@@ -1,19 +1,14 @@
 'use client';
 
 import { useEffect, useState, useCallback, type ReactNode } from 'react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@repo/ui';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui';
 import { Building2, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { getStores, type Store } from '@/lib/stores';
+import { getStores } from '@/components/stores/lib';
 import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
 import { CreateStoreDialog } from './create-store-dialog';
 import { StoreTable } from './store-table';
+import type { Store } from '@repo/types';
 
 export function StoresPageClient(): ReactNode {
   const [stores, setStores] = useState<Store[]>([]);
@@ -26,10 +21,10 @@ export function StoresPageClient(): ReactNode {
     },
     {
       toast,
-      onSuccess: (data) => {
+      onSuccess: data => {
         setStores(data);
       },
-      onError: (error) => {
+      onError: error => {
         setError(getApiErrorMessage(error));
       },
     }
@@ -73,17 +68,13 @@ export function StoresPageClient(): ReactNode {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>등록된 와이파이</CardDescription>
-            <CardTitle className="text-3xl text-primary">
-              {stores.filter((s) => s.wifiName).length}
-            </CardTitle>
+            <CardTitle className="text-3xl text-primary">{stores.filter(s => s.wifiName).length}</CardTitle>
           </CardHeader>
         </Card>
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>영상 등록</CardDescription>
-            <CardTitle className="text-3xl text-green-600">
-              {stores.filter((s) => s.introVideoUrl).length}
-            </CardTitle>
+            <CardTitle className="text-3xl text-green-600">{stores.filter(s => s.introVideoUrl).length}</CardTitle>
           </CardHeader>
         </Card>
       </div>

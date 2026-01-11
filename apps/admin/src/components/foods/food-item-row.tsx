@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import Image from 'next/image';
 import { Badge } from '@repo/ui';
-import type { Food, FoodCategory } from '@/lib';
+import type { Food, FoodCategory } from '@/components/stores/lib';
 import { EditFoodDialog } from './edit-food-dialog';
 import { DeleteFoodDialog } from './delete-food-dialog';
 

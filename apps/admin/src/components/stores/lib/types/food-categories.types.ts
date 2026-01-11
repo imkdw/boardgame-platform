@@ -1,5 +1,3 @@
-export type { FoodCategory } from '@repo/types';
-
 export interface CreateFoodCategoryDto {
   name: string;
 }

@@ -1,16 +1,9 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@repo/ui';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@repo/ui';
 import { UtensilsCrossed } from 'lucide-react';
-import type { FoodCategory } from '@/lib/food-categories';
+import type { FoodCategory } from '@/components/stores/lib';
 import { EditFoodCategoryDialog } from './edit-food-category-dialog';
 import { DeleteFoodCategoryDialog } from './delete-food-category-dialog';
 
@@ -40,7 +33,7 @@ export function FoodCategoryTable({ storeId, categories, onRefresh }: Props): Re
         </TableRow>
       </TableHeader>
       <TableBody>
-        {categories.map((category) => (
+        {categories.map(category => (
           <TableRow key={category.id}>
             <TableCell>
               <div className="flex items-center gap-3">

@@ -1,23 +1,5 @@
-export type GameDifficulty = 'easy' | 'medium' | 'hard';
-export type GameSortBy = 'recommended' | 'popular' | 'name' | 'difficulty';
-export type GameGenre =
-  | '전략'
-  | '파티'
-  | '추리'
-  | '협동'
-  | '블러핑'
-  | '숫자'
-  | '퍼즐'
-  | '순발력'
-  | '그림'
-  | '상상력'
-  | '단어'
-  | '팀전'
-  | '자원'
-  | '보석'
-  | '서부'
-  | '기차'
-  | 'SF';
+import type { GameDifficulty, GameGenre } from '@repo/consts';
+
 export type PlayTimeRange = '30' | '60' | '60+';
 export type PlayerCount = '2' | '3' | '4' | '5+';
 
@@ -49,7 +31,7 @@ export interface Game {
   maxPlayers: number;
   playTime: number;
   difficulty: GameDifficulty;
-  genres: string[];
+  genres: GameGenre[];
   isAvailable: boolean;
   isRecommended: boolean;
   stock: number;

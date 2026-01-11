@@ -1,5 +1,3 @@
-export type { Store } from '@repo/types';
-
 export interface CreateStoreDto {
   name: string;
   address: string;

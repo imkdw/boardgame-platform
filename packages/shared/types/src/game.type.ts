@@ -1,34 +1,4 @@
-/**
- * 게임 난이도 타입
- */
-export type GameDifficulty = 'easy' | 'medium' | 'hard';
-
-/**
- * 게임 장르 타입
- */
-export type GameGenre =
-  | '전략'
-  | '파티'
-  | '추리'
-  | '협동'
-  | '블러핑'
-  | '숫자'
-  | '퍼즐'
-  | '순발력'
-  | '그림'
-  | '상상력'
-  | '단어'
-  | '팀전'
-  | '자원'
-  | '보석'
-  | '서부'
-  | '기차'
-  | 'SF';
-
-/**
- * 게임 정렬 기준
- */
-export type GameSortBy = 'recommended' | 'popular' | 'name' | 'difficulty';
+import type { GameDifficulty, GameGenre } from '@repo/consts';
 
 /**
  * 게임 아이템 타입 (공통)
@@ -44,7 +14,7 @@ export interface GameItem {
   maxPlayers: number;
   playTime: number;
   difficulty: GameDifficulty;
-  genres: string[];
+  genres: GameGenre[];
   category?: string;
   description?: string;
   rules?: string;

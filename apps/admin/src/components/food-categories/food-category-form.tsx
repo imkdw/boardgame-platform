@@ -2,7 +2,7 @@
 
 import type { ReactNode, FormEvent } from 'react';
 import { Button, Input, Label } from '@repo/ui';
-import type { FoodCategory } from '@/lib/food-categories';
+import type { FoodCategory } from '@/components/stores/lib';
 
 interface Props {
   category?: FoodCategory;
@@ -22,13 +22,7 @@ export function FoodCategoryForm({ category, onSubmit, onCancel, isPending }: Pr
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor="name">카테고리명 *</Label>
-        <Input
-          id="name"
-          name="name"
-          placeholder="예: 음료, 스낵, 식사류"
-          defaultValue={category?.name}
-          required
-        />
+        <Input id="name" name="name" placeholder="예: 음료, 스낵, 식사류" defaultValue={category?.name} required />
       </div>
 
       <div className="flex justify-end gap-2 pt-4">

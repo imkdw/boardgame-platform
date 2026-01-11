@@ -1,19 +1,12 @@
 'use client';
 
 import { useState, type ReactNode } from 'react';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  Button,
-} from '@repo/ui';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Button } from '@repo/ui';
 import { Pencil } from 'lucide-react';
 import { toast } from 'sonner';
 import { StoreForm } from './store-form';
-import { updateStore, type Store, type UpdateStoreDto } from '@/lib/stores';
+import type { Store } from '@repo/types';
+import { updateStore, type UpdateStoreDto } from '@/components/stores/lib';
 import { useAsyncAction } from '@repo/web-shared';
 
 interface Props {
@@ -64,12 +57,7 @@ export function EditStoreDialog({ store, onSuccess }: Props): ReactNode {
           <DialogTitle>매장 수정</DialogTitle>
           <DialogDescription>{store.name} 정보를 수정합니다.</DialogDescription>
         </DialogHeader>
-        <StoreForm
-          store={store}
-          onSubmit={handleSubmit}
-          onCancel={() => setOpen(false)}
-          isPending={isPending}
-        />
+        <StoreForm store={store} onSubmit={handleSubmit} onCancel={() => setOpen(false)} isPending={isPending} />
       </DialogContent>
     </Dialog>
   );

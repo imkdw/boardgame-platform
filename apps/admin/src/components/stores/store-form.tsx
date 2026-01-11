@@ -2,7 +2,7 @@
 
 import type { FormEvent, ReactNode } from 'react';
 import { Button, Input, Label } from '@repo/ui';
-import type { Store } from '@/lib/stores';
+import type { Store } from '@/components/stores/lib';
 
 interface Props {
   store?: Store;

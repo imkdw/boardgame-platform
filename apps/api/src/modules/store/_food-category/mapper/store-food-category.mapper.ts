@@ -15,7 +15,7 @@ export function toStoreFoodCategoryDto(category: StoreFoodCategory): StoreFoodCa
 
 export function toStoreFoodCategoryItemDto(item: CategoryItemWithFood): StoreFoodCategoryItemDto {
   return plainToInstance(StoreFoodCategoryItemDto, {
-    food: toStoreFoodDto(item.food),
+    ...toStoreFoodDto(item.food),
     order: item.order,
   } satisfies StoreFoodCategoryItemDto);
 }

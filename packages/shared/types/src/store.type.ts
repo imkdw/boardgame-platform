@@ -6,6 +6,7 @@ export interface Store {
   wifiPassword: string;
   contact: string;
   introVideoUrl: string | null;
+  ip: string;
   latitude: number;
   longitude: number;
 }

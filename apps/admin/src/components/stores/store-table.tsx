@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@repo/ui';
-import { Building2, MapPin, Phone } from 'lucide-react';
+import { Building2, Globe, MapPin, Phone } from 'lucide-react';
 import type { Store } from '@repo/types';
 import { EditStoreDialog } from './edit-store-dialog';
 import { DeleteStoreDialog } from './delete-store-dialog';
@@ -30,6 +30,7 @@ export function StoreTable({ stores, onRefresh }: Props): ReactNode {
           <TableHead>매장명</TableHead>
           <TableHead>주소</TableHead>
           <TableHead>연락처</TableHead>
+          <TableHead>IP 주소</TableHead>
           <TableHead>와이파이</TableHead>
           <TableHead className="w-24 text-center">관리</TableHead>
         </TableRow>
@@ -55,6 +56,12 @@ export function StoreTable({ stores, onRefresh }: Props): ReactNode {
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="size-4 shrink-0" />
                 <span className="text-sm">{store.contact}</span>
+              </div>
+            </TableCell>
+            <TableCell>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Globe className="size-4 shrink-0" />
+                <span className="text-sm font-mono">{store.ip}</span>
               </div>
             </TableCell>
             <TableCell>

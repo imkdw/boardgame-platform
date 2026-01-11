@@ -82,6 +82,18 @@ export function StoreForm({ store, onSubmit, onCancel, isPending }: Props): Reac
         </div>
       </div>
 
+      <div className="space-y-2">
+        <Label htmlFor="ip">IP 주소 *</Label>
+        <Input
+          id="ip"
+          name="ip"
+          defaultValue={store?.ip}
+          placeholder="192.168.0.1"
+          required
+          maxLength={45}
+        />
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="latitude">위도 *</Label>

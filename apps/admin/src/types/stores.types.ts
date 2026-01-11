@@ -5,6 +5,7 @@ export interface CreateStoreDto {
   wifiPassword: string;
   contact: string;
   introVideoUrl: string | null;
+  ip: string;
   latitude: number;
   longitude: number;
 }
@@ -16,6 +17,7 @@ export interface UpdateStoreDto {
   wifiPassword: string;
   contact: string;
   introVideoUrl: string | null;
+  ip: string;
   latitude: number;
   longitude: number;
 }

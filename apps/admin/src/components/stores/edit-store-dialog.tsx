@@ -23,6 +23,7 @@ function parseFormData(formData: FormData): UpdateStoreDto {
     wifiPassword: formData.get('wifiPassword') as string,
     contact: formData.get('contact') as string,
     introVideoUrl: (formData.get('introVideoUrl') as string) || null,
+    ip: formData.get('ip') as string,
     latitude: parseFloat(formData.get('latitude') as string),
     longitude: parseFloat(formData.get('longitude') as string),
   };

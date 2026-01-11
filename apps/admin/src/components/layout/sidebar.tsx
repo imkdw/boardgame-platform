@@ -39,7 +39,7 @@ const navItems: NavItem[] = [
   },
   {
     title: '게임 관리',
-    href: '/dashboard/games',
+    href: '/games',
     icon: <Gamepad2 className="size-5" />,
   },
 ];

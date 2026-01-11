@@ -11,36 +11,37 @@ import {
 import { Building2, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { getStores, type Store } from '@/lib/stores';
-import { getApiErrorMessage } from '@repo/web-shared';
+import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
 import { CreateStoreDialog } from './create-store-dialog';
 import { StoreTable } from './store-table';
 
 export function StoresPageClient(): ReactNode {
   const [stores, setStores] = useState<Store[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchStores = useCallback(async () => {
-    try {
+  const { execute: executeFetchStores, isPending: isLoading } = useAsyncAction(
+    async () => {
       setError(null);
-      const data = await getStores();
-      setStores(data);
-    } catch (e) {
-      const message = getApiErrorMessage(e);
-      setError(message);
-      toast.error(message);
-    } finally {
-      setIsLoading(false);
+      return getStores();
+    },
+    {
+      toast,
+      onSuccess: (data) => {
+        setStores(data);
+      },
+      onError: (error) => {
+        setError(getApiErrorMessage(error));
+      },
     }
-  }, []);
+  );
 
   useEffect(() => {
-    fetchStores();
-  }, [fetchStores]);
+    executeFetchStores();
+  }, [executeFetchStores]);
 
   const handleRefresh = useCallback(() => {
-    fetchStores();
-  }, [fetchStores]);
+    executeFetchStores();
+  }, [executeFetchStores]);
 
   if (isLoading) {
     return (

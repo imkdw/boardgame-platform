@@ -17,7 +17,7 @@ import { UtensilsCrossed, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { getFoodCategories, type FoodCategory } from '@/lib/food-categories';
 import { getStores, type Store } from '@/lib/stores';
-import { getApiErrorMessage } from '@repo/web-shared';
+import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
 import { CreateFoodCategoryDialog } from './create-food-category-dialog';
 import { FoodCategoryTable } from './food-category-table';
 
@@ -25,60 +25,59 @@ export function FoodCategoriesPageClient(): ReactNode {
   const [stores, setStores] = useState<Store[]>([]);
   const [selectedStoreId, setSelectedStoreId] = useState<string>('');
   const [categories, setCategories] = useState<FoodCategory[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isCategoriesLoading, setIsCategoriesLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchStores = useCallback(async () => {
-    try {
+  const { execute: executeFetchStores, isPending: isLoading } = useAsyncAction(
+    async () => {
       setError(null);
-      const data = await getStores();
-      setStores(data);
-      const firstStore = data[0];
-      if (firstStore) {
-        setSelectedStoreId(firstStore.id);
-      }
-    } catch (e) {
-      const message = getApiErrorMessage(e);
-      setError(message);
-      toast.error(message);
-    } finally {
-      setIsLoading(false);
+      return getStores();
+    },
+    {
+      toast,
+      onSuccess: (data) => {
+        setStores(data);
+        if (data[0]) {
+          setSelectedStoreId(data[0].id);
+        }
+      },
+      onError: (error) => {
+        setError(getApiErrorMessage(error));
+      },
     }
-  }, []);
+  );
 
-  const fetchCategories = useCallback(async (storeId: string) => {
-    if (!storeId) return;
-
-    try {
-      setIsCategoriesLoading(true);
+  const { execute: executeFetchCategories, isPending: isCategoriesLoading } = useAsyncAction(
+    async (storeId: string) => {
+      if (!storeId) return [];
       setError(null);
-      const data = await getFoodCategories(storeId);
-      setCategories(data);
-    } catch (e) {
-      const message = getApiErrorMessage(e);
-      setError(message);
-      toast.error(message);
-    } finally {
-      setIsCategoriesLoading(false);
+      return getFoodCategories(storeId);
+    },
+    {
+      toast,
+      onSuccess: (data) => {
+        setCategories(data);
+      },
+      onError: (error) => {
+        setError(getApiErrorMessage(error));
+      },
     }
-  }, []);
+  );
 
   useEffect(() => {
-    fetchStores();
-  }, [fetchStores]);
+    executeFetchStores();
+  }, [executeFetchStores]);
 
   useEffect(() => {
     if (selectedStoreId) {
-      fetchCategories(selectedStoreId);
+      executeFetchCategories(selectedStoreId);
     }
-  }, [selectedStoreId, fetchCategories]);
+  }, [selectedStoreId, executeFetchCategories]);
 
   const handleRefresh = useCallback(() => {
     if (selectedStoreId) {
-      fetchCategories(selectedStoreId);
+      executeFetchCategories(selectedStoreId);
     }
-  }, [selectedStoreId, fetchCategories]);
+  }, [selectedStoreId, executeFetchCategories]);
 
   const handleStoreChange = useCallback((value: string) => {
     setSelectedStoreId(value);

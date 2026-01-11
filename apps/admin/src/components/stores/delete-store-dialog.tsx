@@ -14,7 +14,7 @@ import {
 import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { deleteStore, type Store } from '@/lib/stores';
-import { getApiErrorMessage } from '@repo/web-shared';
+import { useAsyncAction } from '@repo/web-shared';
 
 interface Props {
   store: Store;
@@ -23,21 +23,20 @@ interface Props {
 
 export function DeleteStoreDialog({ store, onSuccess }: Props): ReactNode {
   const [open, setOpen] = useState(false);
-  const [isPending, setIsPending] = useState(false);
 
-  async function handleDelete() {
-    setIsPending(true);
-    try {
-      await deleteStore(store.id);
-      toast.success('매장이 삭제되었습니다.');
-      setOpen(false);
-      onSuccess();
-    } catch (error) {
-      toast.error(getApiErrorMessage(error));
-    } finally {
-      setIsPending(false);
+  const { execute: handleDelete, isPending } = useAsyncAction(
+    async () => {
+      return deleteStore(store.id);
+    },
+    {
+      toast,
+      successMessage: '매장이 삭제되었습니다.',
+      onSuccess: () => {
+        setOpen(false);
+        onSuccess();
+      },
     }
-  }
+  );
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

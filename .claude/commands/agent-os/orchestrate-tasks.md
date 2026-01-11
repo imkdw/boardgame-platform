@@ -35,22 +35,14 @@ task_groups:
   # Repeat for each task group found in tasks.md
 ```
 
-### NEXT: Ask user to assign subagents to each task group
+### NEXT: Assign subagents to each task group
 
-Next we must determine which subagents should be assigned to which task groups.  Ask the user to provide this info using the following request to user and WAIT for user's response:
+Analyze each task group and automatically assign the most appropriate subagent based on the nature of the tasks. Consider factors such as:
+- Task type (backend, frontend, database, testing, etc.)
+- Required expertise and tools
+- Dependencies between task groups
 
-```
-Please specify the name of each subagent to be assigned to each task group:
-
-1. [task-group-name]
-2. [task-group-name]
-3. [task-group-name]
-[repeat for each task-group you've added to orchestration.yml]
-
-Simply respond with the subagent names and corresponding task group number and I'll update orchestration.yml accordingly.
-```
-
-Using the user's responses, update `orchestration.yml` to specify those subagent names.  `orchestration.yml` should end up looking like this:
+After analysis, update `orchestration.yml` to specify the assigned subagent names. `orchestration.yml` should end up looking like this:
 
 ```yaml
 task_groups:
@@ -76,9 +68,13 @@ task_groups:
 ```
 
 
-### NEXT: Delegate task groups implementations to assigned subagents
+### NEXT: Delegate task groups implementations to assigned subagents IN PARALLEL
 
-Loop through each task group in `agent-os/specs/[this-spec]/tasks.md` and delegate its implementation to the assigned subagent specified in `orchestration.yml`.
+Analyze dependencies between task groups and identify which groups can be executed in parallel. Then delegate implementations to subagents with MAXIMUM PARALLELIZATION:
+
+1. **Dependency Analysis**: Identify task groups that have no dependencies on each other
+2. **Parallel Execution**: Launch multiple subagents simultaneously for independent task groups
+3. **Sequential Execution**: Only execute sequentially when there are explicit dependencies
 
 For each delegation, provide the subagent with:
 - The task group (including the parent task and all sub-tasks)
@@ -86,3 +82,5 @@ For each delegation, provide the subagent with:
 - Instruct subagent to:
   - Perform their implementation
   - Check off the task and sub-task(s) in `agent-os/specs/[this-spec]/tasks.md`
+
+**IMPORTANT**: Always prefer parallel execution. Use a single message with multiple Task tool calls to launch independent subagents concurrently.

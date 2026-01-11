@@ -18,7 +18,7 @@ import { toast } from 'sonner';
 import { getFoods, getFoodsByCategory, type Food } from '@/lib/foods';
 import { getFoodCategories, type FoodCategory } from '@/lib/food-categories';
 import { getStores, type Store } from '@/lib/stores';
-import { getApiErrorMessage } from '@repo/web-shared';
+import { getApiErrorMessage, useAsyncAction } from '@repo/web-shared';
 import { FoodCategoryList } from './food-category-list';
 import { FoodList } from './food-list';
 
@@ -29,51 +29,47 @@ export function FoodsPageClient(): ReactNode {
   const [foods, setFoods] = useState<Food[]>([]);
   const [allFoods, setAllFoods] = useState<Food[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isCategoriesLoading, setIsCategoriesLoading] = useState(false);
-  const [isFoodsLoading, setIsFoodsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchStores = useCallback(async () => {
-    try {
+  const { execute: executeFetchStores, isPending: isLoading } = useAsyncAction(
+    async () => {
       setError(null);
-      const data = await getStores();
-      setStores(data);
-      const firstStore = data[0];
-      if (firstStore) {
-        setSelectedStoreId(firstStore.id);
-      }
-    } catch (e) {
-      const message = getApiErrorMessage(e);
-      setError(message);
-      toast.error(message);
-    } finally {
-      setIsLoading(false);
+      return getStores();
+    },
+    {
+      toast,
+      onSuccess: (data) => {
+        setStores(data);
+        if (data[0]) {
+          setSelectedStoreId(data[0].id);
+        }
+      },
+      onError: (error) => {
+        setError(getApiErrorMessage(error));
+      },
     }
-  }, []);
+  );
 
-  const fetchCategories = useCallback(async (storeId: string) => {
-    if (!storeId) return;
-
-    try {
-      setIsCategoriesLoading(true);
+  const { execute: executeFetchCategories, isPending: isCategoriesLoading } = useAsyncAction(
+    async (storeId: string) => {
+      if (!storeId) return [];
       setError(null);
-      const data = await getFoodCategories(storeId);
-      setCategories(data);
-    } catch (e) {
-      const message = getApiErrorMessage(e);
-      setError(message);
-      toast.error(message);
-    } finally {
-      setIsCategoriesLoading(false);
+      return getFoodCategories(storeId);
+    },
+    {
+      toast,
+      onSuccess: (data) => {
+        setCategories(data);
+      },
+      onError: (error) => {
+        setError(getApiErrorMessage(error));
+      },
     }
-  }, []);
+  );
 
-  const fetchFoods = useCallback(async (storeId: string, categoryId: string | null) => {
-    if (!storeId) return;
-
-    try {
-      setIsFoodsLoading(true);
+  const { execute: executeFetchFoods, isPending: isFoodsLoading } = useAsyncAction(
+    async (storeId: string, categoryId: string | null) => {
+      if (!storeId) return { foods: [], allFoods: [] };
       setError(null);
 
       let data: Food[];
@@ -83,46 +79,50 @@ export function FoodsPageClient(): ReactNode {
         data = await getFoods(storeId);
       }
 
-      setFoods(data);
-
       // Also fetch all foods for count calculation if viewing specific category
+      let allData: Food[];
       if (categoryId) {
-        const allData = await getFoods(storeId);
-        setAllFoods(allData);
+        allData = await getFoods(storeId);
       } else {
-        setAllFoods(data);
+        allData = data;
       }
-    } catch (e) {
-      const message = getApiErrorMessage(e);
-      setError(message);
-      toast.error(message);
-    } finally {
-      setIsFoodsLoading(false);
+
+      return { foods: data, allFoods: allData };
+    },
+    {
+      toast,
+      onSuccess: (data) => {
+        setFoods(data.foods);
+        setAllFoods(data.allFoods);
+      },
+      onError: (error) => {
+        setError(getApiErrorMessage(error));
+      },
     }
-  }, []);
+  );
 
   useEffect(() => {
-    fetchStores();
-  }, [fetchStores]);
+    executeFetchStores();
+  }, [executeFetchStores]);
 
   useEffect(() => {
     if (selectedStoreId) {
-      fetchCategories(selectedStoreId);
+      executeFetchCategories(selectedStoreId);
       setSelectedCategoryId(null);
     }
-  }, [selectedStoreId, fetchCategories]);
+  }, [selectedStoreId, executeFetchCategories]);
 
   useEffect(() => {
     if (selectedStoreId) {
-      fetchFoods(selectedStoreId, selectedCategoryId);
+      executeFetchFoods(selectedStoreId, selectedCategoryId);
     }
-  }, [selectedStoreId, selectedCategoryId, fetchFoods]);
+  }, [selectedStoreId, selectedCategoryId, executeFetchFoods]);
 
   const handleRefresh = useCallback(() => {
     if (selectedStoreId) {
-      fetchFoods(selectedStoreId, selectedCategoryId);
+      executeFetchFoods(selectedStoreId, selectedCategoryId);
     }
-  }, [selectedStoreId, selectedCategoryId, fetchFoods]);
+  }, [selectedStoreId, selectedCategoryId, executeFetchFoods]);
 
   const handleStoreChange = useCallback((value: string) => {
     setSelectedStoreId(value);

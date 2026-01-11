@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cdnfile.koreaboardgames.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'image.greating.co.kr',
+      },
     ],
   },
 };

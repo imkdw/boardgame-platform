@@ -253,17 +253,37 @@ modules/<feature>/
 
 ### Exception Handling
 
+**CRITICAL RULE**: NEVER use `CustomException` directly in use-cases. ALL custom exceptions MUST be defined in `packages/server-shared/src/exception/`.
+
 ```typescript
-// Use CustomException from @repo/server-shared
+// ❌ WRONG - Using CustomException directly
 import { CustomException } from '@repo/server-shared';
-import { EXCEPTION_CODES } from '@repo/exception';
 
 throw new CustomException({
-  message: 'User not found',
-  errorCode: EXCEPTION_CODES.USER_NOT_FOUND,
-  statusCode: 404,
+  message: '사용중인 방은 상태를 변경할 수 없습니다',
+  errorCode: STORE_ROOM_EXCEPTION_CODES.CANNOT_MODIFY_IN_USE_ROOM_STATUS,
+  statusCode: 400,
 });
+
+// ✅ CORRECT - Define exception class in server-shared
+// packages/server-shared/src/exception/store-room/cannot-update-in-use-store-status.exception.ts
+export class CannotUpdateInUseStoreStatusException extends CustomException {
+  constructor(message: string) {
+    super({
+      message,
+      errorCode: EXCEPTION_CODES.CANNOT_MODIFY_IN_USE_ROOM_STATUS,
+      statusCode: HttpStatus.BAD_REQUEST,
+    });
+  }
+}
+
+// Use in use-case
+import { CannotUpdateInUseStoreStatusException } from '@repo/server-shared';
+
+throw new CannotUpdateInUseStoreStatusException('사용중인 방은 상태를 변경할 수 없습니다');
 ```
+
+**Exception Naming**: `<Action><Condition><Entity>Exception` (예: `CannotUpdateInUseStoreStatusException`, `StoreRoomNotFoundException`)
 
 ### Swagger Documentation
 

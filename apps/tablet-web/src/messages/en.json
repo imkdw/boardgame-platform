@@ -243,6 +243,7 @@
     "pageTitle": "Food Order",
     "empty": "No items in this category",
     "currency": "won",
+    "allCategories": "All",
     "badge": {
       "popular": "Popular",
       "new": "New",

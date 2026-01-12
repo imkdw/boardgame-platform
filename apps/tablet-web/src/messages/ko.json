@@ -243,6 +243,7 @@
     "pageTitle": "먹거리 주문",
     "empty": "해당 카테고리에 메뉴가 없습니다",
     "currency": "원",
+    "allCategories": "전체",
     "badge": {
       "popular": "인기",
       "new": "신메뉴",

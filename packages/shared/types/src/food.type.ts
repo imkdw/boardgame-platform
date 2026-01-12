@@ -4,6 +4,7 @@ export interface FoodCategory {
   nameEn: string;
   icon: string;
   order: number;
+  foodCount: number;
 }
 
 export interface FoodItem {

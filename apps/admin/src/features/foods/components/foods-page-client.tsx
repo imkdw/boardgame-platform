@@ -29,7 +29,6 @@ export function FoodsPageClient(): ReactNode {
   const [selectedStoreId, setSelectedStoreId] = useState<string>('');
   const [categories, setCategories] = useState<FoodCategory[]>([]);
   const [foods, setFoods] = useState<StoreFood[]>([]);
-  const [allFoods, setAllFoods] = useState<StoreFood[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -94,7 +93,6 @@ export function FoodsPageClient(): ReactNode {
       toast,
       onSuccess: data => {
         setFoods(data.foods);
-        setAllFoods(data.allFoods);
       },
       onError: error => {
         setError(getApiErrorMessage(error));
@@ -129,28 +127,12 @@ export function FoodsPageClient(): ReactNode {
     setSelectedStoreId(value);
     setCategories([]);
     setFoods([]);
-    setAllFoods([]);
     setSelectedCategoryId(null);
   }, []);
 
   const handleCategorySelect = useCallback((categoryId: string | null) => {
     setSelectedCategoryId(categoryId);
   }, []);
-
-  // Calculate food count per category (this is a simplified version -
-  // in production you'd want the API to return this)
-  const foodCountByCategory: Record<string, number> = {};
-  // Note: This is a placeholder - actual counts would need to come from API
-  // For now, we'll just show the count when a category is selected
-  categories.forEach(cat => {
-    foodCountByCategory[cat.id] = 0; // Placeholder
-  });
-  if (selectedCategoryId === null) {
-    // When viewing all, we have total count
-    allFoods.forEach(() => {
-      // We don't have category info per food in current model
-    });
-  }
 
   if (isLoading) {
     return (
@@ -223,7 +205,6 @@ export function FoodsPageClient(): ReactNode {
               <FoodCategoryList
                 categories={categories}
                 selectedCategoryId={selectedCategoryId}
-                foodCountByCategory={foodCountByCategory}
                 onSelectCategory={handleCategorySelect}
               />
             </CardContent>

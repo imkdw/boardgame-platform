@@ -9,4 +9,7 @@ export class StoreFoodCategoryDto {
 
   @ApiProperty({ description: '카테고리 이름', example: '피자' })
   name: string;
+
+  @ApiProperty({ description: '카테고리 내 음식 개수', example: 5 })
+  foodCount: number;
 }

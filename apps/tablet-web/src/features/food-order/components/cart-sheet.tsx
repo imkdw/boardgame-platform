@@ -3,25 +3,19 @@
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { ShoppingCart, Minus, Plus, Trash2 } from 'lucide-react';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  SheetFooter,
-  Button,
-  Badge,
-} from '@repo/ui';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter, Button, Badge } from '@repo/ui';
 import { useCartStore } from '../stores/cart-store';
 import { OrderConfirmDialog } from './order-confirm-dialog';
 
-export function CartSheet() {
+interface Props {
+  disabled?: boolean;
+}
+
+export function CartSheet({ disabled }: Props) {
   const locale = useLocale();
   const t = useTranslations('FoodOrder.cart');
   const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
-  const { items, updateQuantity, removeItem, clearCart, getTotalPrice, getTotalItems } =
-    useCartStore();
+  const { items, updateQuantity, removeItem, clearCart, getTotalPrice, getTotalItems } = useCartStore();
 
   const totalItems = getTotalItems();
   const totalPrice = getTotalPrice();
@@ -39,7 +33,7 @@ export function CartSheet() {
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="default" size="touch" className="relative gap-2">
+          <Button variant="default" size="touch" className="relative gap-2" disabled={disabled}>
             <ShoppingCart className="h-5 w-5" />
             <span>{t('title')}</span>
             {totalItems > 0 && (
@@ -69,8 +63,7 @@ export function CartSheet() {
             ) : (
               <div className="space-y-3">
                 {items.map(item => {
-                  const displayName =
-                    locale === 'ko' ? item.foodItem.name : item.foodItem.nameEn;
+                  const displayName = locale === 'ko' ? item.foodItem.name : item.foodItem.nameEn;
                   return (
                     <div
                       key={item.foodItem.id}
@@ -100,11 +93,7 @@ export function CartSheet() {
                         >
                           <Plus className="h-4 w-4" />
                         </Button>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => removeItem(item.foodItem.id)}
-                        >
+                        <Button variant="ghost" size="icon" onClick={() => removeItem(item.foodItem.id)}>
                           <Trash2 className="h-5 w-5 text-destructive" />
                         </Button>
                       </div>
@@ -127,7 +116,7 @@ export function CartSheet() {
               variant="default"
               size="touch-lg"
               className="w-full"
-              disabled={items.length === 0}
+              disabled={(disabled ?? false) || items.length === 0}
               onClick={handleOrderClick}
             >
               {t('order')}

@@ -2,11 +2,11 @@
 
 import type { ReactNode } from 'react';
 import { useState, useMemo } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import type { StoreFoodCategory, StoreFoodCategoryItem } from '@repo/types';
-import { cn } from '@repo/ui';
 import { FoodList } from './food-list';
 import { CartSheet } from './cart-sheet';
+import { CategoryList } from './category-list';
 import { useCartStore } from '../stores/cart-store';
 import type { FoodItem } from '../types';
 
@@ -32,7 +32,6 @@ function mapToFoodItem(food: StoreFoodCategoryItem, categoryId: string): FoodIte
 
 export function FoodOrderContent({ categories, foodsByCategory, isSessionActive }: Props): ReactNode {
   const t = useTranslations('FoodOrder');
-  const locale = useLocale();
   const [selectedCategoryId, setSelectedCategoryId] = useState('all');
   const addItem = useCartStore(state => state.addItem);
 
@@ -40,10 +39,11 @@ export function FoodOrderContent({ categories, foodsByCategory, isSessionActive 
     const allCategory: StoreFoodCategory = {
       id: 'all',
       storeId: categories[0]?.storeId ?? '',
-      name: locale === 'ko' ? '전체' : 'All',
+      name: t('allCategories'),
+      foodCount: Object.values(foodsByCategory).flat().length,
     };
     return [allCategory, ...categories];
-  }, [categories, locale]);
+  }, [categories, foodsByCategory, t]);
 
   const filteredFoods = useMemo(() => {
     if (selectedCategoryId === 'all') {
@@ -64,24 +64,11 @@ export function FoodOrderContent({ categories, foodsByCategory, isSessionActive 
 
       <div className="flex flex-1 gap-6 overflow-hidden p-6">
         <aside className="w-48 shrink-0 overflow-auto">
-          <nav className="flex h-full flex-col gap-2">
-            {allCategories.map(category => {
-              const isSelected = category.id === selectedCategoryId;
-
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategoryId(category.id)}
-                  className={cn(
-                    'rounded-xl px-4 py-3 text-left transition-colors',
-                    isSelected ? 'bg-primary text-primary-foreground' : 'bg-card text-card-foreground hover:bg-muted'
-                  )}
-                >
-                  <span className="font-medium">{category.name}</span>
-                </button>
-              );
-            })}
-          </nav>
+          <CategoryList
+            categories={allCategories}
+            selectedCategoryId={selectedCategoryId}
+            onSelectCategory={setSelectedCategoryId}
+          />
         </aside>
 
         <main className="flex-1 overflow-auto">

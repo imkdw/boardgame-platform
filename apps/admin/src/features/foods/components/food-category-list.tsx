@@ -8,16 +8,10 @@ import type { FoodCategory } from '@repo/types';
 interface Props {
   categories: FoodCategory[];
   selectedCategoryId: string | null;
-  foodCountByCategory: Record<string, number>;
   onSelectCategory: (categoryId: string | null) => void;
 }
 
-export function FoodCategoryList({
-  categories,
-  selectedCategoryId,
-  foodCountByCategory,
-  onSelectCategory,
-}: Props): ReactNode {
+export function FoodCategoryList({ categories, selectedCategoryId, onSelectCategory }: Props): ReactNode {
   if (categories.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
@@ -27,11 +21,10 @@ export function FoodCategoryList({
     );
   }
 
-  const totalFoods = Object.values(foodCountByCategory).reduce((sum, count) => sum + count, 0);
+  const totalFoods = categories.reduce((sum, category) => sum + category.foodCount, 0);
 
   return (
     <div className="space-y-1">
-      {/* All categories option */}
       <button
         type="button"
         onClick={() => onSelectCategory(null)}
@@ -44,7 +37,6 @@ export function FoodCategoryList({
         <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-medium">{totalFoods}</span>
       </button>
 
-      {/* Category items */}
       {categories.map(category => (
         <button
           key={category.id}
@@ -56,9 +48,7 @@ export function FoodCategoryList({
           )}
         >
           <span>{category.name}</span>
-          <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-medium">
-            {foodCountByCategory[category.id] ?? 0}
-          </span>
+          <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-medium">{category.foodCount}</span>
         </button>
       ))}
     </div>

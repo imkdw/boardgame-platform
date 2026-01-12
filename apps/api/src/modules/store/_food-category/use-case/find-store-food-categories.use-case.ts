@@ -7,7 +7,7 @@ import { toStoreFoodCategoryDto } from '../mapper/store-food-category.mapper';
 export class FindStoreFoodCategoriesUseCase {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly storeValidator: StoreValidator,
+    private readonly storeValidator: StoreValidator
   ) {}
 
   async execute(storeId: string): Promise<StoreFoodCategoryDto[]> {
@@ -15,8 +15,17 @@ export class FindStoreFoodCategoriesUseCase {
 
     const categories = await this.prisma.storeFoodCategory.findMany({
       where: { storeId, deletedAt: null },
+      include: {
+        items: {
+          where: {
+            food: {
+              deletedAt: null,
+            },
+          },
+        },
+      },
     });
 
-    return categories.map(toStoreFoodCategoryDto);
+    return categories.map(category => toStoreFoodCategoryDto(category, category.items.length));
   }
 }

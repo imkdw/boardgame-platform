@@ -13,6 +13,7 @@ export interface StoreFoodCategory {
   id: string;
   storeId: string;
   name: string;
+  foodCount: number;
 }
 
 export interface StoreFoodCategoryItem extends StoreFood {

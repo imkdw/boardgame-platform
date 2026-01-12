@@ -7,9 +7,11 @@ import type { FoodItem } from '../types';
 interface Props {
   food: FoodItem;
   onAddToCart: (food: FoodItem) => void;
+  disabled?: boolean;
+  hideAddButton?: boolean;
 }
 
-export function FoodCard({ food, onAddToCart }: Props) {
+export function FoodCard({ food, onAddToCart, disabled, hideAddButton }: Props) {
   const locale = useLocale() as 'ko' | 'en';
   const t = useTranslations('FoodOrder');
 
@@ -36,6 +38,7 @@ export function FoodCard({ food, onAddToCart }: Props) {
       food={foodCardItem}
       locale={locale}
       onAddToCart={handleAddToCart}
+      disabled={disabled}
       labels={{
         popular: t('badge.popular'),
         new: t('badge.new'),
@@ -43,6 +46,7 @@ export function FoodCard({ food, onAddToCart }: Props) {
         currency: t('currency'),
       }}
       showImage={true}
+      hideAddButton={hideAddButton}
     />
   );
 }

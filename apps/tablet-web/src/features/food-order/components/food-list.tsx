@@ -7,9 +7,10 @@ import { FoodCard } from './food-card';
 interface Props {
   foods: FoodItem[];
   onAddToCart: (food: FoodItem) => void;
+  hideAddButton?: boolean;
 }
 
-export function FoodList({ foods, onAddToCart }: Props) {
+export function FoodList({ foods, onAddToCart, hideAddButton }: Props) {
   const t = useTranslations('FoodOrder');
 
   if (foods.length === 0) {
@@ -23,7 +24,7 @@ export function FoodList({ foods, onAddToCart }: Props) {
   return (
     <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
       {foods.map(food => (
-        <FoodCard key={food.id} food={food} onAddToCart={onAddToCart} />
+        <FoodCard key={food.id} food={food} onAddToCart={onAddToCart} hideAddButton={hideAddButton} />
       ))}
     </div>
   );

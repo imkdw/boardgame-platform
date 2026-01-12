@@ -22,6 +22,7 @@ interface Props {
   food: FoodCardItem;
   locale?: 'ko' | 'en';
   onAddToCart: (food: FoodCardItem) => void;
+  disabled?: boolean;
   labels?: {
     popular?: string;
     new?: string;
@@ -29,7 +30,9 @@ interface Props {
     currency?: string;
   };
   showImage?: boolean;
+  hideAction?: boolean;
   className?: string;
+  hideAddButton?: boolean;
 }
 
 const defaultLabels = {
@@ -43,14 +46,15 @@ export function FoodCard({
   food,
   locale = 'ko',
   onAddToCart,
+  disabled = false,
   labels = defaultLabels,
   showImage = true,
   className,
+  hideAddButton = false,
 }: Props) {
   const mergedLabels = { ...defaultLabels, ...labels };
   const displayName = locale === 'ko' ? food.name : (food.nameEn ?? food.name);
-  const displayDescription =
-    locale === 'ko' ? food.description : (food.descriptionEn ?? food.description);
+  const displayDescription = locale === 'ko' ? food.description : (food.descriptionEn ?? food.description);
 
   if (!showImage) {
     // POS용 간단한 카드 (이미지 없음)
@@ -74,15 +78,16 @@ export function FoodCard({
             {food.price.toLocaleString()}
             {mergedLabels.currency}
           </p>
-          <Button
-            variant="outline"
-            size="icon"
-            className="mt-3"
-            disabled={!food.isAvailable}
-            onClick={() => onAddToCart(food)}
-          >
-            <Plus className="size-4" />
-          </Button>
+          {!hideAddButton && (
+            <Button
+              variant="default"
+              size="icon"
+              disabled={!food.isAvailable || disabled}
+              onClick={() => onAddToCart(food)}
+            >
+              <Plus className="size-4" />
+            </Button>
+          )}
         </div>
       </div>
     );
@@ -99,9 +104,7 @@ export function FoodCard({
       )}
     >
       <div className="relative aspect-[4/3] w-full bg-muted">
-        {food.thumbnail && (
-          <img src={food.thumbnail} alt={displayName} className="h-full w-full object-cover" />
-        )}
+        {food.thumbnail && <img src={food.thumbnail} alt={displayName} className="h-full w-full object-cover" />}
         <div className="absolute left-2 top-2 flex flex-wrap gap-1">
           {food.isPopular && <Badge variant="default">{mergedLabels.popular}</Badge>}
           {food.isNew && <Badge variant="new">{mergedLabels.new}</Badge>}
@@ -111,23 +114,23 @@ export function FoodCard({
 
       <div className="p-4">
         <h3 className="mb-1 text-lg font-bold text-card-foreground">{displayName}</h3>
-        {displayDescription && (
-          <p className="mb-3 line-clamp-2 text-sm text-muted-foreground">{displayDescription}</p>
-        )}
+        {displayDescription && <p className="mb-3 line-clamp-2 text-sm text-muted-foreground">{displayDescription}</p>}
 
         <div className="flex items-center justify-between">
           <span className="text-xl font-bold text-primary">
             {food.price.toLocaleString()}
             <span className="text-sm font-normal">{mergedLabels.currency}</span>
           </span>
-          <Button
-            variant="default"
-            size="icon"
-            disabled={!food.isAvailable}
-            onClick={() => onAddToCart(food)}
-          >
-            <Plus className="h-5 w-5" />
-          </Button>
+          {!hideAddButton && (
+            <Button
+              variant="default"
+              size="icon"
+              disabled={!food.isAvailable || disabled}
+              onClick={() => onAddToCart(food)}
+            >
+              <Plus className="h-5 w-5" />
+            </Button>
+          )}
         </div>
       </div>
     </div>

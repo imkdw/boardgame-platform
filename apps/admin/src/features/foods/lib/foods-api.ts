@@ -1,19 +1,19 @@
 import { fetchApi } from '@/lib/api';
-import type { Food, ApiResponse } from '@repo/types';
+import type { StoreFood, ApiResponse } from '@repo/types';
 import type { CreateFoodDto, UpdateFoodDto } from '../types';
 
-export async function getFoods(storeId: string): Promise<Food[]> {
-  const response = await fetchApi<ApiResponse<Food[]>>(`/stores/${storeId}/foods`);
+export async function getFoods(storeId: string): Promise<StoreFood[]> {
+  const response = await fetchApi<ApiResponse<StoreFood[]>>(`/stores/${storeId}/foods`);
   return response.data;
 }
 
-export async function getFoodsByCategory(storeId: string, categoryId: string): Promise<Food[]> {
-  const response = await fetchApi<ApiResponse<Food[]>>(`/stores/${storeId}/food-categories/${categoryId}/foods`);
+export async function getFoodsByCategory(storeId: string, categoryId: string): Promise<StoreFood[]> {
+  const response = await fetchApi<ApiResponse<StoreFood[]>>(`/stores/${storeId}/food-categories/${categoryId}/foods`);
   return response.data;
 }
 
-export async function createFood(storeId: string, data: CreateFoodDto): Promise<Food> {
-  const response = await fetchApi<ApiResponse<Food>>(`/stores/${storeId}/foods`, {
+export async function createFood(storeId: string, data: CreateFoodDto): Promise<StoreFood> {
+  const response = await fetchApi<ApiResponse<StoreFood>>(`/stores/${storeId}/foods`, {
     method: 'POST',
     body: JSON.stringify(data),
   });

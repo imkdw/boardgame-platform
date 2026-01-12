@@ -2,13 +2,13 @@
 
 import type { ReactNode } from 'react';
 import { UtensilsCrossed } from 'lucide-react';
-import type { Food, FoodCategory } from '@repo/types';
+import type { StoreFood, FoodCategory } from '@repo/types';
 import { CreateFoodDialog } from './create-food-dialog';
 import { FoodItemRow } from './food-item-row';
 
 interface Props {
   storeId: string;
-  foods: Food[];
+  foods: StoreFood[];
   categories: FoodCategory[];
   selectedCategoryId: string | null;
   onRefresh: () => void;

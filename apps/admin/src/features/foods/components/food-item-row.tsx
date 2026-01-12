@@ -3,13 +3,13 @@
 import type { ReactNode } from 'react';
 import Image from 'next/image';
 import { Badge } from '@repo/ui';
-import type { Food, FoodCategory } from '@repo/types';
+import type { StoreFood, FoodCategory } from '@repo/types';
 import { EditFoodDialog } from './edit-food-dialog';
 import { DeleteFoodDialog } from './delete-food-dialog';
 
 interface Props {
   storeId: string;
-  food: Food;
+  food: StoreFood;
   category?: FoodCategory;
   onRefresh: () => void;
 }

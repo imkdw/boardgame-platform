@@ -13,10 +13,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@repo/ui';
-import type { Food, FoodCategory } from '@repo/types';
+import type { StoreFood, FoodCategory } from '@repo/types';
 
 interface Props {
-  food?: Food;
+  food?: StoreFood;
   categories: FoodCategory[];
   selectedCategoryId?: string;
   isEditMode?: boolean;

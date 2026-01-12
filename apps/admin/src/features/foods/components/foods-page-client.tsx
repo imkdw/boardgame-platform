@@ -15,7 +15,7 @@ import {
 } from '@repo/ui';
 import { UtensilsCrossed, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import type { Food, Store, FoodCategory } from '@repo/types';
+import type { StoreFood, Store, FoodCategory } from '@repo/types';
 import { getStores } from '@/features/stores';
 import { getFoodCategories } from '@/features/food-categories';
 import { getFoods, getFoodsByCategory } from '../lib';
@@ -28,8 +28,8 @@ export function FoodsPageClient(): ReactNode {
   const [stores, setStores] = useState<Store[]>([]);
   const [selectedStoreId, setSelectedStoreId] = useState<string>('');
   const [categories, setCategories] = useState<FoodCategory[]>([]);
-  const [foods, setFoods] = useState<Food[]>([]);
-  const [allFoods, setAllFoods] = useState<Food[]>([]);
+  const [foods, setFoods] = useState<StoreFood[]>([]);
+  const [allFoods, setAllFoods] = useState<StoreFood[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -74,15 +74,14 @@ export function FoodsPageClient(): ReactNode {
       if (!storeId) return { foods: [], allFoods: [] };
       setError(null);
 
-      let data: Food[];
+      let data: StoreFood[];
       if (categoryId) {
         data = await getFoodsByCategory(storeId, categoryId);
       } else {
         data = await getFoods(storeId);
       }
 
-      // Also fetch all foods for count calculation if viewing specific category
-      let allData: Food[];
+      let allData: StoreFood[];
       if (categoryId) {
         allData = await getFoods(storeId);
       } else {

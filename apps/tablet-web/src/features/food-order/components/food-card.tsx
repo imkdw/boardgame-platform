@@ -21,7 +21,7 @@ export function FoodCard({ food, onAddToCart }: Props) {
     description: food.description,
     descriptionEn: food.descriptionEn,
     price: food.price,
-    thumbnail: food.thumbnail ? `/images/${food.thumbnail}` : undefined,
+    thumbnail: food.thumbnail,
     isAvailable: food.isAvailable,
     isPopular: food.isPopular,
     isNew: food.isNew,

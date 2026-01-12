@@ -14,12 +14,12 @@ import {
 import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { deleteFood } from '../lib';
-import type { Food } from '@repo/types';
+import type { StoreFood } from '@repo/types';
 import { useAsyncAction } from '@repo/web-shared';
 
 interface Props {
   storeId: string;
-  food: Food;
+  food: StoreFood;
   onSuccess: () => void;
 }
 

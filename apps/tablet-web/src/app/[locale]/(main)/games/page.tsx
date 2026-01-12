@@ -10,7 +10,7 @@ export default async function GamesPage() {
     notFound();
   }
 
-  const games = await getStoreGames(store.id);
+  const initialGames = await getStoreGames(store.id);
 
-  return <GamesPageContent games={games} />;
+  return <GamesPageContent storeId={store.id} initialGames={initialGames} />;
 }

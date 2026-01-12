@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateStoreGameDto } from './dto/create-store-game.dto';
 import { UpdateStoreGameDto } from './dto/update-store-game.dto';
+import { FindStoreGamesQueryDto } from './dto/find-store-games-query.dto';
 import { CreateStoreGameUseCase } from './use-case/create-store-game.use-case';
 import { DeleteStoreGameUseCase } from './use-case/delete-store-game.use-case';
 import { FindStoreGameUseCase } from './use-case/find-store-game.use-case';
@@ -28,8 +29,8 @@ export class StoreGameController {
 
   @Swagger.findStoreGames('보드게임 목록 조회')
   @Get()
-  async findStoreGames(@Param('storeId') storeId: string) {
-    return this.findStoreGamesUseCase.execute(storeId);
+  async findStoreGames(@Param('storeId') storeId: string, @Query() query: FindStoreGamesQueryDto) {
+    return this.findStoreGamesUseCase.execute(storeId, query);
   }
 
   @Swagger.findStoreGame('보드게임 상세 조회')

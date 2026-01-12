@@ -1,9 +1,6 @@
-import type { GameDifficulty, GameGenre } from '@repo/consts';
+import type { GameDifficulty, GameGenre, GameSortBy, PlayTimeRange, PlayerCount } from '@repo/consts';
 
-export type { GameDifficulty, GameGenre } from '@repo/consts';
-export type GameSortBy = 'recommended' | 'popular' | 'name' | 'difficulty';
-export type PlayTimeRange = '30' | '60' | '60+';
-export type PlayerCount = '2' | '3' | '4' | '5+';
+export type { GameDifficulty, GameGenre, GameSortBy, PlayTimeRange, PlayerCount } from '@repo/consts';
 
 export interface GameFiltersState {
   playerCount: PlayerCount | null;

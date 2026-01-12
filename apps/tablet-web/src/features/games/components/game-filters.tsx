@@ -2,23 +2,21 @@
 
 import { useTranslations } from 'next-intl';
 import { RotateCcw } from 'lucide-react';
-import {
-  Button,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  Switch,
-  Label,
-} from '@repo/ui';
+import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Switch, Label } from '@repo/ui';
+import { PLAYER_COUNT_VALUES, GAME_DIFFICULTY_VALUES, PLAY_TIME_RANGE_VALUES, GAME_GENRE } from '@repo/consts';
 import type { GameFiltersState, GameGenre, GameDifficulty, PlayerCount, PlayTimeRange } from '../types';
 import { DEFAULT_FILTERS } from '../types';
 
-const PLAYER_COUNTS: PlayerCount[] = ['2', '3', '4', '5+'];
-const GENRES: GameGenre[] = ['전략', '파티', '추리', '협동', '블러핑', '순발력', '단어', '팀전'];
-const DIFFICULTIES: GameDifficulty[] = ['easy', 'medium', 'hard'];
-const PLAY_TIME_RANGES: PlayTimeRange[] = ['30', '60', '60+'];
+const FILTER_GENRES: GameGenre[] = [
+  GAME_GENRE.STRATEGY,
+  GAME_GENRE.PARTY,
+  GAME_GENRE.MYSTERY,
+  GAME_GENRE.COOPERATION,
+  GAME_GENRE.BLUFFING,
+  GAME_GENRE.REFLEX,
+  GAME_GENRE.WORD,
+  GAME_GENRE.TEAM,
+];
 
 interface Props {
   filters: GameFiltersState;
@@ -54,7 +52,7 @@ export function GameFilters({ filters, onFiltersChange }: Props) {
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">{t('all')}</SelectItem>
-          {PLAYER_COUNTS.map(count => (
+          {PLAYER_COUNT_VALUES.map(count => (
             <SelectItem key={count} value={count}>
               {t(`players.${count}`)}
             </SelectItem>
@@ -65,16 +63,14 @@ export function GameFilters({ filters, onFiltersChange }: Props) {
       {/* Genre */}
       <Select
         value={filters.genres[0] ?? 'all'}
-        onValueChange={value =>
-          onFiltersChange({ ...filters, genres: value === 'all' ? [] : [value as GameGenre] })
-        }
+        onValueChange={value => onFiltersChange({ ...filters, genres: value === 'all' ? [] : [value as GameGenre] })}
       >
         <SelectTrigger className="w-[120px]">
           <SelectValue placeholder={t('groupLabel.genre')} />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">{t('all')}</SelectItem>
-          {GENRES.map(genre => (
+          {FILTER_GENRES.map(genre => (
             <SelectItem key={genre} value={genre}>
               {t(`genres.${genre}`)}
             </SelectItem>
@@ -94,7 +90,7 @@ export function GameFilters({ filters, onFiltersChange }: Props) {
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">{t('all')}</SelectItem>
-          {DIFFICULTIES.map(difficulty => (
+          {GAME_DIFFICULTY_VALUES.map(difficulty => (
             <SelectItem key={difficulty} value={difficulty}>
               {t(`difficulty.${difficulty}`)}
             </SelectItem>
@@ -114,7 +110,7 @@ export function GameFilters({ filters, onFiltersChange }: Props) {
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">{t('all')}</SelectItem>
-          {PLAY_TIME_RANGES.map(time => (
+          {PLAY_TIME_RANGE_VALUES.map(time => (
             <SelectItem key={time} value={time}>
               {t(`playTime.${time}`)}
             </SelectItem>

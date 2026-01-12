@@ -4,9 +4,13 @@ export const STORE_ROOM_CAPACITY_MIN = 1;
 export const STORE_ROOM_CAPACITY_MAX = 100;
 
 export const STORE_ROOM_STATUS = {
+  /** 사용 가능 */
   AVAILABLE: 'AVAILABLE',
+
+  /** 사용 중 */
   IN_USE: 'IN_USE',
-  RESERVED: 'RESERVED',
+
+  /** 점검 중 */
   MAINTENANCE: 'MAINTENANCE',
 } as const;
 

@@ -3,6 +3,7 @@
 import type { FormEvent, ReactNode } from 'react';
 import { Button, Input, Label, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@repo/ui';
 import type { StoreRoom } from '@repo/types';
+import { STORE_ROOM_STATUS } from '@repo/consts';
 
 interface Props {
   room?: StoreRoom;
@@ -11,9 +12,16 @@ interface Props {
   isPending: boolean;
 }
 
-const STATUS_VALUES = ['AVAILABLE', 'IN_USE', 'RESERVED', 'MAINTENANCE'] as const;
+const FORM_AVAILABLE_STATUSES = [STORE_ROOM_STATUS.AVAILABLE, STORE_ROOM_STATUS.MAINTENANCE] as const;
+
+const STATUS_LABELS = {
+  [STORE_ROOM_STATUS.AVAILABLE]: '정상',
+  [STORE_ROOM_STATUS.MAINTENANCE]: '점검중',
+} as const;
 
 export function StoreRoomForm({ room, onSubmit, onCancel, isPending }: Props): ReactNode {
+  const isStatusInUse = room?.status === STORE_ROOM_STATUS.IN_USE;
+
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -37,18 +45,19 @@ export function StoreRoomForm({ room, onSubmit, onCancel, isPending }: Props): R
         </div>
         <div className="space-y-2">
           <Label htmlFor="status">방 상태 *</Label>
-          <Select name="status" defaultValue={room?.status ?? 'AVAILABLE'}>
-            <SelectTrigger>
+          <Select name="status" defaultValue={room?.status ?? STORE_ROOM_STATUS.AVAILABLE} disabled={isStatusInUse}>
+            <SelectTrigger disabled={isStatusInUse}>
               <SelectValue placeholder="상태 선택" />
             </SelectTrigger>
             <SelectContent>
-              {STATUS_VALUES.map(status => (
+              {FORM_AVAILABLE_STATUSES.map(status => (
                 <SelectItem key={status} value={status}>
-                  {status}
+                  {STATUS_LABELS[status]}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
+          {isStatusInUse && <p className="text-xs text-muted-foreground">사용중인 방은 상태 변경이 불가능합니다.</p>}
         </div>
       </div>
 

@@ -1,24 +1,27 @@
-'use client';
-
 import { notFound } from 'next/navigation';
-import { use } from 'react';
 import type { ReactNode } from 'react';
-import { useTranslations } from 'next-intl';
 import { ArrowLeft, Play } from 'lucide-react';
 import { Button } from '@repo/ui';
 import { Link } from '@/i18n/navigation';
-
-import { mockGames } from '@/features/games';
+import { findStoreByIp } from '@/lib/stores-api';
+import { getStoreGameById } from '@/lib/games-api';
+import type { Game } from '@/features/games/types';
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-export default function GameVideoPage({ params }: Props): ReactNode {
-  const { id } = use(params);
-  const t = useTranslations('GameDetail.video');
+export default async function GameVideoPage({ params }: Props): Promise<ReactNode> {
+  const { id } = await params;
+  const t = (await import('next-intl')).useTranslations('GameDetail.video');
 
-  const game = mockGames.find(g => g.id === id);
+  const store = await findStoreByIp('1.1.1.1');
+
+  if (!store) {
+    notFound();
+  }
+
+  const game = await getStoreGameById(store.id, id);
 
   if (!game) {
     notFound();

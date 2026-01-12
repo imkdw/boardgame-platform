@@ -18,10 +18,10 @@ async function DisabledSessionLayout({ children }: { children: ReactNode }) {
   const { TabletHeader } = await import('@/components/layout');
   const { LocaleSwitcher } = await import('@/components/shared');
   const { getTranslations } = await import('next-intl/server');
-  const { getStoreByIp } = await import('@/lib/stores-api');
+  const { findStoreByIp } = await import('@/lib/stores-api');
 
   const t = await getTranslations('TabletHome');
-  const store = await getStoreByIp('1.1.1.1');
+  const store = await findStoreByIp('1.1.1.1');
 
   return (
     <div className="flex min-h-screen flex-col bg-background">

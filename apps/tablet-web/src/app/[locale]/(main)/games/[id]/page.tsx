@@ -1,19 +1,24 @@
-'use client';
-
 import { notFound } from 'next/navigation';
-import { use } from 'react';
 import type { ReactNode } from 'react';
 
-import { GameDetail, mockGames } from '@/features/games';
+import { GameDetail } from '@/features/games/components';
+import { findStoreByIp } from '@/lib/stores-api';
+import { getStoreGameById } from '@/lib/games-api';
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-export default function GameDetailPage({ params }: Props): ReactNode {
-  const { id } = use(params);
+export default async function GameDetailPage({ params }: Props): Promise<ReactNode> {
+  const { id } = await params;
 
-  const game = mockGames.find(g => g.id === id);
+  const store = await findStoreByIp('1.1.1.1');
+
+  if (!store) {
+    notFound();
+  }
+
+  const game = await getStoreGameById(store.id, id);
 
   if (!game) {
     notFound();

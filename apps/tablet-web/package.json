@@ -14,6 +14,8 @@
     "@repo/consts": "workspace:*",
     "@repo/i18n": "workspace:*",
     "@repo/types": "workspace:*",
+    "@repo/web-shared": "workspace:*",
+    "@repo/api-error": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
     "@tailwindcss/typography": "^0.5.16",

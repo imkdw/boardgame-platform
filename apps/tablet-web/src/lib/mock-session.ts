@@ -16,7 +16,7 @@ export interface SessionData {
 }
 
 export const MOCK_SESSION: SessionData = {
-  isActive: true,
+  isActive: false,
   tableNumber: '1',
   startTime: new Date('2026-01-09T14:00:00'),
   purchasedMinutes: 120,

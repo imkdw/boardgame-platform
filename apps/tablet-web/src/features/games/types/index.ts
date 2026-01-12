@@ -1,4 +1,4 @@
-import type { GameDifficulty, GameGenre, GameSortBy, PlayTimeRange, PlayerCount } from '@repo/consts';
+import type { GameDifficulty, GameGenre, PlayTimeRange, PlayerCount } from '@repo/consts';
 
 export type { GameDifficulty, GameGenre, GameSortBy, PlayTimeRange, PlayerCount } from '@repo/consts';
 

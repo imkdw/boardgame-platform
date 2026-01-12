@@ -104,8 +104,8 @@ export class FindStoreGamesUseCase {
 
   private sortByDifficulty(games: StoreGame[]): StoreGame[] {
     return [...games].sort((a, b) => {
-      const aOrder = GAME_DIFFICULTY_ORDER[a.difficulty as GameDifficulty] ?? 0;
-      const bOrder = GAME_DIFFICULTY_ORDER[b.difficulty as GameDifficulty] ?? 0;
+      const aOrder = GAME_DIFFICULTY_ORDER[a.difficulty as GameDifficulty];
+      const bOrder = GAME_DIFFICULTY_ORDER[b.difficulty as GameDifficulty];
       return aOrder - bOrder;
     });
   }

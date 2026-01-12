@@ -121,7 +121,8 @@
   "InfoVideo": {
     "title": "Store Introduction",
     "back": "Back",
-    "autoReturnMessage": "You will be automatically returned to the home screen when the video ends"
+    "autoReturnMessage": "You will be automatically returned to the home screen when the video ends",
+    "noVideo": "No introduction video available"
   },
   "GameSearch": {
     "pageTitle": "Game Search",

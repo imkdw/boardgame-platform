@@ -6,7 +6,11 @@ export async function getStoreByIp(ip: string): Promise<Store> {
     headers: {
       'X-Forwarded-For': ip,
     },
-    cache: 'no-store',
   });
+  return response.data;
+}
+
+export async function getStoreById(storeId: string): Promise<Store> {
+  const response = await fetchApi<ApiResponse<Store>>(`/stores/${storeId}`);
   return response.data;
 }

@@ -121,7 +121,8 @@
   "InfoVideo": {
     "title": "店舗紹介",
     "back": "戻る",
-    "autoReturnMessage": "動画が終わると自動的にホーム画面に戻ります"
+    "autoReturnMessage": "動画が終わると自動的にホーム画面に戻ります",
+    "noVideo": "紹介動画がありません"
   },
   "GameSearch": {
     "pageTitle": "ゲーム検索",

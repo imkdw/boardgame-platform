@@ -295,6 +295,44 @@ throw new CustomException({
 - Import shared components from `@repo/ui`
 - Use `lucide-react` for icons
 
+### Server Components 우선 원칙 (tablet-web, admin)
+
+**기본적으로 Server Component(SSR)를 사용하고, 필요한 경우에만 Client Component를 사용합니다.**
+
+```typescript
+// ✅ GOOD - Server Component (default)
+// app/[locale]/games/page.tsx
+export default async function GamesPage() {
+  const games = await getGames(); // 서버에서 데이터 fetch
+  return <GameList games={games} />;
+}
+
+// ✅ GOOD - Client Component는 인터랙션이 필요한 부분만 분리
+// app/[locale]/games/game-list.tsx
+'use client';
+export function GameList({ games }: Props) {
+  const [filter, setFilter] = useState('');
+  // 클라이언트 인터랙션 처리
+}
+
+// ❌ BAD - 전체 페이지를 Client Component로 만들지 않음
+'use client';
+export default function GamesPage() {
+  const [games, setGames] = useState([]);
+  useEffect(() => { fetchGames().then(setGames); }, []);
+  // ...
+}
+```
+
+**Client Component가 필요한 경우:**
+
+- `useState`, `useEffect` 등 React hooks 사용
+- 브라우저 전용 API 사용 (localStorage, window 등)
+- 이벤트 핸들러 (onClick, onChange 등)
+- 서드파티 클라이언트 라이브러리 (video.js 등)
+
+**패턴:** 페이지는 Server Component로 데이터를 fetch하고, 인터랙션이 필요한 부분만 별도의 Client Component로 분리합니다.
+
 ## Tablet App Patterns (Expo)
 
 ### Expo Router

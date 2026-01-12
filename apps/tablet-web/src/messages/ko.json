@@ -121,7 +121,8 @@
   "InfoVideo": {
     "title": "매장 소개",
     "back": "돌아가기",
-    "autoReturnMessage": "영상이 끝나면 자동으로 홈 화면으로 돌아갑니다"
+    "autoReturnMessage": "영상이 끝나면 자동으로 홈 화면으로 돌아갑니다",
+    "noVideo": "등록된 소개 영상이 없습니다"
   },
   "GameSearch": {
     "pageTitle": "게임 검색",

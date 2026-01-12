@@ -27,7 +27,7 @@ export function TabletHomeContent({ store }: Props) {
               title={t('menu.storeIntro.title')}
               subtitle={t('menu.storeIntro.subtitle')}
               icon={<Play className="h-12 w-12" />}
-              href="/branch/1/info-video"
+              href={`/branch/${store.id}/info-video`}
               variant="primary"
             />
             <MenuCard

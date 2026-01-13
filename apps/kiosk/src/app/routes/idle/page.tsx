@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 export default function IdlePage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { reset } = useKioskSession();
+  const { reset, setStoreId } = useKioskSession();
   const { store, isLoading } = useStore();
 
   useEffect(() => {
@@ -19,6 +19,9 @@ export default function IdlePage() {
   }, [reset]);
 
   const handleStart = () => {
+    if (store?.id) {
+      setStoreId(store.id);
+    }
     navigate('/select-people');
   };
 
@@ -29,7 +32,7 @@ export default function IdlePage() {
           <span className="text-2xl font-bold text-white">{store?.name?.charAt(0) ?? 'B'}</span>
         </div>
         <span className="text-xl font-semibold text-foreground">
-          {isLoading ? t('idle.storeName') : store?.name ?? t('idle.storeName')}
+          {isLoading ? t('idle.storeName') : (store?.name ?? t('idle.storeName'))}
         </span>
       </div>
 

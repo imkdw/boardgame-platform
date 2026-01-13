@@ -157,7 +157,7 @@ function MyInfoActiveContent() {
           variant="outline"
           size="touch-lg"
           onClick={() => setExitDialogOpen(true)}
-          className="h-16 rounded-2xl text-base font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
+          className="h-16 rounded-2xl border-destructive/50 text-base font-semibold text-destructive transition-all hover:scale-[1.02] hover:bg-destructive/10 active:scale-[0.98]"
         >
           <LogOut className="mr-2 h-6 w-6" />
           {t('actions.exit')}

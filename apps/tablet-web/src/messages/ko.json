@@ -93,7 +93,7 @@
       "selectOption": "연장 옵션 선택",
       "option30min": "30분 연장",
       "option1hour": "1시간 연장",
-      "optionUnlimited": "무제한으로 변경",
+      "optionAllDay": "종일권으로 변경",
       "selectPayment": "결제 수단 선택",
       "paymentKakao": "카카오페이",
       "paymentNaver": "네이버페이",

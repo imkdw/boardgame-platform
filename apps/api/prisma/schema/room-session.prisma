@@ -1,0 +1,23 @@
+model RoomSession {
+  id             String    @id
+  storeId        String    @map("store_id")
+  roomId         String    @map("room_id")
+  timePlanId     String    @map("time_plan_id")
+  peopleCount    Int       @map("people_count")
+  status         String
+  startedAt      DateTime  @map("started_at") @db.Timestamptz
+  endedAt        DateTime? @map("ended_at") @db.Timestamptz
+  scheduledEndAt DateTime  @map("scheduled_end_at") @db.Timestamptz
+  totalPrice     Int       @map("total_price")
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt      DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+
+  store    Store         @relation(fields: [storeId], references: [id])
+  room     StoreRoom     @relation(fields: [roomId], references: [id])
+  timePlan StoreTimePlan @relation(fields: [timePlanId], references: [id])
+
+  @@index([storeId])
+  @@index([roomId])
+  @@index([status])
+  @@map("room_session")
+}

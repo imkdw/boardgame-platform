@@ -4,11 +4,14 @@ import { initialKioskSession } from '../types/kiosk';
 import { getPrice } from '../lib/mock-data';
 
 interface KioskSessionContextValue extends KioskSession {
+  setStoreId: (storeId: string) => void;
   setPeopleCount: (count: number) => void;
   setRoom: (room: Room) => void;
   setTimePackage: (pkg: TimePackage) => void;
   setPaymentMethod: (method: PaymentMethodType) => void;
   calculateEndTime: () => void;
+  setTotalPrice: (price: number) => void;
+  setStartEndTime: (startTime: Date, endTime: Date | null) => void;
   reset: () => void;
 }
 
@@ -16,6 +19,10 @@ const KioskSessionContext = createContext<KioskSessionContextValue | null>(null)
 
 export function KioskSessionProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<KioskSession>(initialKioskSession);
+
+  const setStoreId = useCallback((storeId: string) => {
+    setSession(prev => ({ ...prev, storeId }));
+  }, []);
 
   const setPeopleCount = useCallback((count: number) => {
     setSession(prev => ({ ...prev, peopleCount: count }));
@@ -42,9 +49,7 @@ export function KioskSessionProvider({ children }: { children: ReactNode }) {
       if (!prev.selectedTimePackage) return prev;
 
       const now = new Date();
-      const endTime = prev.selectedTimePackage.isUnlimited
-        ? null
-        : new Date(now.getTime() + prev.selectedTimePackage.durationMinutes * 60 * 1000);
+      const endTime = new Date(now.getTime() + prev.selectedTimePackage.durationMinutes * 60 * 1000);
 
       return {
         ...prev,
@@ -52,6 +57,14 @@ export function KioskSessionProvider({ children }: { children: ReactNode }) {
         endTime,
       };
     });
+  }, []);
+
+  const setTotalPrice = useCallback((price: number) => {
+    setSession(prev => ({ ...prev, totalPrice: price }));
+  }, []);
+
+  const setStartEndTime = useCallback((startTime: Date, endTime: Date | null) => {
+    setSession(prev => ({ ...prev, startTime, endTime }));
   }, []);
 
   const reset = useCallback(() => {
@@ -62,11 +75,14 @@ export function KioskSessionProvider({ children }: { children: ReactNode }) {
     <KioskSessionContext.Provider
       value={{
         ...session,
+        setStoreId,
         setPeopleCount,
         setRoom,
         setTimePackage,
         setPaymentMethod,
         calculateEndTime,
+        setTotalPrice,
+        setStartEndTime,
         reset,
       }}
     >

@@ -12,19 +12,19 @@ interface Props {
   onOpenChange: (open: boolean) => void;
 }
 
-type ExtensionOption = '30min' | '1hour' | 'unlimited';
+type ExtensionOption = '30min' | '1hour' | 'allDay';
 type PaymentMethod = 'kakao' | 'naver' | 'card';
 
 const EXTENSION_PRICES: Record<ExtensionOption, number> = {
   '30min': 2000,
   '1hour': 4000,
-  unlimited: 5000,
+  allDay: 8000,
 };
 
-const EXTENSION_MINUTES: Record<ExtensionOption, number | null> = {
+const EXTENSION_MINUTES: Record<ExtensionOption, number> = {
   '30min': 30,
   '1hour': 60,
-  unlimited: null,
+  allDay: 480,
 };
 
 function formatTime(date: Date): string {
@@ -56,11 +56,10 @@ export function ExtendTimeDialog({ open, onOpenChange }: Props) {
   };
 
   const getNewEndTime = (): string => {
-    if (!selectedOption || selectedOption === 'unlimited') {
-      return selectedOption === 'unlimited' ? '-' : formatTime(MOCK_SESSION.endTime);
+    if (!selectedOption) {
+      return formatTime(MOCK_SESSION.endTime);
     }
     const minutes = EXTENSION_MINUTES[selectedOption];
-    if (minutes === null) return '-';
     const newEnd = new Date(MOCK_SESSION.endTime.getTime() + minutes * 60 * 1000);
     return formatTime(newEnd);
   };
@@ -68,7 +67,7 @@ export function ExtendTimeDialog({ open, onOpenChange }: Props) {
   const extensionOptions: { key: ExtensionOption; label: string; price: number }[] = [
     { key: '30min', label: t('option30min'), price: EXTENSION_PRICES['30min'] },
     { key: '1hour', label: t('option1hour'), price: EXTENSION_PRICES['1hour'] },
-    { key: 'unlimited', label: t('optionUnlimited'), price: EXTENSION_PRICES['unlimited'] },
+    { key: 'allDay', label: t('optionAllDay'), price: EXTENSION_PRICES['allDay'] },
   ];
 
   const paymentMethods: { key: PaymentMethod; label: string; icon: React.ReactNode }[] = [

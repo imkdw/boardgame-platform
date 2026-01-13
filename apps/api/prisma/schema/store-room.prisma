@@ -10,7 +10,8 @@ model StoreRoom {
   updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz
   deletedAt   DateTime? @map("deleted_at") @db.Timestamptz
 
-  store Store @relation(fields: [storeId], references: [id])
+  store    Store         @relation(fields: [storeId], references: [id])
+  sessions RoomSession[]
 
   @@unique([storeId, roomNumber])
   @@map("store_room")

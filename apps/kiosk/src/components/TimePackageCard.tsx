@@ -1,5 +1,5 @@
 import { Card, Badge, cn } from '@repo/ui';
-import { Clock, Star, Infinity } from 'lucide-react';
+import { Clock, Star } from 'lucide-react';
 import type { TimePackage } from '../types/kiosk';
 import { getPrice, formatPrice } from '../lib/mock-data';
 import { useTranslation } from 'react-i18next';
@@ -33,10 +33,10 @@ export function TimePackageCard({ pkg, isSelected, onClick }: Props) {
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          {pkg.isUnlimited ? <Infinity className="size-10 text-primary" /> : <Clock className="size-10 text-primary" />}
+          <Clock className="size-10 text-primary" />
           <div className="flex flex-col">
             <h3 className="text-2xl font-bold">{pkg.label}</h3>
-            {!pkg.isUnlimited && <span className="text-muted-foreground">{pkg.durationMinutes}분</span>}
+            <span className="text-muted-foreground">{pkg.durationMinutes}분</span>
           </div>
         </div>
 

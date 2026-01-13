@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, Badge } from '@repo/ui';
-import { Users, DoorOpen } from 'lucide-react';
+import { Users, DoorOpen, Loader2 } from 'lucide-react';
 import { KioskLayout } from '../../../components/KioskLayout';
 import { BackButton } from '../../../components/BackButton';
 import { TimePackageCard } from '../../../components/TimePackageCard';
 import { useKioskSession } from '../../../hooks/useKioskSession';
 import { useIdleTimer } from '../../../hooks/useIdleTimer';
+import { useTimePlans } from '../../../hooks/useTimePlans';
 import { MOCK_TIME_PACKAGES } from '../../../lib/mock-data';
 import { useState } from 'react';
 import type { TimePackage } from '../../../types/kiosk';
@@ -14,13 +15,17 @@ import type { TimePackage } from '../../../types/kiosk';
 export default function SelectTimePage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { peopleCount, selectedRoom, selectedTimePackage, setTimePackage, reset } = useKioskSession();
+  const { storeId, peopleCount, selectedRoom, selectedTimePackage, setTimePackage, reset } = useKioskSession();
   const [tempSelected, setTempSelected] = useState<TimePackage | null>(selectedTimePackage);
+  const { timePlans, isLoading: isLoadingTimePlans } = useTimePlans(storeId);
   const { showWarning, dismissWarning, handleIdle } = useIdleTimer({
     timeout: 30000,
     redirectTo: '/',
     onIdle: reset,
   });
+
+  // API에서 가져온 데이터가 없으면 mock 데이터 사용
+  const timePackages = timePlans.length > 0 ? timePlans : MOCK_TIME_PACKAGES;
 
   const handleTimeSelect = (pkg: TimePackage) => {
     setTempSelected(pkg);
@@ -61,14 +66,20 @@ export default function SelectTimePage() {
         <p className="mb-8 text-lg text-muted-foreground">{t('selectTime.subtitle')}</p>
 
         <div className="space-y-4">
-          {MOCK_TIME_PACKAGES.map(pkg => (
-            <TimePackageCard
-              key={pkg.id}
-              pkg={pkg}
-              isSelected={tempSelected?.id === pkg.id}
-              onClick={() => handleTimeSelect(pkg)}
-            />
-          ))}
+          {isLoadingTimePlans ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="size-8 animate-spin text-muted-foreground" />
+            </div>
+          ) : (
+            timePackages.map(pkg => (
+              <TimePackageCard
+                key={pkg.id}
+                pkg={pkg}
+                isSelected={tempSelected?.id === pkg.id}
+                onClick={() => handleTimeSelect(pkg)}
+              />
+            ))
+          )}
         </div>
 
         <p className="mt-8 text-center text-lg text-muted-foreground">{t('selectTime.hint')}</p>

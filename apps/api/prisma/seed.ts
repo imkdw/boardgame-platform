@@ -5,6 +5,7 @@
  * - 음식: 카테고리당 20개 (총 20,000개)
  * - 게임: 매장당 100개 (총 10,000개)
  * - 방: 매장당 30개 (총 3,000개)
+ * - 시간 플랜: 매장당 4개 (총 400개)
  *
  * 주의: DB 스키마 변경 시 이 파일도 함께 업데이트 필요
  */
@@ -151,6 +152,8 @@ function getRandomElement<T>(array: readonly T[]): T {
 async function main() {
   const startTime = Date.now();
 
+  await prisma.roomSession.deleteMany();
+  await prisma.storeTimePlan.deleteMany();
   await prisma.storeFoodCategoryItem.deleteMany();
   await prisma.storeFood.deleteMany();
   await prisma.storeFoodCategory.deleteMany();
@@ -186,6 +189,15 @@ async function main() {
   let totalFoods = 0;
   let totalGames = 0;
   let totalRooms = 0;
+  let totalTimePlans = 0;
+
+  // 시간 플랜 템플릿
+  const TIME_PLAN_TEMPLATES = [
+    { name: '1시간', durationMinutes: 60, price: 4000, isRecommended: false, sort: 1 },
+    { name: '2시간', durationMinutes: 120, price: 7000, isRecommended: true, sort: 2 },
+    { name: '3시간', durationMinutes: 180, price: 10000, isRecommended: false, sort: 3 },
+    { name: '종일권', durationMinutes: 480, price: 15000, isRecommended: false, sort: 4 },
+  ];
 
   for (const store of stores) {
     const categories: { id: string; name: string }[] = [];
@@ -295,6 +307,22 @@ async function main() {
         },
       });
       totalRooms++;
+    }
+
+    // 시간 플랜 생성
+    for (const template of TIME_PLAN_TEMPLATES) {
+      await prisma.storeTimePlan.create({
+        data: {
+          id: generateUUID(),
+          storeId: store.id,
+          name: template.name,
+          durationMinutes: template.durationMinutes,
+          price: template.price,
+          isRecommended: template.isRecommended,
+          sort: template.sort,
+        },
+      });
+      totalTimePlans++;
     }
   }
 

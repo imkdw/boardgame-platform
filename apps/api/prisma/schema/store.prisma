@@ -17,6 +17,8 @@ model Store {
   categories StoreFoodCategory[]
   rooms      StoreRoom[]
   games      StoreGame[]
+  timePlans  StoreTimePlan[]
+  sessions   RoomSession[]
 
   @@index([ip])
   @@map("store")

@@ -1,0 +1,18 @@
+model StoreTimePlan {
+  id              String    @id
+  storeId         String    @map("store_id")
+  name            String
+  durationMinutes Int       @map("duration_minutes")
+  price           Int
+  isRecommended   Boolean   @default(false) @map("is_recommended")
+  sort            Int       @default(0)
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt       DateTime? @map("deleted_at") @db.Timestamptz
+
+  store    Store         @relation(fields: [storeId], references: [id])
+  sessions RoomSession[]
+
+  @@unique([storeId, name])
+  @@map("store_time_plan")
+}

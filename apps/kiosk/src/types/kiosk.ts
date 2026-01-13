@@ -14,10 +14,28 @@ export interface TimePackage {
   id: string;
   durationMinutes: number;
   label: string;
-  priceWeekday: number;
-  priceWeekend: number;
+  price: number;
   isRecommended?: boolean;
-  isUnlimited?: boolean;
+}
+
+export interface TimePlan {
+  id: string;
+  storeId: string;
+  name: string;
+  durationMinutes: number;
+  price: number;
+  isRecommended: boolean;
+  sort: number;
+}
+
+export function timePlanToTimePackage(plan: TimePlan): TimePackage {
+  return {
+    id: plan.id,
+    durationMinutes: plan.durationMinutes,
+    label: plan.name,
+    price: plan.price,
+    isRecommended: plan.isRecommended,
+  };
 }
 
 export type PaymentMethodType = 'card' | 'cash' | 'kakaopay' | 'naverpay';
@@ -29,6 +47,7 @@ export interface PaymentMethod {
 }
 
 export interface KioskSession {
+  storeId: string | null;
   peopleCount: number;
   selectedRoom: Room | null;
   selectedTimePackage: TimePackage | null;
@@ -39,6 +58,7 @@ export interface KioskSession {
 }
 
 export const initialKioskSession: KioskSession = {
+  storeId: null,
   peopleCount: 0,
   selectedRoom: null,
   selectedTimePackage: null,

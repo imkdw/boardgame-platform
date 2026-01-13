@@ -290,6 +290,29 @@ throw new CannotUpdateInUseStoreStatusException('사용중인 방은 상태를 �
 - Separate swagger decorators into `*.swagger.ts` files
 - Use decorator composition for clean controllers
 - ApiTags on controller class
+- **NEVER use `ApiQuery` in swagger decorators** - DTO에서 `@ApiProperty`로 문서화하면 자동 반영됨
+
+### SSE (Server-Sent Events)
+
+- SSE 컨트롤러는 `_sse` 폴더에 `store-sse.controller.ts`로 구성
+- 이벤트 타입은 `packages/shared/consts/src/sse-event.const.ts`에 정의하여 클라이언트와 공유
+- 하드코딩된 문자열 이벤트 타입 사용 금지 - 상수 사용 필수
+
+### Module Exports
+
+- NestJS 모듈에서 불필요한 `exports` 지양
+- `@Global()` 모듈이 아닌 경우 다른 모듈에서 사용하지 않는 provider는 export 불필요
+
+### Prisma Schema Rules
+
+- 생성 시점에 명시적으로 설정하는 필드는 `@default()` 사용 금지
+  - 예: `status`, `startedAt` 등은 use-case에서 명시적으로 설정
+- `createdAt`, `updatedAt`만 `@default(now())`와 `@updatedAt` 사용
+
+### Type Separation
+
+- Prisma 모델 조합 타입(예: `RoomSessionWithTimePlan`)은 `types/` 폴더에 별도 파일로 분리
+- 파일명: `<feature>.types.ts`
 
 ### API Versioning
 

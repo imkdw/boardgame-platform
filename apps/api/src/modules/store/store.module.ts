@@ -10,9 +10,11 @@ import { StoreFoodModule } from './_food/store-food.module';
 import { StoreFoodCategoryModule } from './_food-category/store-food-category.module';
 import { StoreGameModule } from './_game/store-game.module';
 import { StoreRoomModule } from './_room/store-room.module';
+import { StoreTimePlanModule } from './_time-plan/store-time-plan.module';
+import { StoreSseModule } from './_sse/store-sse.module';
 
 @Module({
-  imports: [StoreFoodModule, StoreFoodCategoryModule, StoreGameModule, StoreRoomModule],
+  imports: [StoreFoodModule, StoreFoodCategoryModule, StoreGameModule, StoreRoomModule, StoreTimePlanModule, StoreSseModule],
   controllers: [StoreController],
   providers: [
     CreateStoreUseCase,

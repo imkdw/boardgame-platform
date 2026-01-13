@@ -1,0 +1,5 @@
+export const STORE_TIME_PLAN_NAME_MAX_LENGTH = 50;
+export const STORE_TIME_PLAN_DURATION_MIN = 30; // 최소 30분
+export const STORE_TIME_PLAN_DURATION_MAX = 1440; // 24시간
+export const STORE_TIME_PLAN_PRICE_MIN = 0;
+export const STORE_TIME_PLAN_PRICE_MAX = 1000000;

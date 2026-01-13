@@ -16,13 +16,12 @@ export default function CompletePage() {
     navigate('/');
   };
 
-  if (!selectedRoom || !selectedTimePackage) {
+  if (!selectedRoom || !selectedTimePackage || !endTime) {
     navigate('/');
     return null;
   }
 
-  const formatTime = (date: Date | null) => {
-    if (!date) return t('complete.unlimited');
+  const formatTime = (date: Date) => {
     return date.toLocaleTimeString('ko-KR', {
       hour: '2-digit',
       minute: '2-digit',

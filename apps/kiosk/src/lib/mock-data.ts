@@ -70,31 +70,26 @@ export const MOCK_TIME_PACKAGES: TimePackage[] = [
     id: 'time-1h',
     durationMinutes: 60,
     label: '1시간',
-    priceWeekday: 4000,
-    priceWeekend: 5000,
+    price: 4000,
   },
   {
     id: 'time-2h',
     durationMinutes: 120,
     label: '2시간',
-    priceWeekday: 8000,
-    priceWeekend: 9000,
+    price: 7000,
     isRecommended: true,
   },
   {
     id: 'time-3h',
     durationMinutes: 180,
     label: '3시간',
-    priceWeekday: 11000,
-    priceWeekend: 13000,
+    price: 10000,
   },
   {
-    id: 'time-unlimited',
-    durationMinutes: 0,
-    label: '무제한',
-    priceWeekday: 15000,
-    priceWeekend: 18000,
-    isUnlimited: true,
+    id: 'time-allday',
+    durationMinutes: 480,
+    label: '종일권',
+    price: 15000,
   },
 ];
 
@@ -121,13 +116,8 @@ export const PAYMENT_METHODS: PaymentMethod[] = [
   },
 ];
 
-export function isWeekend(): boolean {
-  const day = new Date().getDay();
-  return day === 0 || day === 6;
-}
-
 export function getPrice(pkg: TimePackage): number {
-  return isWeekend() ? pkg.priceWeekend : pkg.priceWeekday;
+  return pkg.price;
 }
 
 export function formatPrice(price: number): string {

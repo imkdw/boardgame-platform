@@ -10,6 +10,7 @@ interface Props {
 
 export default async function GameDetailPage({ params }: Props): Promise<ReactNode> {
   const { id } = await params;
+  // TODO: 임시 IP 제거 - 실제 클라이언트 IP를 사용하도록 변경 필요
   const store = await findStoreByIp('1.1.1.1');
   const game = await getStoreGameById(store.id, id);
 

@@ -11,7 +11,7 @@
  */
 import { PrismaClient } from '@prisma/client';
 import { faker } from '@faker-js/faker/locale/ko';
-import { GAME_DIFFICULTY_VALUES, GAME_GENRE_VALUES, STORE_ROOM_STATUS_VALUES } from '@repo/consts';
+import { GAME_DIFFICULTY_VALUES, GAME_GENRE_VALUES, STORE_ROOM_STATUS, STORE_ROOM_STATUS_VALUES } from '@repo/consts';
 
 const prisma = new PrismaClient();
 
@@ -178,7 +178,7 @@ async function main() {
         wifiPassword: faker.string.alphanumeric(8),
         contact: faker.phone.number({ style: 'national' }),
         introVideoUrl: STORE_VIDEO_URL,
-        ip: `192.168.${Math.floor(i / 256)}.${i % 256}`,
+        ip: i === 1 ? '1.1.1.1' : `192.168.${Math.floor(i / 256)}.${i % 256}`,
         latitude: faker.location.latitude({ min: 33, max: 38 }),
         longitude: faker.location.longitude({ min: 125, max: 130 }),
       },
@@ -300,7 +300,7 @@ async function main() {
           id: roomId,
           storeId: store.id,
           roomNumber: r,
-          status: getRandomElement(STORE_ROOM_STATUS_VALUES),
+          status: r === 1 ? STORE_ROOM_STATUS.AVAILABLE : getRandomElement(STORE_ROOM_STATUS_VALUES),
           minCapacity,
           maxCapacity,
           description: `${r}번방 - ${minCapacity}~${maxCapacity}인실`,

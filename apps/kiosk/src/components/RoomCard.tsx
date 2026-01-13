@@ -2,6 +2,7 @@ import { Card, Badge, cn } from '@repo/ui';
 import { Users, DoorOpen, DoorClosed, Star } from 'lucide-react';
 import type { Room } from '../types/kiosk';
 import { useTranslation } from 'react-i18next';
+import type { KeyboardEvent } from 'react';
 
 interface Props {
   room: Room;
@@ -16,9 +17,22 @@ export function RoomCard({ room, isSelected, isRecommended, onClick, disabled }:
   const isOccupied = room.status === 'occupied';
   const isDisabled = disabled || isOccupied;
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if ((e.key === 'Enter' || e.key === ' ') && !isDisabled && onClick) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
     <Card
+      role="button"
+      tabIndex={isDisabled ? -1 : 0}
+      aria-pressed={isSelected}
+      aria-disabled={isDisabled}
+      aria-label={t('room.name', { number: room.number })}
       onClick={isDisabled ? undefined : onClick}
+      onKeyDown={handleKeyDown}
       className={cn(
         'relative cursor-pointer p-6 transition-all',
         isDisabled && 'cursor-not-allowed opacity-50',

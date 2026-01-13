@@ -30,11 +30,19 @@
     "title": "방을 선택해주세요",
     "subtitle": "선택한 인원에 맞는 방을 추천해드려요",
     "recommended": "추천 방",
+    "allAvailable": "전체 이용 가능",
     "other": "다른 방",
-    "occupied": "이용 중인 방",
+    "occupied": "이용 중",
     "confirmRoom": "{{number}}번 방 선택",
     "selectPrompt": "방을 선택해주세요",
-    "noRooms": "현재 이용 가능한 방이 없습니다"
+    "noRooms": "현재 이용 가능한 방이 없습니다",
+    "noRecommended": "추천 방이 없습니다",
+    "noOccupied": "이용 중인 방이 없습니다",
+    "viewAllAvailable": "전체 방 보기",
+    "selected": "선택됨",
+    "viewMode": "보기 모드",
+    "gridView": "격자형 보기",
+    "listView": "목록형 보기"
   },
   "selectTime": {
     "title": "이용 시간을 선택해주세요",

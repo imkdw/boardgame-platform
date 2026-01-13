@@ -30,11 +30,19 @@
     "title": "Select a room",
     "subtitle": "We recommend rooms based on your group size",
     "recommended": "Recommended",
+    "allAvailable": "All Available",
     "other": "Other rooms",
     "occupied": "Occupied",
     "confirmRoom": "Select Room {{number}}",
     "selectPrompt": "Please select a room",
-    "noRooms": "No rooms available at the moment"
+    "noRooms": "No rooms available at the moment",
+    "noRecommended": "No recommended rooms",
+    "noOccupied": "No occupied rooms",
+    "viewAllAvailable": "View all rooms",
+    "selected": "Selected",
+    "viewMode": "View mode",
+    "gridView": "Grid view",
+    "listView": "List view"
   },
   "selectTime": {
     "title": "Select duration",

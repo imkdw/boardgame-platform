@@ -1,37 +1,22 @@
 import type { ReactNode } from 'react';
-import { SessionLayout } from '@/components/layout';
-import { MOCK_SESSION } from '@/lib/mock-session';
+import { findStoreByIp } from '@/lib/stores-api';
+import { getRooms } from '@/lib/session-api';
+import { MainLayoutClient } from './main-layout-client';
 
 interface Props {
   children: ReactNode;
 }
 
 export default async function MainLayout({ children }: Props) {
-  if (MOCK_SESSION.isActive) {
-    return <SessionLayout>{children}</SessionLayout>;
-  }
-
-  return <DisabledSessionLayout>{children}</DisabledSessionLayout>;
-}
-
-async function DisabledSessionLayout({ children }: { children: ReactNode }) {
-  const { TabletHeader } = await import('@/components/layout');
-  const { LocaleSwitcher } = await import('@/components/shared');
-  const { getTranslations } = await import('next-intl/server');
-  const { findStoreByIp } = await import('@/lib/stores-api');
-
-  const t = await getTranslations('TabletHome');
   const store = await findStoreByIp('1.1.1.1');
+  const rooms = await getRooms(store.id);
+
+  // 태블릿에 할당된 방 (첫 번째 방 사용 - 추후 설정으로 변경 가능)
+  const assignedRoom = rooms[0];
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <TabletHeader
-        storeName={store.name}
-        tableLabel={t('header.tableLabel')}
-        tableNumber={t('tableInfo.tableNumber')}
-        languageSwitcher={<LocaleSwitcher />}
-      />
+    <MainLayoutClient storeId={store.id} roomId={assignedRoom?.id ?? ''} storeName={store.name}>
       {children}
-    </div>
+    </MainLayoutClient>
   );
 }

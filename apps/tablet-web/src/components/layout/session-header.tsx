@@ -4,13 +4,14 @@ import { useTranslations } from 'next-intl';
 import { cn } from '@repo/ui';
 import { Bell, Clock } from 'lucide-react';
 import { LocaleSwitcher, TimeDisplay } from '@/components/shared';
-import { MOCK_SESSION } from '@/lib/mock-session';
+import { useSessionStore } from '@/stores';
 
 interface Props {
   onStaffCall: () => void;
 }
 
-function formatEndTime(date: Date): string {
+function formatEndTime(dateString: string): string {
+  const date = new Date(dateString);
   const hours = date.getHours();
   const minutes = date.getMinutes();
   return `${hours}:${String(minutes).padStart(2, '0')}`;
@@ -19,6 +20,10 @@ function formatEndTime(date: Date): string {
 export function SessionHeader({ onStaffCall }: Props) {
   const t = useTranslations('SessionHeader');
   const tHome = useTranslations('TabletHome');
+  const { session, room, remainingSeconds } = useSessionStore();
+
+  const roomNumber = room?.roomNumber ?? '-';
+  const endTime = session?.scheduledEndAt ? formatEndTime(session.scheduledEndAt) : '--:--';
 
   return (
     <header className={cn('flex items-center justify-between border-b border-border bg-card px-6 py-4')}>
@@ -32,17 +37,17 @@ export function SessionHeader({ onStaffCall }: Props) {
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-2">
           <span className="text-sm text-muted-foreground">{tHome('header.tableLabel')}:</span>
-          <span className="text-lg font-bold text-foreground">{MOCK_SESSION.tableNumber}</span>
+          <span className="text-lg font-bold text-foreground">{roomNumber}</span>
         </div>
 
         <div className="flex items-center gap-2">
           <Clock className="h-4 w-4 text-muted-foreground" />
-          <TimeDisplay remainingSeconds={MOCK_SESSION.remainingSeconds} size="lg" />
+          <TimeDisplay remainingSeconds={remainingSeconds} size="lg" />
         </div>
 
         <div className="flex items-center gap-1 text-sm text-muted-foreground">
           <span>{t('endTime')}</span>
-          <span className="font-medium text-foreground">{formatEndTime(MOCK_SESSION.endTime)}</span>
+          <span className="font-medium text-foreground">{endTime}</span>
         </div>
 
         <button

@@ -8,6 +8,7 @@ interface UseRoomStatusSseOptions {
   storeId: string | null;
   roomId: string | null;
   onRoomStatusChanged: (event: RoomStatusEvent) => void;
+  onReconnected?: () => void;
   enabled?: boolean;
 }
 
@@ -17,10 +18,12 @@ export function useRoomStatusSse({
   storeId,
   roomId,
   onRoomStatusChanged,
+  onReconnected,
   enabled = true,
 }: UseRoomStatusSseOptions) {
   const eventSourceRef = useRef<EventSource | null>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isFirstConnectRef = useRef(true);
 
   const connect = useCallback(() => {
     if (!storeId || !enabled) return;
@@ -34,21 +37,32 @@ export function useRoomStatusSse({
     const eventSource = new EventSource(url);
     eventSourceRef.current = eventSource;
 
-    eventSource.addEventListener(SSE_EVENT_TYPES.ROOM_STATUS_CHANGED, event => {
+    eventSource.onopen = () => {
+      // 재연결 시 (첫 연결이 아닌 경우) 콜백 호출
+      if (!isFirstConnectRef.current && onReconnected) {
+        onReconnected();
+      }
+      isFirstConnectRef.current = false;
+    };
+
+    // NestJS SSE는 type을 event: 라인이 아닌 data 내부에 포함시키므로
+    // onmessage로 모든 이벤트를 받아서 type을 직접 파싱
+    eventSource.onmessage = event => {
       try {
-        const data = JSON.parse(event.data) as RoomStatusEvent;
-        // 현재 방에 대한 이벤트만 처리
-        if (roomId && data.roomId === roomId) {
-          onRoomStatusChanged(data);
+        const parsed = JSON.parse(event.data) as { data: RoomStatusEvent; type: string };
+
+        if (parsed.type === SSE_EVENT_TYPES.ROOM_STATUS_CHANGED) {
+          const data = parsed.data;
+          // 현재 방에 대한 이벤트만 처리
+          if (roomId && data.roomId === roomId) {
+            onRoomStatusChanged(data);
+          }
         }
+        // HEARTBEAT는 별도 처리 불필요
       } catch {
         // JSON 파싱 실패 무시
       }
-    });
-
-    eventSource.addEventListener(SSE_EVENT_TYPES.HEARTBEAT, () => {
-      // Heartbeat 수신 - 연결 유지 확인
-    });
+    };
 
     eventSource.onerror = () => {
       eventSource.close();
@@ -59,9 +73,10 @@ export function useRoomStatusSse({
         connect();
       }, 5000);
     };
-  }, [storeId, roomId, onRoomStatusChanged, enabled]);
+  }, [storeId, roomId, onRoomStatusChanged, onReconnected, enabled]);
 
   useEffect(() => {
+    isFirstConnectRef.current = true;
     connect();
 
     return () => {

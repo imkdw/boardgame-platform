@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import { LogOut, CheckCircle, Loader2 } from 'lucide-react';
 import {
   Dialog,
@@ -45,6 +46,7 @@ function formatUsageTime(startTimeStr: string): string {
 
 export function ExitConfirmDialog({ open, onOpenChange, onConfirm }: Props) {
   const t = useTranslations('MyInfo.exitDialog');
+  const router = useRouter();
   const { session, endSession: endSessionStore } = useSessionStore();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -65,6 +67,8 @@ export function ExitConfirmDialog({ open, onOpenChange, onConfirm }: Props) {
       endSessionStore();
       onConfirm?.();
       handleClose();
+      // 세션 종료 후 메인 페이지로 이동
+      router.push('/');
     } catch {
       // 에러 처리 - 토스트 메시지 등 추가 가능
     } finally {

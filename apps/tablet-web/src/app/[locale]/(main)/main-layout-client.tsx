@@ -2,6 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import { SessionLayout, TabletHeader } from '@/components/layout';
 import { LocaleSwitcher } from '@/components/shared';
 import { SessionProvider } from '@/components/providers';
@@ -29,7 +30,11 @@ interface ContentProps {
 
 function MainLayoutContent({ children, storeName }: ContentProps) {
   const t = useTranslations('TabletHome');
+  const pathname = usePathname();
   const { isActive, room } = useSessionStore();
+
+  // 메인 페이지인지 확인 (/, /ko, /en, /ja 등)
+  const isHomePage = /^\/[a-z]{2}$/.test(pathname) || pathname === '/';
 
   if (isActive) {
     return <SessionLayout>{children}</SessionLayout>;
@@ -42,6 +47,7 @@ function MainLayoutContent({ children, storeName }: ContentProps) {
         tableLabel={t('header.tableLabel')}
         tableNumber={room ? room.roomNumber.toString() : t('tableInfo.tableNumber')}
         languageSwitcher={<LocaleSwitcher />}
+        showBackButton={!isHomePage}
       />
       {children}
     </div>

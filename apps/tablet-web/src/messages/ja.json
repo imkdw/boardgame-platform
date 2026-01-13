@@ -67,7 +67,11 @@
       "remainingTime": "残り時間",
       "endTime": "終了予定",
       "hoursUnit": "{hours}時間",
-      "minutesUnit": "{minutes}分"
+      "minutesUnit": "{minutes}分",
+      "roomNumber": "部屋番号",
+      "roomNumberUnit": "{number}号室",
+      "peopleCount": "利用人数",
+      "peopleCountUnit": "{count}名"
     },
     "paymentInfo": {
       "title": "決済履歴",

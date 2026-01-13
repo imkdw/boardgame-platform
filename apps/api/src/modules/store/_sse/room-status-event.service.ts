@@ -12,22 +12,24 @@ export interface RoomStatusEvent {
 export class RoomStatusEventService {
   private readonly emitters = new Map<string, Subject<RoomStatusEvent>>();
 
-  getEmitter(storeId: string): Observable<RoomStatusEvent> {
-    if (!this.emitters.has(storeId)) {
-      this.emitters.set(storeId, new Subject<RoomStatusEvent>());
-    }
-    const emitter = this.emitters.get(storeId);
+  private getOrCreateEmitter(storeId: string): Subject<RoomStatusEvent> {
+    let emitter = this.emitters.get(storeId);
     if (!emitter) {
-      throw new Error('Emitter not found');
+      emitter = new Subject<RoomStatusEvent>();
+      this.emitters.set(storeId, emitter);
     }
-    return emitter.asObservable();
+    return emitter;
+  }
+
+  getEmitter(storeId: string): Observable<RoomStatusEvent> {
+    return this.getOrCreateEmitter(storeId).asObservable();
   }
 
   emit(storeId: string, event: RoomStatusEvent): void {
-    const emitter = this.emitters.get(storeId);
-    if (emitter) {
-      emitter.next(event);
-    }
+    // getOrCreateEmitter를 사용하여 emitter가 없으면 생성
+    // 이를 통해 클라이언트가 아직 연결하지 않아도 이벤트 발행 준비가 됨
+    const emitter = this.getOrCreateEmitter(storeId);
+    emitter.next(event);
   }
 
   removeEmitter(storeId: string): void {

@@ -67,7 +67,11 @@
       "remainingTime": "Remaining Time",
       "endTime": "End Time",
       "hoursUnit": "{hours}h",
-      "minutesUnit": "{minutes}m"
+      "minutesUnit": "{minutes}m",
+      "roomNumber": "Room Number",
+      "roomNumberUnit": "Room {number}",
+      "peopleCount": "Number of People",
+      "peopleCountUnit": "{count} people"
     },
     "paymentInfo": {
       "title": "Payment History",

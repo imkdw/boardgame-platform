@@ -67,7 +67,11 @@
       "remainingTime": "남은 시간",
       "endTime": "종료 예정",
       "hoursUnit": "{hours}시간",
-      "minutesUnit": "{minutes}분"
+      "minutesUnit": "{minutes}분",
+      "roomNumber": "방 번호",
+      "roomNumberUnit": "{number}번 방",
+      "peopleCount": "이용 인원",
+      "peopleCountUnit": "{count}명"
     },
     "paymentInfo": {
       "title": "결제 내역",

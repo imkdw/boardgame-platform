@@ -18,30 +18,34 @@ export function SessionProvider({ children, storeId, roomId }: Props) {
   const { startSession, endSession, isActive, decrementRemainingSeconds } = useSessionStore();
   const isLoadingRef = useRef(false);
 
+  // 세션 상태 로드 함수 (초기 로드 및 SSE 재연결 시 사용)
+  const loadSessionState = useCallback(async () => {
+    if (isLoadingRef.current) return;
+    isLoadingRef.current = true;
+
+    try {
+      const [activeSession, room] = await Promise.all([
+        getActiveSession(storeId, roomId),
+        getRoomById(storeId, roomId),
+      ]);
+
+      if (activeSession) {
+        startSession(activeSession, room);
+      } else {
+        // 세션이 없으면 종료 상태로 업데이트
+        endSession();
+      }
+    } catch {
+      // 로드 실패 무시
+    } finally {
+      isLoadingRef.current = false;
+    }
+  }, [storeId, roomId, startSession, endSession]);
+
   // 초기 세션 로드
   useEffect(() => {
-    async function loadSession() {
-      if (isLoadingRef.current) return;
-      isLoadingRef.current = true;
-
-      try {
-        const [activeSession, room] = await Promise.all([
-          getActiveSession(storeId, roomId),
-          getRoomById(storeId, roomId),
-        ]);
-
-        if (activeSession) {
-          startSession(activeSession, room);
-        }
-      } catch {
-        // 초기 로드 실패 - 세션 없이 시작
-      } finally {
-        isLoadingRef.current = false;
-      }
-    }
-
-    loadSession();
-  }, [storeId, roomId, startSession]);
+    loadSessionState();
+  }, [loadSessionState]);
 
   // 타이머 (1초마다 남은 시간 감소)
   useEffect(() => {
@@ -91,11 +95,17 @@ export function SessionProvider({ children, storeId, roomId }: Props) {
     [storeId, roomId]
   );
 
+  // SSE 재연결 시 세션 상태 다시 로드
+  const handleReconnected = useCallback(() => {
+    loadSessionState();
+  }, [loadSessionState]);
+
   // SSE 연결
   useRoomStatusSse({
     storeId,
     roomId,
     onRoomStatusChanged: handleRoomStatusChanged,
+    onReconnected: handleReconnected,
     enabled: true,
   });
 

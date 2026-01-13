@@ -14,9 +14,22 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
+    name: 'BoardGameKiosk',
+    executableName: 'BoardGameKiosk',
   },
   rebuildConfig: {},
-  makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
+  makers: [
+    new MakerSquirrel({
+      name: 'BoardGameKiosk',
+      authors: 'dongwoo',
+      description: '보드게임 카페 키오스크 앱',
+      setupExe: 'BoardGameKiosk-Setup.exe',
+      noMsi: true,
+    }),
+    new MakerZIP({}, ['darwin']),
+    new MakerRpm({}),
+    new MakerDeb({}),
+  ],
   plugins: [
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({

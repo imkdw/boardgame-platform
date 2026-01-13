@@ -1,6 +1,6 @@
 {
   "name": "@repo/kiosk",
-  "productName": "kiosk",
+  "productName": "BoardGameKiosk",
   "version": "0.0.1",
   "private": true,
   "description": "Electron kiosk application",

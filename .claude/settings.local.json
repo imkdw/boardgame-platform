@@ -2,7 +2,19 @@
   "permissions": {
     "allow": [
       "Bash(git rm:*)",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "Bash(xcrun simctl:*)",
+      "Bash(system_profiler:*)",
+      "Bash(ios-deploy:*)",
+      "Bash(brew install:*)",
+      "Bash(cfgutil list:*)",
+      "Bash(ipconfig getifaddr:*)",
+      "Bash(xcrun xctrace:*)",
+      "Bash(open -a Simulator)",
+      "Bash(idevice_id:*)",
+      "Bash(xcrun devicectl:*)",
+      "Bash(brew list:*)",
+      "WebFetch(domain:www.electronforge.io)"
     ]
   }
 }

@@ -35,11 +35,11 @@ export function RoomCard({ room, isSelected, isRecommended, onClick, disabled }:
 
       <div className="flex items-start justify-between">
         <div className="flex flex-col gap-2">
-          <h3 className="text-2xl font-bold">{room.number}번 방</h3>
+          <h3 className="text-2xl font-bold">{t('room.name', { number: room.number })}</h3>
           <div className="flex items-center gap-2 text-muted-foreground">
             <Users className="size-5" />
             <span className="text-lg">
-              {room.minCapacity}~{room.maxCapacity}인
+              {t('room.capacity', { min: room.minCapacity, max: room.maxCapacity })}
             </span>
           </div>
           {room.description && <p className="text-sm text-muted-foreground">{room.description}</p>}

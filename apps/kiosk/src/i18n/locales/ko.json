@@ -6,7 +6,11 @@
     "back": "뒤로",
     "change": "변경",
     "step": "{{current}} / {{total}} 단계",
-    "autoRedirect": "{{seconds}}초 후 자동으로 처음 화면으로 이동합니다"
+    "autoRedirect": "{{seconds}}초 후 자동으로 처음 화면으로 이동합니다",
+    "loading": "불러오는 중...",
+    "error": "오류가 발생했습니다",
+    "retry": "다시 시도",
+    "peopleCount": "{{count}}명"
   },
   "idle": {
     "welcome": "어서오세요!",
@@ -29,7 +33,8 @@
     "other": "다른 방",
     "occupied": "이용 중인 방",
     "confirmRoom": "{{number}}번 방 선택",
-    "selectPrompt": "방을 선택해주세요"
+    "selectPrompt": "방을 선택해주세요",
+    "noRooms": "현재 이용 가능한 방이 없습니다"
   },
   "selectTime": {
     "title": "이용 시간을 선택해주세요",
@@ -61,7 +66,9 @@
   "room": {
     "available": "이용 가능",
     "occupied": "이용 중",
-    "recommended": "추천"
+    "recommended": "추천",
+    "name": "{{number}}번 방",
+    "capacity": "{{min}}~{{max}}인"
   },
   "time": {
     "recommended": "추천"

@@ -50,6 +50,7 @@
     "webpack": "^5.103.0"
   },
   "dependencies": {
+    "@repo/consts": "workspace:*",
     "@repo/electron-shared": "workspace:*",
     "@repo/fonts": "workspace:*",
     "@repo/i18n": "workspace:*",

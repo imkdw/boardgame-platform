@@ -6,7 +6,11 @@
     "back": "Back",
     "change": "Change",
     "step": "Step {{current}} of {{total}}",
-    "autoRedirect": "Redirecting to home in {{seconds}} seconds"
+    "autoRedirect": "Redirecting to home in {{seconds}} seconds",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "peopleCount": "{{count}} people"
   },
   "idle": {
     "welcome": "Welcome!",
@@ -29,7 +33,8 @@
     "other": "Other rooms",
     "occupied": "Occupied",
     "confirmRoom": "Select Room {{number}}",
-    "selectPrompt": "Please select a room"
+    "selectPrompt": "Please select a room",
+    "noRooms": "No rooms available at the moment"
   },
   "selectTime": {
     "title": "Select duration",
@@ -61,7 +66,9 @@
   "room": {
     "available": "Available",
     "occupied": "Occupied",
-    "recommended": "Recommended"
+    "recommended": "Recommended",
+    "name": "Room {{number}}",
+    "capacity": "{{min}}-{{max}} people"
   },
   "time": {
     "recommended": "Recommended"

@@ -229,6 +229,9 @@ importers:
 
   apps/kiosk:
     dependencies:
+      '@repo/consts':
+        specifier: workspace:*
+        version: link:../../packages/shared/consts
       '@repo/electron-shared':
         specifier: workspace:*
         version: link:../../packages/electron-shared

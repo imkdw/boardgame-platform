@@ -1,20 +1,22 @@
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, Badge } from '@repo/ui';
-import { Users } from 'lucide-react';
+import { Users, Loader2 } from 'lucide-react';
 import { KioskLayout } from '../../../components/KioskLayout';
 import { BackButton } from '../../../components/BackButton';
 import { RoomCard } from '../../../components/RoomCard';
 import { useKioskSession } from '../../../hooks/useKioskSession';
 import { useIdleTimer } from '../../../hooks/useIdleTimer';
-import { MOCK_ROOMS, getRecommendedRooms, getOtherRooms, getOccupiedRooms } from '../../../lib/mock-data';
+import { useRooms } from '../../../hooks/useRooms';
+import { getRecommendedRooms, getOtherRooms, getOccupiedRooms } from '../../../lib/mock-data';
 import { useState } from 'react';
 import type { Room } from '../../../types/kiosk';
 
 export default function SelectRoomPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { peopleCount, selectedRoom, setRoom, reset } = useKioskSession();
+  const { storeId, peopleCount, selectedRoom, setRoom, reset } = useKioskSession();
+  const { rooms, isLoading, error, refetch } = useRooms(storeId);
   const [tempSelected, setTempSelected] = useState<Room | null>(selectedRoom);
   const { showWarning, dismissWarning, handleIdle } = useIdleTimer({
     timeout: 30000,
@@ -22,9 +24,9 @@ export default function SelectRoomPage() {
     onIdle: reset,
   });
 
-  const recommendedRooms = getRecommendedRooms(MOCK_ROOMS, peopleCount);
-  const otherRooms = getOtherRooms(MOCK_ROOMS, peopleCount);
-  const occupiedRooms = getOccupiedRooms(MOCK_ROOMS);
+  const recommendedRooms = getRecommendedRooms(rooms, peopleCount);
+  const otherRooms = getOtherRooms(rooms, peopleCount);
+  const occupiedRooms = getOccupiedRooms(rooms);
 
   const handleRoomSelect = (room: Room) => {
     setTempSelected(room);
@@ -48,7 +50,7 @@ export default function SelectRoomPage() {
         <div className="flex items-center gap-4">
           <Badge variant="outline" className="gap-2 px-4 py-2 text-lg">
             <Users className="size-5" />
-            {peopleCount}명
+            {t('common.peopleCount', { count: peopleCount })}
           </Badge>
           <Button variant="ghost" size="sm" onClick={() => navigate('/select-people')}>
             {t('common.change')}
@@ -60,48 +62,75 @@ export default function SelectRoomPage() {
         <h2 className="mb-2 text-3xl font-bold">{t('selectRoom.title')}</h2>
         <p className="mb-8 text-lg text-muted-foreground">{t('selectRoom.subtitle')}</p>
 
-        {recommendedRooms.length > 0 && (
-          <div className="mb-8">
-            <h3 className="mb-4 text-xl font-semibold text-primary">{t('selectRoom.recommended')}</h3>
-            <div className="space-y-4">
-              {recommendedRooms.map(room => (
-                <RoomCard
-                  key={room.id}
-                  room={room}
-                  isSelected={tempSelected?.id === room.id}
-                  isRecommended
-                  onClick={() => handleRoomSelect(room)}
-                />
-              ))}
-            </div>
+        {isLoading && (
+          <div className="flex flex-col items-center justify-center py-16">
+            <Loader2 className="size-12 animate-spin text-primary" />
+            <p className="mt-4 text-lg text-muted-foreground">{t('common.loading')}</p>
           </div>
         )}
 
-        {otherRooms.length > 0 && (
-          <div className="mb-8">
-            <h3 className="mb-4 text-xl font-semibold text-muted-foreground">{t('selectRoom.other')}</h3>
-            <div className="space-y-4">
-              {otherRooms.map(room => (
-                <RoomCard
-                  key={room.id}
-                  room={room}
-                  isSelected={tempSelected?.id === room.id}
-                  onClick={() => handleRoomSelect(room)}
-                />
-              ))}
-            </div>
+        {!isLoading && error && (
+          <div className="flex flex-col items-center justify-center py-16">
+            <p className="text-lg text-destructive">{t('common.error')}</p>
+            <p className="mt-2 text-muted-foreground">{error.message}</p>
+            <Button variant="outline" size="touch" className="mt-4" onClick={refetch}>
+              {t('common.retry')}
+            </Button>
           </div>
         )}
 
-        {occupiedRooms.length > 0 && (
-          <div>
-            <h3 className="mb-4 text-xl font-semibold text-muted-foreground">{t('selectRoom.occupied')}</h3>
-            <div className="space-y-4">
-              {occupiedRooms.map(room => (
-                <RoomCard key={room.id} room={room} disabled />
-              ))}
-            </div>
-          </div>
+        {!isLoading && !error && (
+          <>
+            {recommendedRooms.length > 0 && (
+              <div className="mb-8">
+                <h3 className="mb-4 text-xl font-semibold text-primary">{t('selectRoom.recommended')}</h3>
+                <div className="space-y-4">
+                  {recommendedRooms.map(room => (
+                    <RoomCard
+                      key={room.id}
+                      room={room}
+                      isSelected={tempSelected?.id === room.id}
+                      isRecommended
+                      onClick={() => handleRoomSelect(room)}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {otherRooms.length > 0 && (
+              <div className="mb-8">
+                <h3 className="mb-4 text-xl font-semibold text-muted-foreground">{t('selectRoom.other')}</h3>
+                <div className="space-y-4">
+                  {otherRooms.map(room => (
+                    <RoomCard
+                      key={room.id}
+                      room={room}
+                      isSelected={tempSelected?.id === room.id}
+                      onClick={() => handleRoomSelect(room)}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {occupiedRooms.length > 0 && (
+              <div>
+                <h3 className="mb-4 text-xl font-semibold text-muted-foreground">{t('selectRoom.occupied')}</h3>
+                <div className="space-y-4">
+                  {occupiedRooms.map(room => (
+                    <RoomCard key={room.id} room={room} disabled />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {rooms.length === 0 && (
+              <div className="flex flex-col items-center justify-center py-16">
+                <p className="text-lg text-muted-foreground">{t('selectRoom.noRooms')}</p>
+              </div>
+            )}
+          </>
         )}
       </div>
 

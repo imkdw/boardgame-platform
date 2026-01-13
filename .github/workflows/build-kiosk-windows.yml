@@ -43,6 +43,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build shared packages
+        run: pnpm build --filter=@repo/types --filter=@repo/consts --filter=@repo/electron-shared --filter=@repo/ui
+
       - name: Build kiosk Windows installer
         run: pnpm kiosk make --platform win32
         env:

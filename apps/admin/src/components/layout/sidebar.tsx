@@ -26,6 +26,7 @@ const navItems: NavItem[] = [
     children: [
       { title: '매장', href: '/stores' },
       { title: '방', href: '/store-rooms' },
+      { title: '시간제', href: '/store-time-plans' },
     ],
   },
   {

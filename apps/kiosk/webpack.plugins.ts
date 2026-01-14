@@ -10,5 +10,6 @@ export const plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL ?? 'http://localhost:4000/v1'),
+    'process.env.KIOSK_SCALE': JSON.stringify(process.env.KIOSK_SCALE ?? '1.3'),
   }),
 ];

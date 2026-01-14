@@ -14,6 +14,9 @@ function getCorsConfig(env: AppEnv) {
   if (env !== APP_ENV.PRODUCTION) {
     corsOrigins.push(/^https?:\/\/localhost:([0-9]{1,5})$/);
     corsOrigins.push(/^https?:\/\/localhost$/);
+    corsOrigins.push(/^https?:\/\/192\.168\.\d{1,3}\.\d{1,3}(:\d{1,5})?$/);
+    corsOrigins.push(/^https?:\/\/172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}(:\d{1,5})?$/);
+    corsOrigins.push(/^https?:\/\/10\.\d{1,3}\.\d{1,3}\.\d{1,3}(:\d{1,5})?$/);
   }
 
   return { origin: corsOrigins, credentials: true };

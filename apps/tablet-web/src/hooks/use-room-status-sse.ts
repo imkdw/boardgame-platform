@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { SSE_EVENT_TYPES } from '@repo/consts';
 import type { RoomStatusEvent } from '@repo/types';
+import { API_BASE_URL } from '@/lib/api';
 
 interface UseRoomStatusSseOptions {
   storeId: string | null;
@@ -11,8 +12,6 @@ interface UseRoomStatusSseOptions {
   onReconnected?: () => void;
   enabled?: boolean;
 }
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/v1';
 
 export function useRoomStatusSse({
   storeId,

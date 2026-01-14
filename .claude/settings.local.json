@@ -14,7 +14,15 @@
       "Bash(idevice_id:*)",
       "Bash(xcrun devicectl:*)",
       "Bash(brew list:*)",
-      "WebFetch(domain:www.electronforge.io)"
+      "WebFetch(domain:www.electronforge.io)",
+      "Bash(xcodebuild:*)",
+      "Bash(open:*)",
+      "Bash(/usr/libexec/ApplicationFirewall/socketfilterfw:*)",
+      "Bash(git push:*)",
+      "Bash(eas:*)",
+      "Bash(expo:*)",
+      "Bash(xcode-select:*)",
+      "Bash(security find-identity:*)"
     ]
   }
 }

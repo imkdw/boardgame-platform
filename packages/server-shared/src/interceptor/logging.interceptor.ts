@@ -1,62 +1,68 @@
 import { CallHandler, ExecutionContext, HttpStatus, Inject, Injectable, NestInterceptor } from '@nestjs/common';
-import { APP_ENV, AppEnv } from '@repo/consts';
 import { Request, Response } from 'express';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+import { getClientIp } from 'request-ip';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Logger } from 'winston';
 
-import { MyConfigService } from '../config';
 import { LOG_LEVEL, LogLevel } from '../logger';
+
+interface RequestLog {
+  timestamp: string;
+  method: string;
+  url: string;
+  ip: string;
+  statusCode: number;
+  responseTime: string;
+  error?: string;
+  stack?: string;
+}
 
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
-  private readonly env: AppEnv;
-
-  constructor(
-    @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
-    private readonly configService: MyConfigService
-  ) {
-    this.env = this.configService.get('APP_ENV');
-  }
+  constructor(@Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     const ctx = context.switchToHttp();
     const request = ctx.getRequest<Request>();
     const response = ctx.getResponse<Response>();
 
-    const { method, url, body } = request;
+    const { method, url } = request;
     const startTime = Date.now();
-    const requestContext = `${method} ${url}`;
-
-    if (this.env === APP_ENV.LOCAL) {
-      this.logger.debug(`Request started`, {
-        context: requestContext,
-        body,
-      });
-    }
+    const clientIp = getClientIp(request) ?? 'unknown';
 
     return next.handle().pipe(
       tap(() => {
         const responseTime = Date.now() - startTime;
         const statusCode = response.statusCode;
 
-        this.logger.log(this.getLogLevel(statusCode), `Request completed`, {
-          context: requestContext,
+        const logData: RequestLog = {
+          timestamp: new Date().toISOString(),
+          method,
+          url,
+          ip: clientIp,
           statusCode,
           responseTime: `${responseTime}ms`,
-        });
+        };
+
+        this.logger.log(this.getLogLevel(statusCode), JSON.stringify(logData, null, 2));
       }),
       catchError((error: Error) => {
         const responseTime = Date.now() - startTime;
         const statusCode = response.statusCode >= 400 ? response.statusCode : 500;
 
-        this.logger.error(`Request failed`, {
-          context: requestContext,
+        const logData: RequestLog = {
+          timestamp: new Date().toISOString(),
+          method,
+          url,
+          ip: clientIp,
           statusCode,
           responseTime: `${responseTime}ms`,
           error: error.message,
           stack: error.stack,
-        });
+        };
+
+        this.logger.error(JSON.stringify(logData, null, 2));
 
         return throwError(() => error);
       })

@@ -25,6 +25,7 @@ export function createFetchApi(options: CreateFetchApiOptions) {
         signal: controller.signal,
         headers: {
           'Content-Type': 'application/json',
+          'X-Forwarded-For': '1.1.1.1',
           ...restOptions.headers,
         },
       });

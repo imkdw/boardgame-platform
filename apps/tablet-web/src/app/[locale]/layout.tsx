@@ -7,7 +7,6 @@ import { locales, isValidLocale } from '@repo/i18n';
 import { pretendard } from '@repo/fonts/next';
 import { notFound } from 'next/navigation';
 import { ToastProvider } from '@/components/shared';
-import { FullscreenToggle } from '@/components/layout/fullscreen-toggle';
 import '../globals.css';
 
 interface Props {
@@ -43,7 +42,6 @@ export default async function LocaleLayout({ children, params }: Props): Promise
     <html lang={locale} className={pretendard.variable} suppressHydrationWarning>
       <body className={cn(pretendard.className, 'min-h-screen bg-background antialiased')}>
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-        <FullscreenToggle />
         <ToastProvider />
       </body>
     </html>

@@ -22,6 +22,41 @@ const getWebAppUrl = () => {
   return `http://${DEV_MACHINE_IP}:${WEB_APP_PORT}`;
 };
 
+// 줌/확대 기능 비활성화를 위한 JavaScript 코드 (iOS 15+ 호환)
+const DISABLE_ZOOM_SCRIPT = `
+  (function() {
+    // CSS touch-action으로 줌 비활성화 (iOS 15+에서 가장 신뢰할 수 있는 방법)
+    var style = document.createElement('style');
+    style.textContent = 'html, body, * { touch-action: pan-x pan-y; }';
+    document.head.appendChild(style);
+
+    // viewport meta tag 설정으로 줌 비활성화
+    var meta = document.querySelector('meta[name="viewport"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'viewport';
+      document.head.appendChild(meta);
+    }
+    meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+
+    // 터치 이벤트로 pinch-to-zoom 방지
+    document.addEventListener('gesturestart', function(e) {
+      e.preventDefault();
+    }, { passive: false });
+
+    // 더블탭 줌 방지
+    var lastTouchEnd = 0;
+    document.addEventListener('touchend', function(e) {
+      var now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, { passive: false });
+  })();
+  true;
+`;
+
 export default function Index() {
   const [url] = useState(getWebAppUrl());
 
@@ -41,6 +76,11 @@ export default function Index() {
       mixedContentMode="compatibility"
       bounces={false}
       overScrollMode="never"
+      // 줌/확대 기능 비활성화
+      scalesPageToFit={false}
+      injectedJavaScriptBeforeContentLoaded={DISABLE_ZOOM_SCRIPT}
+      // iOS 15+에서 줌 비활성화가 제대로 작동하려면 onMessage 핸들러 필요
+      onMessage={() => {}}
       onError={syntheticEvent => {
         const { nativeEvent } = syntheticEvent;
         // eslint-disable-next-line no-console

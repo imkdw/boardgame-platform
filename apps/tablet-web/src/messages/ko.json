@@ -276,6 +276,30 @@
       }
     }
   },
+  "PenaltyGame": {
+    "title": "원판돌리기",
+    "defaultOption": "옵션{number}",
+    "optionCount": "옵션 개수",
+    "countUnit": "개",
+    "countRange": "(2개~8개 설정가능)",
+    "clickToEdit": "각 판을 선택하여 옵션 내용을 설정해주세요.",
+    "filledCount": "개 입력중",
+    "total": "총",
+    "reset": "초기화",
+    "spin": "돌리기",
+    "spinning": "돌리는 중...",
+    "dialog": {
+      "title": "옵션",
+      "placeholder": "옵션 내용을 입력하세요",
+      "save": "저장",
+      "cancel": "취소"
+    },
+    "result": {
+      "title": "결과 발표!",
+      "playAgain": "다시 돌리기",
+      "close": "닫기"
+    }
+  },
   "GameDetail": {
     "back": "뒤로가기",
     "recommended": "추천",

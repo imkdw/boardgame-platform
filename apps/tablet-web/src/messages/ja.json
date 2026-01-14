@@ -276,6 +276,30 @@
       }
     }
   },
+  "PenaltyGame": {
+    "title": "ルーレット",
+    "defaultOption": "オプション{number}",
+    "optionCount": "オプション数",
+    "countUnit": "個",
+    "countRange": "(2~8個設定可能)",
+    "clickToEdit": "各セクションをクリックしてオプションを設定してください。",
+    "filledCount": "個入力中",
+    "total": "合計",
+    "reset": "リセット",
+    "spin": "回す",
+    "spinning": "回転中...",
+    "dialog": {
+      "title": "オプション",
+      "placeholder": "オプション内容を入力",
+      "save": "保存",
+      "cancel": "キャンセル"
+    },
+    "result": {
+      "title": "結果発表!",
+      "playAgain": "もう一度回す",
+      "close": "閉じる"
+    }
+  },
   "GameDetail": {
     "back": "戻る",
     "recommended": "おすすめ",

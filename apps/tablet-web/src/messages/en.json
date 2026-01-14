@@ -276,6 +276,30 @@
       }
     }
   },
+  "PenaltyGame": {
+    "title": "Spin the Wheel",
+    "defaultOption": "Option {number}",
+    "optionCount": "Options",
+    "countUnit": "",
+    "countRange": "(2~8 options)",
+    "clickToEdit": "Click each slice to set the option content.",
+    "filledCount": " filled",
+    "total": "Total",
+    "reset": "Reset",
+    "spin": "Spin",
+    "spinning": "Spinning...",
+    "dialog": {
+      "title": "Option",
+      "placeholder": "Enter option content",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "result": {
+      "title": "Result!",
+      "playAgain": "Spin Again",
+      "close": "Close"
+    }
+  },
   "GameDetail": {
     "back": "Back",
     "recommended": "Recommended",

@@ -269,6 +269,11 @@
       "notice": "주문 후 테이블로 음식이 배달됩니다.",
       "confirm": "주문하기",
       "cancel": "취소"
+    },
+    "toast": {
+      "success": {
+        "orderPlaced": "주문이 완료되었습니다. 잠시 후 음식이 배달됩니다."
+      }
     }
   },
   "GameDetail": {

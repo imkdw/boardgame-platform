@@ -7,4 +7,5 @@ export * from './store-room-exception-codes';
 export * from './store-time-plan-exception-codes';
 export * from './room-session-exception-codes';
 export * from './user-exception-codes';
+export * from './food-order-exception-codes';
 export * from './exception-messages';

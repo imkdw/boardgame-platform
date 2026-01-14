@@ -11,6 +11,7 @@ import { useCartStore } from '../stores/cart-store';
 import type { FoodItem } from '../types';
 
 interface Props {
+  storeId: string;
   categories: StoreFoodCategory[];
   foodsByCategory: Record<string, StoreFoodCategoryItem[]>;
   isSessionActive: boolean;
@@ -30,7 +31,7 @@ function mapToFoodItem(food: StoreFoodCategoryItem, categoryId: string): FoodIte
   };
 }
 
-export function FoodOrderContent({ categories, foodsByCategory, isSessionActive }: Props): ReactNode {
+export function FoodOrderContent({ storeId, categories, foodsByCategory, isSessionActive }: Props): ReactNode {
   const t = useTranslations('FoodOrder');
   const [selectedCategoryId, setSelectedCategoryId] = useState('all');
   const addItem = useCartStore(state => state.addItem);
@@ -59,7 +60,7 @@ export function FoodOrderContent({ categories, foodsByCategory, isSessionActive 
     <div className="flex h-full flex-1 flex-col overflow-hidden">
       <div className="flex items-center justify-between border-b border-border px-6 py-4">
         <h1 className="text-2xl font-bold text-foreground">{t('pageTitle')}</h1>
-        {isSessionActive && <CartSheet />}
+        {isSessionActive && <CartSheet storeId={storeId} />}
       </div>
 
       <div className="flex flex-1 gap-6 overflow-hidden p-6">

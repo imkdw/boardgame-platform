@@ -247,6 +247,7 @@
     "pageTitle": "フード注文",
     "empty": "このカテゴリーにメニューがありません",
     "currency": "円",
+    "allCategories": "全て",
     "badge": {
       "popular": "人気",
       "new": "新メニュー",
@@ -268,6 +269,11 @@
       "notice": "ご注文後、テーブルにお届けします。",
       "confirm": "注文する",
       "cancel": "キャンセル"
+    },
+    "toast": {
+      "success": {
+        "orderPlaced": "ご注文が完了しました。まもなくお届けします。"
+      }
     }
   },
   "GameDetail": {

@@ -269,6 +269,11 @@
       "notice": "Your order will be delivered to your table.",
       "confirm": "Place Order",
       "cancel": "Cancel"
+    },
+    "toast": {
+      "success": {
+        "orderPlaced": "Order placed successfully. Your food will be delivered shortly."
+      }
     }
   },
   "GameDetail": {

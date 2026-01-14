@@ -4,7 +4,7 @@ import { useState, type ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn, ScrollArea } from '@repo/ui';
-import { Building2, ChevronDown, Gamepad2, LayoutDashboard, UtensilsCrossed } from 'lucide-react';
+import { Building2, ChevronDown, Gamepad2, LayoutDashboard, ShoppingBag, UtensilsCrossed } from 'lucide-react';
 
 interface NavItem {
   title: string;
@@ -37,6 +37,11 @@ const navItems: NavItem[] = [
       { title: '음식 카테고리', href: '/food-categories' },
       { title: '음식', href: '/foods' },
     ],
+  },
+  {
+    title: '주문 관리',
+    href: '/food-orders',
+    icon: <ShoppingBag className="size-5" />,
   },
   {
     title: '게임 관리',

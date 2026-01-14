@@ -12,9 +12,10 @@ model RoomSession {
   createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz
   updatedAt      DateTime  @updatedAt @map("updated_at") @db.Timestamptz
 
-  store    Store         @relation(fields: [storeId], references: [id])
-  room     StoreRoom     @relation(fields: [roomId], references: [id])
-  timePlan StoreTimePlan @relation(fields: [timePlanId], references: [id])
+  store      Store         @relation(fields: [storeId], references: [id])
+  room       StoreRoom     @relation(fields: [roomId], references: [id])
+  timePlan   StoreTimePlan @relation(fields: [timePlanId], references: [id])
+  foodOrders FoodOrder[]
 
   @@index([storeId])
   @@index([roomId])

@@ -6,12 +6,19 @@
  * - 게임: 매장당 100개 (총 10,000개)
  * - 방: 매장당 30개 (총 3,000개)
  * - 시간 플랜: 매장당 4개 (총 400개)
+ * - 음식 주문: 매장당 5개 (총 500개) - 첫 번째 매장만
  *
  * 주의: DB 스키마 변경 시 이 파일도 함께 업데이트 필요
  */
 import { PrismaClient } from '@prisma/client';
 import { faker } from '@faker-js/faker/locale/ko';
-import { GAME_DIFFICULTY_VALUES, GAME_GENRE_VALUES, STORE_ROOM_STATUS, STORE_ROOM_STATUS_VALUES } from '@repo/consts';
+import {
+  GAME_DIFFICULTY_VALUES,
+  GAME_GENRE_VALUES,
+  STORE_ROOM_STATUS,
+  STORE_ROOM_STATUS_VALUES,
+  FOOD_ORDER_STATUS_VALUES,
+} from '@repo/consts';
 
 const prisma = new PrismaClient();
 
@@ -152,6 +159,8 @@ function getRandomElement<T>(array: readonly T[]): T {
 async function main() {
   const startTime = Date.now();
 
+  await prisma.foodOrderItem.deleteMany();
+  await prisma.foodOrder.deleteMany();
   await prisma.roomSession.deleteMany();
   await prisma.storeTimePlan.deleteMany();
   await prisma.storeFoodCategoryItem.deleteMany();
@@ -190,6 +199,10 @@ async function main() {
   let totalGames = 0;
   let totalRooms = 0;
   let totalTimePlans = 0;
+  let totalFoodOrders = 0;
+
+  // 첫 번째 매장의 음식 ID 저장 (주문 생성용)
+  const firstStoreFoodIds: string[] = [];
 
   // 시간 플랜 템플릿
   const TIME_PLAN_TEMPLATES = [
@@ -224,13 +237,15 @@ async function main() {
         const foodNameIndex = (categories.indexOf(category) * 20 + f) % FOOD_NAMES.length;
         const foodName = `${FOOD_NAMES[foodNameIndex]} ${faker.commerce.productAdjective()}`;
 
+        const foodPrice = faker.number.int({ min: 3000, max: 25000, multipleOf: 500 });
+
         await prisma.storeFood.create({
           data: {
             id: foodId,
             storeId: store.id,
             name: foodName,
             description: faker.commerce.productDescription(),
-            price: faker.number.int({ min: 3000, max: 25000, multipleOf: 500 }),
+            price: foodPrice,
             isPopular: faker.datatype.boolean({ probability: 0.2 }),
             isNew: faker.datatype.boolean({ probability: 0.15 }),
             imageUrl: FOOD_IMAGE_URL,
@@ -239,6 +254,11 @@ async function main() {
 
         foodsInCategory.push({ id: foodId });
         totalFoods++;
+
+        // 첫 번째 매장의 음식 ID와 정보 저장
+        if (stores.indexOf(store) === 0) {
+          firstStoreFoodIds.push(foodId);
+        }
       }
 
       for (let order = 0; order < foodsInCategory.length; order++) {
@@ -324,6 +344,59 @@ async function main() {
       });
       totalTimePlans++;
     }
+  }
+
+  // 첫 번째 매장에 음식 주문 생성 (테스트용)
+  const firstStore = stores[0]!;
+  const firstStoreFoods = await prisma.storeFood.findMany({
+    where: { storeId: firstStore.id },
+    take: 10,
+  });
+
+  for (let o = 0; o < 5; o++) {
+    const orderId = generateUUID();
+    const roomNumber = faker.number.int({ min: 1, max: 30 });
+    const status = getRandomElement(FOOD_ORDER_STATUS_VALUES);
+
+    // 1~3개의 랜덤 음식 선택
+    const orderFoods = getRandomElements(firstStoreFoods, faker.number.int({ min: 1, max: 3 }));
+
+    const orderItems = orderFoods.map((food) => {
+      const quantity = faker.number.int({ min: 1, max: 3 });
+      return {
+        id: generateUUID(),
+        orderId,
+        foodId: food.id,
+        foodName: food.name,
+        quantity,
+        unitPrice: food.price,
+        totalPrice: food.price * quantity,
+      };
+    });
+
+    const totalPrice = orderItems.reduce((sum, item) => sum + item.totalPrice, 0);
+
+    await prisma.foodOrder.create({
+      data: {
+        id: orderId,
+        storeId: firstStore.id,
+        roomSessionId: null,
+        roomNumber,
+        status,
+        totalPrice,
+        items: {
+          create: orderItems.map((item) => ({
+            id: item.id,
+            foodId: item.foodId,
+            foodName: item.foodName,
+            quantity: item.quantity,
+            unitPrice: item.unitPrice,
+            totalPrice: item.totalPrice,
+          })),
+        },
+      },
+    });
+    totalFoodOrders++;
   }
 
   const endTime = Date.now();

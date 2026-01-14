@@ -18,9 +18,10 @@ interface Props {
   items: CartItem[];
   totalPrice: number;
   onConfirm: () => void;
+  isPending?: boolean;
 }
 
-export function OrderConfirmDialog({ open, onOpenChange, items, totalPrice, onConfirm }: Props) {
+export function OrderConfirmDialog({ open, onOpenChange, items, totalPrice, onConfirm, isPending }: Props) {
   const locale = useLocale();
   const t = useTranslations('FoodOrder.orderConfirm');
 
@@ -71,10 +72,10 @@ export function OrderConfirmDialog({ open, onOpenChange, items, totalPrice, onCo
         </div>
 
         <DialogFooter className="gap-2 sm:gap-0">
-          <Button variant="outline" size="touch" onClick={() => onOpenChange(false)}>
+          <Button variant="outline" size="touch" onClick={() => onOpenChange(false)} disabled={isPending}>
             {t('cancel')}
           </Button>
-          <Button variant="default" size="touch" onClick={handleConfirm}>
+          <Button variant="default" size="touch" onClick={handleConfirm} disabled={isPending}>
             {t('confirm')}
           </Button>
         </DialogFooter>

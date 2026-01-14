@@ -6,6 +6,7 @@ export * from './store-game.const';
 export * from './store-room.const';
 export * from './store-time-plan.const';
 export * from './room-session.const';
+export * from './food-order.const';
 export * from './user.const';
 export * from './sse-event.const';
 export * from './mock';

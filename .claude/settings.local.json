@@ -22,7 +22,13 @@
       "Bash(eas:*)",
       "Bash(expo:*)",
       "Bash(xcode-select:*)",
-      "Bash(security find-identity:*)"
+      "Bash(security find-identity:*)",
+      "mcp__playwright__playwright_navigate",
+      "Bash(PLAYWRIGHT_BROWSERS_PATH=~/Library/Caches/ms-playwright npx playwright@1.51.1 install:*)",
+      "Bash(PLAYWRIGHT_BROWSERS_PATH=~/Library/Caches/ms-playwright npx -g playwright@1.55.0 install:*)",
+      "Bash(PLAYWRIGHT_BROWSERS_PATH=~/Library/Caches/ms-playwright playwright install:*)",
+      "Bash(ln:*)",
+      "mcp__playwright__playwright_screenshot"
     ]
   }
 }

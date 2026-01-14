@@ -9,6 +9,11 @@ export default async function FoodOrderPage(): Promise<ReactNode> {
   const isSessionActive = MOCK_SESSION.isActive;
 
   return (
-    <FoodOrderContent categories={categories} foodsByCategory={foodsByCategory} isSessionActive={isSessionActive} />
+    <FoodOrderContent
+      storeId={store.id}
+      categories={categories}
+      foodsByCategory={foodsByCategory}
+      isSessionActive={isSessionActive}
+    />
   );
 }

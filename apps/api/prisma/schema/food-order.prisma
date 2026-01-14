@@ -1,0 +1,34 @@
+model FoodOrder {
+  id            String    @id
+  storeId       String    @map("store_id")
+  roomSessionId String?   @map("room_session_id")
+  roomNumber    Int       @map("room_number")
+  status        String
+  totalPrice    Int       @map("total_price")
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt     DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+
+  store       Store            @relation(fields: [storeId], references: [id])
+  roomSession RoomSession?     @relation(fields: [roomSessionId], references: [id])
+  items       FoodOrderItem[]
+
+  @@index([storeId])
+  @@index([roomSessionId])
+  @@index([status])
+  @@map("food_order")
+}
+
+model FoodOrderItem {
+  id         String @id
+  orderId    String @map("order_id")
+  foodId     String @map("food_id")
+  foodName   String @map("food_name")
+  quantity   Int
+  unitPrice  Int    @map("unit_price")
+  totalPrice Int    @map("total_price")
+
+  order FoodOrder @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  food  StoreFood @relation(fields: [foodId], references: [id])
+
+  @@map("food_order_item")
+}

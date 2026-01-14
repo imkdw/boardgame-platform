@@ -13,6 +13,7 @@ model StoreFood {
 
   store         Store                   @relation(fields: [storeId], references: [id])
   categoryItems StoreFoodCategoryItem[]
+  orderItems    FoodOrderItem[]
 
   @@map("store_food")
 }

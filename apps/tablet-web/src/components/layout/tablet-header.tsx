@@ -23,7 +23,7 @@ export function TabletHeader({
   const router = useRouter();
 
   return (
-    <header className={cn('flex items-center justify-between border-b border-border bg-card px-6 py-4')}>
+    <header className={cn('sticky top-0 z-50 flex items-center justify-between border-b border-border bg-card px-6 py-4')}>
       <div className="flex items-center gap-3">
         {showBackButton && (
           <button

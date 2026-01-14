@@ -35,9 +35,16 @@ function MainLayoutContent({ children, storeName }: ContentProps) {
 
   // 메인 페이지인지 확인 (/, /ko, /en, /ja 등)
   const isHomePage = /^\/[a-z]{2}$/.test(pathname) || pathname === '/';
+  // 비디오 페이지인지 확인 (헤더 숨김)
+  const isVideoPage = pathname.endsWith('/video');
 
   if (isActive) {
     return <SessionLayout>{children}</SessionLayout>;
+  }
+
+  // 비디오 페이지에서는 헤더 없이 렌더링
+  if (isVideoPage) {
+    return <div className="min-h-screen bg-background">{children}</div>;
   }
 
   return (

@@ -5,3 +5,4 @@ export * from './game-filters';
 export * from './games-page-content';
 export * from './game-search-bar';
 export * from './game-list';
+export * from './game-video-content';

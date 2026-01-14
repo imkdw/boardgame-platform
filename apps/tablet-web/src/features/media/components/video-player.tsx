@@ -13,9 +13,19 @@ interface Props {
   onEnded?: () => void;
   onReady?: (player: Player) => void;
   className?: string;
+  fill?: boolean;
 }
 
-export function VideoPlayer({ src, poster, autoplay = true, loop = false, onEnded, onReady, className }: Props) {
+export function VideoPlayer({
+  src,
+  poster,
+  autoplay = true,
+  loop = false,
+  onEnded,
+  onReady,
+  className,
+  fill = false,
+}: Props) {
   const videoRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<Player | null>(null);
 
@@ -23,7 +33,12 @@ export function VideoPlayer({ src, poster, autoplay = true, loop = false, onEnde
     if (!videoRef.current) return;
 
     const videoElement = document.createElement('video-js');
-    videoElement.classList.add('vjs-big-play-centered', 'vjs-fluid');
+    videoElement.classList.add('vjs-big-play-centered');
+    if (fill) {
+      videoElement.classList.add('vjs-fill');
+    } else {
+      videoElement.classList.add('vjs-fluid');
+    }
     videoRef.current.appendChild(videoElement);
 
     const player = videojs(videoElement, {
@@ -31,7 +46,8 @@ export function VideoPlayer({ src, poster, autoplay = true, loop = false, onEnde
       autoplay,
       loop,
       preload: 'auto',
-      fluid: true,
+      fluid: !fill,
+      fill,
       responsive: true,
       poster,
       sources: [
@@ -68,11 +84,11 @@ export function VideoPlayer({ src, poster, autoplay = true, loop = false, onEnde
         playerRef.current = null;
       }
     };
-  }, [src, poster, autoplay, loop, onEnded, onReady]);
+  }, [src, poster, autoplay, loop, fill, onEnded, onReady]);
 
   return (
     <div data-vjs-player className={className}>
-      <div ref={videoRef} />
+      <div ref={videoRef} className="h-full w-full" />
     </div>
   );
 }

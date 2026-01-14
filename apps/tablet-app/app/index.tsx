@@ -39,17 +39,19 @@ export default function Index() {
       startInLoadingState={true}
       allowsInlineMediaPlayback={true}
       mixedContentMode="compatibility"
-      onError={(syntheticEvent) => {
+      bounces={false}
+      overScrollMode="never"
+      onError={syntheticEvent => {
         const { nativeEvent } = syntheticEvent;
         // eslint-disable-next-line no-console
         console.log('WebView error:', JSON.stringify(nativeEvent));
       }}
-      onHttpError={(syntheticEvent) => {
+      onHttpError={syntheticEvent => {
         const { nativeEvent } = syntheticEvent;
         // eslint-disable-next-line no-console
         console.log('WebView HTTP error:', JSON.stringify(nativeEvent));
       }}
-      renderError={(errorName) => (
+      renderError={errorName => (
         <View style={styles.errorContainer}>
           <Text style={styles.errorText}>Error: {errorName}</Text>
           <Text style={styles.errorText}>URL: {url}</Text>

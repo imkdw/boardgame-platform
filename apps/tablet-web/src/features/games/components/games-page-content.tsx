@@ -8,6 +8,7 @@ import { GameList, type GameCardItem } from '@repo/ui';
 import { GameSearchBar, GameEmptyState } from '@/features/games/components';
 import { type GameSortBy, type Game, type GameFiltersState, DEFAULT_FILTERS } from '@/features/games/types';
 import { getStoreGames } from '@/lib/games-api';
+import { ScrollToTopButton } from '@/components/shared';
 
 function convertToCardItem(game: Game): GameCardItem {
   return {
@@ -110,6 +111,7 @@ export function GamesPageContent({ storeId, initialGames }: Props): ReactNode {
       ) : (
         <GameEmptyState hasActiveFilters={hasActiveFilters} onResetFilters={handleResetFilters} />
       )}
+      <ScrollToTopButton />
     </div>
   );
 }

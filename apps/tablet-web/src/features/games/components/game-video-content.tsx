@@ -23,21 +23,96 @@ interface Props {
 }
 
 const chapters: Chapter[] = [
-  { time: 0, title: '인트로', description: '게임의 세계관과 테마를 소개합니다', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 12, title: '게임 소개', description: '이 게임의 목표와 특징을 알아봅니다', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 24, title: '구성품 확인', description: '박스에 포함된 모든 구성품을 확인해보세요', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 36, title: '게임 준비', description: '게임을 시작하기 전 필요한 세팅 방법입니다', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 48, title: '기본 규칙', description: '게임의 핵심 규칙을 설명합니다', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 60, title: '턴 진행 방식', description: '각 플레이어의 턴에서 할 수 있는 행동들', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 72, title: '카드 사용법', description: '다양한 카드의 효과와 사용 타이밍', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 84, title: '점수 계산', description: '게임 종료 시 점수를 계산하는 방법', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 96, title: '특수 규칙', description: '예외 상황과 특별한 규칙들을 알아봅니다', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 108, title: '전략 팁 1', description: '초보자를 위한 기본 전략 가이드', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 120, title: '전략 팁 2', description: '승률을 높이는 고급 전략 소개', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 132, title: '자주 하는 실수', description: '많이 틀리는 규칙과 주의사항', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 144, title: '고급 전략', description: '숙련자를 위한 심화 전략 분석', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 156, title: '변형 규칙', description: '다양한 방식으로 즐기는 변형 규칙', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
-  { time: 168, title: '마무리', description: '영상을 마무리하며 핵심 정리', thumbnail: 'https://static.imkdw.dev/maratang.webp' },
+  {
+    time: 0,
+    title: '인트로',
+    description: '게임의 세계관과 테마를 소개합니다',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 12,
+    title: '게임 소개',
+    description: '이 게임의 목표와 특징을 알아봅니다',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 24,
+    title: '구성품 확인',
+    description: '박스에 포함된 모든 구성품을 확인해보세요',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 36,
+    title: '게임 준비',
+    description: '게임을 시작하기 전 필요한 세팅 방법입니다',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 48,
+    title: '기본 규칙',
+    description: '게임의 핵심 규칙을 설명합니다',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 60,
+    title: '턴 진행 방식',
+    description: '각 플레이어의 턴에서 할 수 있는 행동들',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 72,
+    title: '카드 사용법',
+    description: '다양한 카드의 효과와 사용 타이밍',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 84,
+    title: '점수 계산',
+    description: '게임 종료 시 점수를 계산하는 방법',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 96,
+    title: '특수 규칙',
+    description: '예외 상황과 특별한 규칙들을 알아봅니다',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 108,
+    title: '전략 팁 1',
+    description: '초보자를 위한 기본 전략 가이드',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 120,
+    title: '전략 팁 2',
+    description: '승률을 높이는 고급 전략 소개',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 132,
+    title: '자주 하는 실수',
+    description: '많이 틀리는 규칙과 주의사항',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 144,
+    title: '고급 전략',
+    description: '숙련자를 위한 심화 전략 분석',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 156,
+    title: '변형 규칙',
+    description: '다양한 방식으로 즐기는 변형 규칙',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
+  {
+    time: 168,
+    title: '마무리',
+    description: '영상을 마무리하며 핵심 정리',
+    thumbnail: 'https://static.imkdw.dev/maratang.webp',
+  },
 ];
 
 function formatTime(seconds: number): string {
@@ -118,7 +193,7 @@ export function GameVideoContent({ gameId, gameName, videoSrc }: Props) {
             <h2 className="text-lg font-bold text-foreground">챕터</h2>
             <p className="text-sm text-muted-foreground">클릭하여 해당 구간으로 이동</p>
           </div>
-          <div className="min-h-0 flex-1 space-y-2 overflow-y-auto p-3 scrollbar-primary">
+          <div className="min-h-0 flex-1 space-y-2 overflow-y-auto p-3 scrollbar-hide">
             {chapters.map((chapter, index) => (
               <button
                 type="button"
@@ -132,13 +207,7 @@ export function GameVideoContent({ gameId, gameName, videoSrc }: Props) {
               >
                 {/* Thumbnail */}
                 <div className="relative h-16 w-24 flex-shrink-0 overflow-hidden rounded-md bg-muted">
-                  <Image
-                    src={chapter.thumbnail}
-                    alt={chapter.title}
-                    fill
-                    className="object-cover"
-                    sizes="96px"
-                  />
+                  <Image src={chapter.thumbnail} alt={chapter.title} fill className="object-cover" sizes="96px" />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                     <Play className="h-5 w-5 text-white" />
                   </div>
@@ -157,7 +226,9 @@ export function GameVideoContent({ gameId, gameName, videoSrc }: Props) {
                     <span
                       className={cn(
                         'flex-shrink-0 rounded-md px-2 py-1 text-xs font-medium',
-                        activeChapter === index ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
+                        activeChapter === index
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted text-muted-foreground'
                       )}
                     >
                       {formatTime(chapter.time)}

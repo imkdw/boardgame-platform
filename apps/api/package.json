@@ -15,7 +15,8 @@
     "test:e2e": "dotenv -e ../../.env.test -- jest --config test/e2e/jest.config.ts",
     "prisma": "dotenv -e ../../.env -- prisma",
     "prisma:generate": "dotenv -e ../../.env -- prisma generate",
-    "prisma:seed": "dotenv -e ../../.env -- ts-node prisma/seed.ts"
+    "prisma:seed": "dotenv -e ../../.env -- ts-node prisma/seed.ts",
+    "prisma:import-games": "dotenv -e ../../.env -- ts-node prisma/import-crawled-games.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

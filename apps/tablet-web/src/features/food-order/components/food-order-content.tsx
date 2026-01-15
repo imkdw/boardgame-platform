@@ -9,6 +9,7 @@ import { CartSheet } from './cart-sheet';
 import { CategoryList } from './category-list';
 import { useCartStore } from '../stores/cart-store';
 import type { FoodItem } from '../types';
+import { ScrollToTopButton } from '@/components/shared';
 
 interface Props {
   storeId: string;
@@ -74,6 +75,7 @@ export function FoodOrderContent({ storeId, categories, foodsByCategory, isSessi
 
         <main className="flex-1 overflow-auto">
           <FoodList foods={filteredFoods} onAddToCart={addItem} hideAddButton={!isSessionActive} />
+          <ScrollToTopButton />
         </main>
       </div>
     </div>

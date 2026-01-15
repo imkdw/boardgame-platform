@@ -28,7 +28,14 @@
       "Bash(PLAYWRIGHT_BROWSERS_PATH=~/Library/Caches/ms-playwright npx -g playwright@1.55.0 install:*)",
       "Bash(PLAYWRIGHT_BROWSERS_PATH=~/Library/Caches/ms-playwright playwright install:*)",
       "Bash(ln:*)",
-      "mcp__playwright__playwright_screenshot"
+      "mcp__playwright__playwright_screenshot",
+      "mcp__playwright__playwright_post",
+      "mcp__playwright__playwright_evaluate",
+      "mcp__playwright__playwright_get_visible_html",
+      "Bash(bun boardgame-crawl.ts:*)",
+      "Bash(bun add:*)",
+      "Bash(bun init:*)",
+      "mcp__playwright__playwright_close"
     ]
   }
 }

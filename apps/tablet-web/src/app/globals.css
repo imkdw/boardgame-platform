@@ -1,5 +1,15 @@
 @import '@repo/ui/globals.css';
 
+/* Hide scrollbar while keeping scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Primary color scrollbar */
 .scrollbar-primary {
   scrollbar-width: thin;

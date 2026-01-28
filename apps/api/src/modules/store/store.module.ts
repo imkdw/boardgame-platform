@@ -5,7 +5,9 @@ import { DeleteStoreUseCase } from '@/modules/store/use-case/delete-store.use-ca
 import { FindStoreByIpUseCase } from '@/modules/store/use-case/find-store-by-ip.use-case';
 import { FindStoreUseCase } from '@/modules/store/use-case/find-store.use-case';
 import { FindStoresUseCase } from '@/modules/store/use-case/find-stores.use-case';
+import { SetTabletAdminPasswordUseCase } from '@/modules/store/use-case/set-tablet-admin-password.use-case';
 import { UpdateStoreUseCase } from '@/modules/store/use-case/update-store.use-case';
+import { VerifyTabletAdminPasswordUseCase } from '@/modules/store/use-case/verify-tablet-admin-password.use-case';
 import { StoreFoodModule } from './_food/store-food.module';
 import { StoreFoodCategoryModule } from './_food-category/store-food-category.module';
 import { StoreGameModule } from './_game/store-game.module';
@@ -13,9 +15,19 @@ import { StoreRoomModule } from './_room/store-room.module';
 import { StoreTimePlanModule } from './_time-plan/store-time-plan.module';
 import { StoreSseModule } from './_sse/store-sse.module';
 import { FoodOrderModule } from './_food-order/food-order.module';
+import { StoreDeviceModule } from './_device/store-device.module';
 
 @Module({
-  imports: [StoreFoodModule, StoreFoodCategoryModule, StoreGameModule, StoreRoomModule, StoreTimePlanModule, StoreSseModule, FoodOrderModule],
+  imports: [
+    StoreFoodModule,
+    StoreFoodCategoryModule,
+    StoreGameModule,
+    StoreRoomModule,
+    StoreTimePlanModule,
+    StoreSseModule,
+    FoodOrderModule,
+    StoreDeviceModule,
+  ],
   controllers: [StoreController],
   providers: [
     CreateStoreUseCase,
@@ -23,7 +35,9 @@ import { FoodOrderModule } from './_food-order/food-order.module';
     FindStoreByIpUseCase,
     FindStoreUseCase,
     FindStoresUseCase,
+    SetTabletAdminPasswordUseCase,
     UpdateStoreUseCase,
+    VerifyTabletAdminPasswordUseCase,
   ],
 })
 export class StoreModule {}

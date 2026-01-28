@@ -1,0 +1,28 @@
+export const BRIDGE_MESSAGE_TYPE = {
+  RN_INIT: 'RN_INIT',
+  RN_DEVICE_INFO: 'RN_DEVICE_INFO',
+  RN_OPEN_ADMIN: 'RN_OPEN_ADMIN',
+  WEB_READY: 'WEB_READY',
+  WEB_REQUEST_DEVICE_ID: 'WEB_REQUEST_DEVICE_ID',
+  WEB_CLOSE_ADMIN: 'WEB_CLOSE_ADMIN',
+} as const;
+
+export type BridgeMessageType = (typeof BRIDGE_MESSAGE_TYPE)[keyof typeof BRIDGE_MESSAGE_TYPE];
+
+export interface BridgeMessage<T = unknown> {
+  type: BridgeMessageType;
+  data: T;
+}
+
+export interface RnInitData {
+  deviceId: string;
+  appVersion: string;
+}
+
+export interface RnDeviceInfoData {
+  deviceId: string;
+}
+
+export interface WebReadyData {
+  url: string;
+}

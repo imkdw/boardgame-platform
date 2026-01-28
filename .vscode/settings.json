@@ -36,5 +36,8 @@
     "Turborepo",
     "videojs",
     "worklets"
-  ]
+  ],
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }

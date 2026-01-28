@@ -1,0 +1,17 @@
+model StoreDevice {
+  id        String    @id
+  storeId   String    @map("store_id")
+  roomId    String?   @map("room_id")
+  deviceId  String    @unique @map("device_id")
+  name      String?
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  store Store      @relation(fields: [storeId], references: [id])
+  room  StoreRoom? @relation(fields: [roomId], references: [id])
+
+  @@index([storeId])
+  @@index([deviceId])
+  @@map("store_device")
+}

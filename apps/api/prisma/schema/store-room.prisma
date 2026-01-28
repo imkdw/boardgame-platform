@@ -12,6 +12,7 @@ model StoreRoom {
 
   store    Store         @relation(fields: [storeId], references: [id])
   sessions RoomSession[]
+  devices  StoreDevice[]
 
   @@unique([storeId, roomNumber])
   @@map("store_room")

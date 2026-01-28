@@ -7,6 +7,7 @@
  * - 방: 매장당 30개 (총 3,000개)
  * - 시간 플랜: 매장당 4개 (총 400개)
  * - 음식 주문: 매장당 5개 (총 500개) - 첫 번째 매장만
+ * - 디바이스: 첫 번째 매장에 3개
  *
  * 주의: DB 스키마 변경 시 이 파일도 함께 업데이트 필요
  */
@@ -167,6 +168,7 @@ async function main() {
   await prisma.storeFood.deleteMany();
   await prisma.storeFoodCategory.deleteMany();
   await prisma.storeGame.deleteMany();
+  await prisma.storeDevice.deleteMany();
   await prisma.storeRoom.deleteMany();
   await prisma.store.deleteMany();
 
@@ -190,6 +192,7 @@ async function main() {
         ip: i === 1 ? '1.1.1.1' : `192.168.${Math.floor(i / 256)}.${i % 256}`,
         latitude: faker.location.latitude({ min: 33, max: 38 }),
         longitude: faker.location.longitude({ min: 125, max: 130 }),
+        tabletAdminPassword: '1234',
       },
     });
   }
@@ -361,7 +364,7 @@ async function main() {
     // 1~3개의 랜덤 음식 선택
     const orderFoods = getRandomElements(firstStoreFoods, faker.number.int({ min: 1, max: 3 }));
 
-    const orderItems = orderFoods.map((food) => {
+    const orderItems = orderFoods.map(food => {
       const quantity = faker.number.int({ min: 1, max: 3 });
       return {
         id: generateUUID(),
@@ -385,7 +388,7 @@ async function main() {
         status,
         totalPrice,
         items: {
-          create: orderItems.map((item) => ({
+          create: orderItems.map(item => ({
             id: item.id,
             foodId: item.foodId,
             foodName: item.foodName,
@@ -397,6 +400,24 @@ async function main() {
       },
     });
     totalFoodOrders++;
+  }
+
+  const firstStoreRooms = await prisma.storeRoom.findMany({
+    where: { storeId: firstStore.id },
+    orderBy: { roomNumber: 'asc' },
+    take: 3,
+  });
+
+  for (let d = 0; d < 3; d++) {
+    await prisma.storeDevice.create({
+      data: {
+        id: generateUUID(),
+        storeId: firstStore.id,
+        roomId: firstStoreRooms[d]?.id ?? null,
+        deviceId: `test-device-${d + 1}`,
+        name: `${d + 1}번 테이블 태블릿`,
+      },
+    });
   }
 
   const endTime = Date.now();

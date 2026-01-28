@@ -35,7 +35,10 @@
       "Bash(bun boardgame-crawl.ts:*)",
       "Bash(bun add:*)",
       "Bash(bun init:*)",
-      "mcp__playwright__playwright_close"
+      "mcp__playwright__playwright_close",
+      "Bash(adb devices:*)",
+      "Bash(adb kill-server:*)",
+      "Bash(adb start-server:*)"
     ]
   }
 }

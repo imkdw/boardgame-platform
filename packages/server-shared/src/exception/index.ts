@@ -6,3 +6,4 @@ export * from './store-room';
 export * from './store-time-plan';
 export * from './room-session';
 export * from './food-order';
+export * from './store-device';

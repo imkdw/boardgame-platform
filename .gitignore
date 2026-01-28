@@ -47,3 +47,5 @@ next-env.d.ts
 .sisyphus/
 boardgames-storegame.json
 import-crawled-games.ts
+.omc
+.sisyphus

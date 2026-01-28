@@ -1,4 +1,5 @@
 export * from './app-env.const';
+export * from './bridge-message.const';
 export * from './store.const';
 export * from './store-food.const';
 export * from './store-food-category.const';

@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { SessionLayout, TabletHeader } from '@/components/layout';
 import { LocaleSwitcher } from '@/components/shared';
-import { SessionProvider } from '@/components/providers';
+import { SessionProvider, WebViewBridgeProvider } from '@/components/providers';
 import { useSessionStore } from '@/stores';
 
 interface Props {
@@ -17,9 +17,11 @@ interface Props {
 
 export function MainLayoutClient({ children, storeId, roomId, storeName }: Props) {
   return (
-    <SessionProvider storeId={storeId} roomId={roomId}>
-      <MainLayoutContent storeName={storeName}>{children}</MainLayoutContent>
-    </SessionProvider>
+    <WebViewBridgeProvider storeId={storeId}>
+      <SessionProvider storeId={storeId} roomId={roomId}>
+        <MainLayoutContent storeName={storeName}>{children}</MainLayoutContent>
+      </SessionProvider>
+    </WebViewBridgeProvider>
   );
 }
 

@@ -9,4 +9,5 @@ export interface Store {
   ip: string;
   latitude: number;
   longitude: number;
+  tabletAdminPassword: string | null;
 }

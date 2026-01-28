@@ -4,6 +4,7 @@ import { StoreFoodValidator } from './store-food.validator';
 import { StoreFoodCategoryValidator } from './store-food-category.validator';
 import { StoreGameValidator } from './store-game.validator';
 import { StoreRoomValidator } from './store-room.validator';
+import { StoreDeviceValidator } from './store-device.validator';
 
 const validators = [
   StoreValidator,
@@ -11,6 +12,7 @@ const validators = [
   StoreFoodCategoryValidator,
   StoreGameValidator,
   StoreRoomValidator,
+  StoreDeviceValidator,
 ];
 
 @Global()
